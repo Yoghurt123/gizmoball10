@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics
+END
+Circle.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/Circle.java
+END
+Vect.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/Vect.java
+END
+LineSegment.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/LineSegment.java
+END
+GeometryReference.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/GeometryReference.java
+END
+GeometryInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/GeometryInterface.java
+END
+SimpleGeometry.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/SimpleGeometry.java
+END
+Angle.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/Angle.java
+END
+GeometryCompare.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/GeometryCompare.java
+END
+IntervalList.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/IntervalList.java
+END
+Newton.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/Newton.java
+END
+Geometry.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/Geometry.java
+END
+GeometryImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/CS308group10/!svn/ver/4/GizmoballGUI/src/physics/GeometryImpl.java
+END
