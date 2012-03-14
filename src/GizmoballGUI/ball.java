@@ -15,6 +15,8 @@ public class ball extends Gizmo implements Drawable {
 
 	int posX;
 	int posY;
+	int vx;
+	int vy;
 	Vect velocity;
 	Vect g;
 	moveBall mb;
@@ -35,6 +37,8 @@ public class ball extends Gizmo implements Drawable {
 		velocity = new Vect(Angle.DEG_270, 82);
 		posX = x;
 		posY = y;
+		vx = 10;
+		vy = 10;
 		
 	}
 	
@@ -45,17 +49,20 @@ public class ball extends Gizmo implements Drawable {
 		
 //		System.out.println(velocity.length());
 		//if (velocity.length() <1) velocity = new Vect(Angle.ZERO,0);
-		   double dvel = velocity.y()*dtime + 0.5*g.y() *dtime* dtime;
-		   velocity = velocity.plus(g.times(dtime)); 
-           posX += velocity.x()*dtime; 
-        		   
-           posY += dvel;
+//		   double dvel = velocity.y()*dtime + 0.5*g.y() *dtime* dtime;
+//		   velocity = velocity.plus(g.times(dtime)); 
+//           posX += velocity.x()*dtime; 
+//        		   
+//           posY += dvel;
+	}
+	public void move(){
+		mb.move(x, y,vx,vy, this.boundingBox());
+	}
            
           
 //           
            
 		//posX++;
-	}
 	
 	
 	public Graphics paint(Graphics g) {
@@ -116,6 +123,16 @@ public class ball extends Gizmo implements Drawable {
 		g.setColor(defaultColor);
 	    g.fillOval(x, y, (widthInL*PIXELSPERL)/4, (heightInL*PIXELSPERL)/4);
 		
+	}
+	public Rectangle boundingBox() {
+		int radius = (widthInL*PIXELSPERL)/4;
+		// effect: Returns the smallest rectangle that completely covers the
+		// current position of the ball.
+
+		// a Rectangle is the x,y for the upper left corner and then the
+		// width and height
+		return new Rectangle(x - radius, y - radius, radius + radius + 1,
+				radius + radius + 1);
 	}
 	
 }

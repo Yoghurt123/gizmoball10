@@ -4,11 +4,12 @@ package GizmoballGUI;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+
 import javax.swing.Timer;
 import java.io.*;
 import physics.*;
 
-public class Board extends JPanel {
+public class Board extends JPanel implements Observer {
 
   protected static final int BOARDWIDTH = 22;
   protected static final int BOARDHEIGHT = 22;
@@ -325,6 +326,18 @@ public class Board extends JPanel {
     }
     return result;
   }
+
+@Override
+public void update(Observable o, Object arg) {
+	// TODO Auto-generated method stub
+	
+	Rectangle repaintArea = (Rectangle) arg;
+	
+	repaint(repaintArea.x,
+			repaintArea.y,
+			repaintArea.width,
+			repaintArea.height);
+}
 
  }
 
