@@ -199,7 +199,8 @@ public class GUI extends JFrame{
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				b.addFlipper("FlipperL", "FlipperL", x, y, true);
+				b.addFlipper("FlipperL"+fl, "FlipperL", x, y, true);
+				fl++;
 				System.out.println("FlipperL added");
 			}
 		});
@@ -213,7 +214,8 @@ public class GUI extends JFrame{
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				b.addFlipper("FlipperR", "FlipperR", x, y,false);
+				b.addFlipper("FlipperR"+fr, "FlipperR", x, y,false);
+				fr++;
 				System.out.println("FlipperR added");
 			}
 		});
