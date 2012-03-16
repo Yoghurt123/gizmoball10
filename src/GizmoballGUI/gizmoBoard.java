@@ -60,7 +60,7 @@ public class gizmoBoard implements Drawable {
 
 		int horiz = boardLayout.getInstance().getHorisSize();
 		int vert = boardLayout.getInstance().getVertSize();
-		b=new ball(null, null, vert/2,horiz-20);
+		//b=new ball(null, null, vert/2,horiz-20);
 //		b = new ball(100, 100);
 
 		walls = new LineSegment[4];

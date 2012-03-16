@@ -1,10 +1,12 @@
 package GizmoballGUI;
 
 
+
+
 import java.awt.*;
 import java.util.*;
 
-abstract class Gizmo {
+class Gizmo {
 
   protected static final int BOARDWIDTH = Board.BOARDWIDTH;
   protected static final int BOARDHEIGHT = Board.BOARDHEIGHT;
@@ -30,6 +32,7 @@ abstract class Gizmo {
   protected Color defaultColor;
   protected boolean recentlyhit = false;
   protected java.util.List triggers = new ArrayList();
+  private int boxSize = 20;
   
   protected String name;
   protected double refCoef;
@@ -51,7 +54,7 @@ abstract class Gizmo {
 
   }
 
-  public abstract void rotate();
+  public void rotate(){};
 
 
   public int getX() {
@@ -82,13 +85,16 @@ abstract class Gizmo {
     return new Rectangle(x, y, widthInL*PIXELSPERL, heightInL*PIXELSPERL);
   }
 
-  public abstract String getSaveString();
+  public  String getSaveString(){
+	return name;};
 
-  public abstract String getDescription();
+  public  String getDescription(){
+	return name;};
 
-  public abstract boolean containsPoint(Point p);
+  public  boolean containsPoint(Point p){
+	return recentlyhit;};
 
-  public abstract void paint(Graphics2D g);
+  public  void paint(Graphics2D g){};
 
   public boolean equals(Object obj) {
     if (obj instanceof Gizmo) {
@@ -103,5 +109,17 @@ abstract class Gizmo {
     }
     return false;
   }
+  
+  private static Gizmo instance = null;
+
+	public static Gizmo getInstance() {
+		if (instance == null)
+			instance = new Gizmo();
+		return instance;
+	}
+	
+	public int getBoxSize() {
+		return boxSize;
+	}
   
 }

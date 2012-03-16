@@ -29,7 +29,7 @@ public class Board extends JPanel implements Observer {
   protected static final Color GRIDCOLOR = Color.CYAN;
  
 
-  private Timer timerBuild;
+  private Timer timer;
   private boolean mode;
   private Gizmo Walls;
   
@@ -46,10 +46,18 @@ public class Board extends JPanel implements Observer {
 
   private String infoString;
   private StringBuffer soundEffects;
+  private ballModel ball;
+  private animationEventListener eventListener;
 
-  public Board() {
+  public Board(ballModel bm) {
 
     super();
+    ball = bm;
+    
+    ball.addObserver(this);
+    
+    eventListener = new animationEventListener(ball);
+    
     this.setBackground(new Color(0,0,0));
 
     gizmos = new HashMap();
@@ -64,9 +72,21 @@ public class Board extends JPanel implements Observer {
 
     Walls = new Boundary(this);
     grid.addWalls(Walls);
-    ;
+    timer = new Timer(50, eventListener);
+    mode = false;
+   // ball b;
 
   }
+  
+  public boolean isFocusable() { return true; }
+  
+//  private static Board instance = null;
+//
+//	public static Board getInstance() {
+//		if (instance == null)
+//			instance = new Board();
+//		return instance;
+//	}
 
   public void paint(Graphics g) {
 
@@ -75,6 +95,7 @@ public class Board extends JPanel implements Observer {
     Walls.paint(g2);
     if (!mode)
       paintGrid(g);
+    ball.paint(g2);
     
     Iterator gizmoPainter = gizmos.values().iterator();
     while (gizmoPainter.hasNext()) {
@@ -83,6 +104,32 @@ public class Board extends JPanel implements Observer {
     }
 
   }
+  
+  public void setMode(boolean m) {
+	  // modifies: this
+	  // effects: changes the mode to <m>.
+
+	  if (mode == true) {
+		// we're about to change mode: turn off all the old listeners
+		removeMouseListener(eventListener);
+		removeMouseMotionListener(eventListener);
+		removeKeyListener(eventListener);
+	  }
+
+	  mode = m;
+
+	  if (mode == true) {
+		// the mode is true: turn on the listeners
+		addMouseListener(eventListener);
+		addMouseMotionListener(eventListener);
+		addKeyListener(eventListener);
+		requestFocus();           // make sure keyboard is directed to us
+		timer.start();
+	  }
+	  else {
+		timer.stop();
+	  }
+	}
   
   public void addFlipper(String name, String type, int x, int y, boolean d){
 	  if (!mode){
@@ -93,6 +140,7 @@ public class Board extends JPanel implements Observer {
 		  else if (type.equals("FlipperR"))
 			  tempGiz = new FlipperClass(this, name, x, y, d);
 		  gizmos.put(name, tempGiz);
+		  System.out.println(gizmos);
 		  active = (Gizmo)gizmos.get(name);
 		  
 		  repaint(active.boundingBox());
@@ -111,8 +159,8 @@ public class Board extends JPanel implements Observer {
 	tempGiz = new CircleClass(this, name, x, y);
       else if (type.equals("Triangle"))
 	tempGiz = new TriangleClass(this, name, x, y);
-      else if (type.equals("Ball"))
-    tempGiz = new ball(this, name, x, y);
+//      else if (type.equals("Ball"))
+//    tempGiz = new ball(this, name, x, y);
       gizmos.put(name, tempGiz);
       active = (Gizmo)gizmos.get(name);
       
@@ -327,16 +375,28 @@ public class Board extends JPanel implements Observer {
     return result;
   }
 
+//public void update(double dtime) {
+//	b.update(dtime);
+//	//timeUntilCollision();
+//
+//}
+
 @Override
 public void update(Observable o, Object arg) {
-	// TODO Auto-generated method stub
 	
+	// Observable Model passes a rectangle of damaged area
+	// to be updated during painting	
 	Rectangle repaintArea = (Rectangle) arg;
-	
+				
+	// Have Swing tell the AnimationWindow to run its paint()
+	// method.  One could also call repaint(), but this would
+	// repaint the entire window as opposed to only the portion that
+	// has changed.
+
 	repaint(repaintArea.x,
-			repaintArea.y,
-			repaintArea.width,
-			repaintArea.height);
+	repaintArea.y,
+	repaintArea.width,
+	repaintArea.height);
 }
 
  }
