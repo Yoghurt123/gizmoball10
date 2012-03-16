@@ -317,6 +317,7 @@ public class Board extends JPanel implements Observer {
   }
 
   public void paintGrid(Graphics g) {
+	  if(mode == false){
     g.setColor(GRIDCOLOR);
     for (int i = 1; i < BOARDWIDTH; i++) {
       g.drawLine(i*PIXELSPERL, PIXELSPERL,
@@ -326,6 +327,7 @@ public class Board extends JPanel implements Observer {
       g.drawLine(PIXELSPERL, i*PIXELSPERL,
                  (BOARDWIDTH-1)*PIXELSPERL, i*PIXELSPERL);
     }
+	  }
   }
 
   public Gizmo getGizmoAt(Point p) {
@@ -362,25 +364,6 @@ public class Board extends JPanel implements Observer {
 	    }
 	  }
 
-  public void addSoundEffect(String arg) {
-    soundEffects.append(arg);
-  }
-
-  public String getSoundEffects() {
-    int length = soundEffects.length();
-    String result = soundEffects.substring(Math.max(0, length-400), length);
-    if (length > 10000) {
-      soundEffects.delete(0, (length-401));
-    }
-    return result;
-  }
-
-//public void update(double dtime) {
-//	b.update(dtime);
-//	//timeUntilCollision();
-//
-//}
-
 @Override
 public void update(Observable o, Object arg) {
 	
@@ -392,11 +375,12 @@ public void update(Observable o, Object arg) {
 	// method.  One could also call repaint(), but this would
 	// repaint the entire window as opposed to only the portion that
 	// has changed.
+	this.repaint();
 
-	repaint(repaintArea.x,
-	repaintArea.y,
-	repaintArea.width,
-	repaintArea.height);
+//	repaint(repaintArea.x,
+//	repaintArea.y,
+//	repaintArea.width,
+//	repaintArea.height);
 }
 
  }

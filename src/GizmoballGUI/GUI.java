@@ -103,7 +103,8 @@ public class GUI extends JFrame{
 		pauseButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//new MainProgram();
-				b.setBackground(new Color(ran.nextInt(255),ran.nextInt(255),ran.nextInt(255)));
+				//b.setBackground(new Color(ran.nextInt(255),ran.nextInt(255),ran.nextInt(255)));
+				b.setMode(false);
 			}
 		});
 		pauseButton.setToolTipText("Click this button to pause the game");

@@ -22,6 +22,7 @@ public class ballModel extends Observable {
 		private int vx = (int) ((Math.random() * 10.0) + 10.0);
 		private int vy = (int) ((Math.random() * 10.0) + 10.0);
 		private int radius = 6;
+		private int PIXELSPERL = 30;
 
 		private Color color = new Color(255, 255, 255);
 
@@ -61,22 +62,22 @@ public class ballModel extends Observable {
 			Rectangle oldPos = this.boundingBox();
 
 			x += vx;
-			if (x <= radius) {
+			if (x + PIXELSPERL*2 <= radius) {
 				x = radius;
 				vx = -vx;
 			}
-			if (x >= 500 - radius) {
-				x = 500 - radius;
+			if (x >= PIXELSPERL*20 - radius) {
+				x = PIXELSPERL*20 - radius;
 				vx = -vx;
 			}
 
 			y += vy;
-			if (y <= radius) {
+			if (y + PIXELSPERL*2  <= radius) {
 				y = radius;
 				vy = -vy;
 			}
-			if (y >= 500 - radius) {
-				y = 500 - radius;
+			if (y >= PIXELSPERL*20 - radius) {
+				y = PIXELSPERL*20 - radius;
 				vy = -vy;
 			}
 
