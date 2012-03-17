@@ -62,8 +62,8 @@ public class ballModel extends Observable {
 			Rectangle oldPos = this.boundingBox();
 
 			x += vx;
-			if (x + PIXELSPERL*2 <= radius) {
-				x = radius;
+			if (x <= (radius + PIXELSPERL)) {
+				x = (radius + PIXELSPERL);
 				vx = -vx;
 			}
 			if (x >= PIXELSPERL*20 - radius) {
@@ -72,8 +72,8 @@ public class ballModel extends Observable {
 			}
 
 			y += vy;
-			if (y + PIXELSPERL*2  <= radius) {
-				y = radius;
+			if (y <= (radius + PIXELSPERL)) {
+				y = (radius + PIXELSPERL);
 				vy = -vy;
 			}
 			if (y >= PIXELSPERL*20 - radius) {
