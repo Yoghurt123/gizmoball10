@@ -21,7 +21,12 @@ public class GizmoBoardView extends Canvas {
 
 		@Override
 		public void onRun(GizmoBoard board) {
-
+			switch (getCurentDriverState())
+			{
+			case EDIT_STATE:
+				board.checkColisions();
+				break;
+			}
 			paint(getGraphics());
 
 		}

@@ -54,4 +54,18 @@ public class GizmoBoard {
 		}
 	}
 
+	/**
+	 * Check all gizmos for coliding ones with ball
+	 */
+	public void checkColisions() {
+		if(ball!=null)
+		{
+			for(AbstractGizmoModel gizmo:gizmos)
+			{
+				gizmo.timeToColision(ball);
+			}
+		}
+		
+	}
+
 }
