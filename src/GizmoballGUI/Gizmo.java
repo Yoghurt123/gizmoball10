@@ -112,6 +112,7 @@ class Gizmo {
   
   private static Gizmo instance = null;
 
+  //Why the heck is singleton done from abstract class for all gizmos ?!
 	public static Gizmo getInstance() {
 		if (instance == null)
 			instance = new Gizmo();
