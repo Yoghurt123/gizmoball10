@@ -32,7 +32,8 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 		@Override
 		public void onRun(GizmoBoard board) {
 			/**
-			 * calculate new ball movement after reflection
+			 * calculate new ball movement after reflection form reflecform
+			 * the reflec from is generic type becouse of ic can be Linesegment, circle,movinglinesegment etc...
 			 */
 			onColisionTime(board.getBall(), reflecFrom);
 			/**
@@ -99,9 +100,20 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 		}
 	}
 
+	/**
+	 * this event is runed when ball hit gizmo
+	 */
 	public abstract void onHitEvent();
 
+	/**
+	 * this method os runed when gizmo is activ state can be becouse of hited
+	 * runed by onHitEvent, or can be activated by linked gizmo to it
+	 */
 	public abstract void onActivationEvent();
 
+	/**
+	 * this event is runed when time of activation of gizmo elapsed
+	 * it allow gizmo go back to basic state
+	 */
 	public abstract void onDeactivationEvent();
 }

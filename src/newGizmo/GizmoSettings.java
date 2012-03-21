@@ -5,6 +5,13 @@ import java.awt.Color;
 import physics.Angle;
 import physics.Vect;
 
+/**
+ * This clas purpos is to keep all constants in one place easy to change when needed
+ * on extra time setings can/will be stored/readed from conf file
+ * using java.util.preporties utility class; 
+ * @author mikiones
+ *
+ */
 public class GizmoSettings {
 	private GizmoSettings() {
 		// TODO Auto-generated constructor stub
