@@ -127,6 +127,11 @@ public class GizmoMainFrame extends JFrame {
 		frame.setPreferredSize(new Dimension(680, 735));
 		frame.pack();
 		frame.setVisible(true);
-		GizmoBoard.getInstance().addGizmo(new SquereGizmo(30,30));
+		SquereGizmo sq1 = new SquereGizmo(30,30);
+		SquereGizmo sq2 = new SquereGizmo(60,30);
+		sq1.linkGizmo(sq2);
+		GizmoBoard.getInstance().addGizmo(sq1);
+		GizmoBoard.getInstance().addGizmo(sq2);
+		
 	}
 }

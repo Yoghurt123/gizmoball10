@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
 import newGizmo.Utils;
+import newGizmo.model.AbstractGizmoModel.DeactivateTask;
 import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
@@ -55,19 +56,15 @@ public class SquereGizmo extends AbstractGizmoModel {
 	}
 
 	@Override
-	public void onHitEvent() {
-		onActivationEvent();
-	}
-
-	@Override
 	public void onActivationEvent() {
 		curent = gizmoActivColor;
-
+		activateLinkedGizmos();
 	}
 
 	@Override
 	public void onDeactivationEvent() {
 		curent = gizmoColor;
+		deactivateLinkedGizmos();
 
 	}
 

@@ -4,10 +4,24 @@ import java.util.LinkedList;
 
 import newGizmo.Drawable;
 import newGizmo.GizmoDriver;
+import newGizmo.GizmoDriver.STATES;
 import newGizmo.SavleLoadable;
 
 public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 		SavleLoadable {
+
+	protected class DeactivateTask extends GizmoDriver.GizmoTask {
+		public DeactivateTask() {
+			GizmoDriver.getInstance().super();
+		}
+
+		@Override
+		public void onRun(GizmoBoard board) {
+			onDeactivationEvent();
+
+		}
+
+	}
 
 	/**
 	 * task runed on exacly colison time
@@ -16,7 +30,6 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	 * 
 	 */
 	protected class onColisionTimeTask extends GizmoDriver.GizmoTask {
-
 		Object reflecFrom;
 
 		/**
@@ -32,8 +45,9 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 		@Override
 		public void onRun(GizmoBoard board) {
 			/**
-			 * calculate new ball movement after reflection form reflecform
-			 * the reflec from is generic type becouse of ic can be Linesegment, circle,movinglinesegment etc...
+			 * calculate new ball movement after reflection form reflecform the
+			 * reflec from is generic type becouse of ic can be Linesegment,
+			 * circle,movinglinesegment etc...
 			 */
 			onColisionTime(board.getBall(), reflecFrom);
 			/**
@@ -70,10 +84,9 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	 */
 	protected void deactivateLinkedGizmos() {
 		if (linkedGizmos != null)
-			;
-		for (AbstractGizmoModel gizmo : linkedGizmos) {
-			gizmo.onDeactivationEvent();
-		}
+			for (AbstractGizmoModel gizmo : linkedGizmos) {
+				gizmo.onDeactivationEvent();
+			}
 	}
 
 	/**
@@ -103,7 +116,10 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	/**
 	 * this event is runed when ball hit gizmo
 	 */
-	public abstract void onHitEvent();
+	public void onHitEvent() {
+		GizmoDriver.getInstance().runTask(new DeactivateTask(), 1000);
+		onActivationEvent();
+	}
 
 	/**
 	 * this method os runed when gizmo is activ state can be becouse of hited
@@ -112,8 +128,8 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	public abstract void onActivationEvent();
 
 	/**
-	 * this event is runed when time of activation of gizmo elapsed
-	 * it allow gizmo go back to basic state
+	 * this event is runed when time of activation of gizmo elapsed it allow
+	 * gizmo go back to basic state
 	 */
 	public abstract void onDeactivationEvent();
 }

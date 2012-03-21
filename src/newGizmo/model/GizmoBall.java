@@ -68,7 +68,13 @@ public class GizmoBall extends AbstractGizmoModel {
 
 	@Override
 	public void update(double dtime) {
-		x++;
+		System.out.println(volecity.length());
+		//if (velocity.length() <1) velocity = new Vect(Angle.ZERO,0);
+		   double dvel = volecity.y() + 0.5*Gravity.y();// *dtime* dtime;
+		   volecity = volecity.plus(Gravity.times(1)); 
+           x += volecity.x(); 
+        		   
+           y += dvel;
 
 	}
 
