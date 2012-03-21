@@ -23,7 +23,7 @@ public class GizmoBoardView extends Canvas {
 		public void onRun(GizmoBoard board) {
 			switch (getCurentDriverState())
 			{
-			case EDIT_STATE:
+			case RUN_STATE:
 				board.checkColisions();
 				break;
 			}
