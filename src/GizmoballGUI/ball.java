@@ -40,11 +40,6 @@ public class ball implements Drawable {
            posX += velocity.x()*dtime; 
         		   
            posY += dvel;
-           
-          
-//           
-           
-		//posX++;
 	}
 	
 	

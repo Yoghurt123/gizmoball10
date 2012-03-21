@@ -21,7 +21,7 @@ public class animationEventListener extends MouseAdapter implements
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		ball.move();
+		ball.update();
 
 	}
 
