@@ -100,9 +100,9 @@ public class SquereGizmo extends AbstractGizmoModel {
 	public void onColisionTime(GizmoBall ball, Object o) {
 		if (o instanceof LineSegment) {
 			LineSegment linesegment = (LineSegment) o;
-			Vect valocity = Geometry.reflectWall(linesegment,
+			Vect velocity = Geometry.reflectWall(linesegment,
 					ball.getVolecity());
-			ball.setVolecity(valocity);
+			ball.setVelocity(velocity);
 		}
 
 	}
