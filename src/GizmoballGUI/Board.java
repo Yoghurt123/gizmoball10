@@ -168,6 +168,10 @@ public class Board extends JPanel implements Observer {
       requestFocus();
     }
   }
+  
+//  public void delteGizmo(int x, int y){
+//	  gizmos.remove(gizmos.)
+//  }
 
   public void addAbsorber(String name, String type,int x, int y, int width, int height) {
     if (!mode) {

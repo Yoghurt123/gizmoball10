@@ -102,7 +102,7 @@ public class SquereGizmo extends AbstractGizmoModel {
 			LineSegment linesegment = (LineSegment) o;
 			Vect valocity = Geometry.reflectWall(linesegment,
 					ball.getVolecity());
-			ball.setVolecity(valocity);
+			ball.setVelocity(valocity);
 		}
 
 	}

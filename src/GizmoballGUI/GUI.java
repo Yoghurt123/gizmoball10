@@ -153,6 +153,7 @@ public class GUI extends JFrame{
 		JButton absorber = null;
 		JButton flipperl = null;
 		JButton flipperr = null;
+		JButton delete = null;
 		JButton ball = null;
 		
 		//MouseListenerActive = false;
@@ -296,6 +297,18 @@ public class GUI extends JFrame{
 		};
 		});
 		
+		delete = new JButton("Delete");
+		delete.setToolTipText("Click this button to delete a Gizmo");
+		delete.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				String sx = (String) JOptionPane.showInputDialog(frame,"Enter the X value for the Gizmo you want to delete ","Deleting a Gizmo",JOptionPane.PLAIN_MESSAGE,null, null, null);
+				String sy = (String) JOptionPane.showInputDialog(frame,"Enter the Y value for the Gizmo you want to delete ","Deleting a Gizmo",JOptionPane.PLAIN_MESSAGE,null, null, null);
+				
+				int x = Integer.parseInt(sx);
+				int y = Integer.parseInt(sy);
+			}
+		});
+		
 		ball = new JButton("Ball");
 		ball.setToolTipText("Click this button to add a Ball");
 		ball.addActionListener(new ActionListener(){
@@ -332,7 +345,7 @@ public class GUI extends JFrame{
 		toolBar2.add(flipperr);
 		toolBar2.addSeparator();
 		
-		toolBar2.add(ball);
+		//toolBar2.add(ball);
 
 
 		
