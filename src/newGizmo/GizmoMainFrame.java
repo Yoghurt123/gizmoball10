@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
 import newGizmo.GizmoDriver.STATES;
+import newGizmo.model.Absorber;
 import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBoard;
 import newGizmo.model.SquereGizmo;
@@ -177,8 +178,8 @@ public class GizmoMainFrame extends JFrame {
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				b.addGizmo("Triangle"+t, "Triangle", x, y);
-				t++;
+//				b.addGizmo("Triangle"+t, "Triangle", x, y);
+//				t++;
 				System.out.println("Triangle added");
 //				addMouseListener(new MouseAdapter(){
 //					public void mouseClicked(MouseEvent mt){
@@ -229,8 +230,8 @@ public class GizmoMainFrame extends JFrame {
 				int y = Integer.parseInt(sy);
 				int w = Integer.parseInt(sw);
 				int h = Integer.parseInt(sh);
-				b.addAbsorber("Absorber"+a, "Absorber", x, y, w, h);
-				a++;
+//				b.addAbsorber("Absorber"+a, "Absorber", x, y, w, h);
+//				a++;
 				System.out.println("Absorber added");
 			}
 		});
@@ -244,8 +245,8 @@ public class GizmoMainFrame extends JFrame {
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				b.addFlipper("FlipperL"+fl, "FlipperL", x, y, true);
-				fl++;
+//				b.addFlipper("FlipperL"+fl, "FlipperL", x, y, true);
+//				fl++;
 				System.out.println("FlipperL added");
 //				addMouseListener(new MouseAdapter(){
 //					public void mousePressed(MouseEvent ml){
@@ -267,8 +268,8 @@ public class GizmoMainFrame extends JFrame {
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				b.addFlipper("FlipperR"+fr, "FlipperR", x, y, true);
-				fr++;
+//				b.addFlipper("FlipperR"+fr, "FlipperR", x, y, true);
+//				fr++;
 				System.out.println("FlipperR added");
 //				addMouseListener(new MouseAdapter(){
 //					public void mousePressed(MouseEvent mr){
@@ -302,8 +303,8 @@ public class GizmoMainFrame extends JFrame {
 				addMouseListener(new MouseAdapter(){
 					public void mousePressed(MouseEvent mb){
 						
-				b.addGizmo("Ball"+bl, "Ball", mb.getX()/30, (mb.getY()/30)-2);
-				bl++;
+//				b.addGizmo("Ball"+bl, "Ball", mb.getX()/30, (mb.getY()/30)-2);
+//				bl++;
 				System.out.println("Ball added");
 					}
 				});
@@ -342,13 +343,15 @@ public class GizmoMainFrame extends JFrame {
 		frame.setPreferredSize(new Dimension(680, 735));
 		frame.pack();
 		frame.setVisible(true);
-		SquereGizmo sq1 = new SquereGizmo(30,30);
-		SquereGizmo sq2 = new SquereGizmo(60,30);
+		//SquereGizmo sq1 = new SquereGizmo(30,30);
+		//SquereGizmo sq2 = new SquereGizmo(60,30);
 		CircleGizmo ci1 = new CircleGizmo(90,120);
-		sq1.linkGizmo(sq2);
-		GizmoBoard.getInstance().addGizmo(sq1);
-		GizmoBoard.getInstance().addGizmo(sq2);
+		Absorber absorb = new Absorber(600, 500);
+		//sq1.linkGizmo(sq2);
+		//GizmoBoard.getInstance().addGizmo(sq1);
+		//GizmoBoard.getInstance().addGizmo(sq2);
 		GizmoBoard.getInstance().addGizmo(ci1);
+		GizmoBoard.getInstance().addGizmo(absorb);
 		
 	}
 }
