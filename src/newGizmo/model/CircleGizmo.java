@@ -23,9 +23,9 @@ public class CircleGizmo extends AbstractGizmoModel {
 	private final int L = GizmoSettings.getInstance().getGizmoL();
 
 	private static final Color gizmoColor = GizmoSettings.getInstance()
-			.getSquereGizmoColor();
+			.getCircleGizmoColor();
 	private static final Color gizmoActivColor = GizmoSettings.getInstance()
-			.getSqureGizmoActivatedColor();
+			.getCircleGizmoActivatedColor();
 	private Color curent = gizmoColor;
 
 	@Override
