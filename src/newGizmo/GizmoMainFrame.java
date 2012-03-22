@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
 import newGizmo.GizmoDriver.STATES;
+import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBoard;
 import newGizmo.model.SquereGizmo;
 
@@ -127,11 +128,13 @@ public class GizmoMainFrame extends JFrame {
 		frame.setPreferredSize(new Dimension(680, 735));
 		frame.pack();
 		frame.setVisible(true);
-		SquereGizmo sq1 = new SquereGizmo(30,30);
-		SquereGizmo sq2 = new SquereGizmo(60,30);
-		sq1.linkGizmo(sq2);
-		GizmoBoard.getInstance().addGizmo(sq1);
-		GizmoBoard.getInstance().addGizmo(sq2);
+//		SquereGizmo sq1 = new SquereGizmo(30,30);
+//		SquereGizmo sq2 = new SquereGizmo(60,30);
+		CircleGizmo ci1 = new CircleGizmo(60,30);
+//		sq1.linkGizmo(sq2);
+//		GizmoBoard.getInstance().addGizmo(sq1);
+//		GizmoBoard.getInstance().addGizmo(sq2);
+		GizmoBoard.getInstance().addGizmo(ci1);
 		
 	}
 }

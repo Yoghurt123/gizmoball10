@@ -35,7 +35,7 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 		/**
 		 * 
 		 * @param reflector
-		 *            the object Wall cyrcle etc what is reflecting the ball
+		 *            the object Wall circle etc what is reflecting the ball
 		 */
 		public onColisionTimeTask(Object reflector) {
 			GizmoDriver.getInstance().super();

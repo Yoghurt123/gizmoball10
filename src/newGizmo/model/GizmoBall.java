@@ -96,7 +96,7 @@ public class GizmoBall extends AbstractGizmoModel {
 		return volecity;
 	}
 
-	public void setVolecity(Vect volicity) {
+	public void setVelocity(Vect volicity) {
 		this.volecity = volicity;
 	}
 
@@ -123,7 +123,7 @@ public class GizmoBall extends AbstractGizmoModel {
 	public void onColisionTime(GizmoBall ball,Object re) {
 		Vect newVolicity = Geometry.reflectCircle(getShape().getCenter(), ball
 				.getShape().getCenter(), ball.getVolecity());
-		ball.setVolecity(newVolicity);
+		ball.setVelocity(newVolicity);
 
 	}
 
