@@ -346,7 +346,7 @@ public class GizmoMainFrame extends JFrame {
 		//SquereGizmo sq1 = new SquereGizmo(30,30);
 		//SquereGizmo sq2 = new SquereGizmo(60,30);
 		CircleGizmo ci1 = new CircleGizmo(90,120);
-		Absorber absorb = new Absorber(600, 500);
+		Absorber absorb = new Absorber(0, 400);
 		//sq1.linkGizmo(sq2);
 		//GizmoBoard.getInstance().addGizmo(sq1);
 		//GizmoBoard.getInstance().addGizmo(sq2);

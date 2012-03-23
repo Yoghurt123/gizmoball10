@@ -10,16 +10,17 @@ import physics.Vect;
 
 public class Absorber extends AbstractGizmoModel {
 
-
+	LineSegment abs = null;
 	public Absorber(int x, int y) {
 		super(x, y);
+		SetBoundary();
 
 	}
 
 	@Override
 	public Graphics paint(Graphics g) {
 		g.setColor(Color.GREEN);
-		g.fillRect(0, 650, 700, 650);
+		g.fillRect(0, y, 700, 20);
 		return g;
 	}
 
@@ -29,9 +30,13 @@ public class Absorber extends AbstractGizmoModel {
 		
 	}
 	
+	public void SetBoundary(){
+		this.abs = new LineSegment(0,y,900,y);
+	}
+	
 	public LineSegment getRect() {
 	
-	return new LineSegment(0, 450, 900, 450);
+	return this.abs;
 }
 
 	@Override

@@ -2,27 +2,35 @@ package newGizmo.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Polygon;
 
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
 import newGizmo.Utils;
-import physics.Circle;
+import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
+
 import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 
-public class CircleGizmo extends AbstractGizmoModel {
+public class TriangleGizmo extends AbstractGizmoModel {
 
-	Circle circleBoundary;
+	LineSegment triangleLines[] = new LineSegment[3];
+	private final int GizmoLength = GizmoSettings.getInstance().getGizmoL();
 
-	public CircleGizmo(int x, int y) {
+	public TriangleGizmo(int x, int y) {
 		super(x, y);
-		GetCircle();
+		SetBoundaryBox();
 		// TODO Auto-generated constructor stub
 	}
 
-	private final int L = GizmoSettings.getInstance().getGizmoL();
+	public void SetBoundaryBox(){
 
+		triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
+		triangleLines[1] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y-GizmoLength);
+		triangleLines[2] = new LineSegment(x,y,x+GizmoLength,y-GizmoLength);
+	}
 	private static final Color gizmoColor = GizmoSettings.getInstance()
 			.getSquereGizmoColor();
 	private static final Color gizmoActivColor = GizmoSettings.getInstance()
@@ -32,20 +40,22 @@ public class CircleGizmo extends AbstractGizmoModel {
 	@Override
 	public Graphics paint(Graphics g) {
 
-		g.setColor(curent);
-		g.fillOval(x, y, 20, 20);
-    	return g;
-
-	}
+		Point p1 = new Point(x,y);
+		Point p2 = new Point(x+GizmoLength,y);
+		Point p3 = new Point(x+GizmoLength,y-GizmoLength);
 	
-	public Circle GetCircle(){
-		circleBoundary = new Circle(x, y, 15);
-		return circleBoundary;
+		int[] xCoordinates = {p1.x,p2.x,p3.x};
+		int[] yCoordinates = {p1.y,p2.y,p3.y};
+		Polygon triangle = new Polygon(xCoordinates,yCoordinates,xCoordinates.length);
+		g.setColor(curent);
+		g.fillPolygon(triangle);
+		return g;
+
 	}
 
 	@Override
 	public void update(double dtime) {
-		// nothing
+		// nohing
 
 	}
 
@@ -65,22 +75,25 @@ public class CircleGizmo extends AbstractGizmoModel {
 	@Override
 	public double timeToColision(GizmoBall ball) {
 		double tempTime = Double.POSITIVE_INFINITY;
+		LineSegment templine = triangleLines[0];
 
-			double time = Geometry.timeUntilCircleCollision(GetCircle(), ball.getShape(),
+		for (LineSegment l : triangleLines) {
+			double time = Geometry.timeUntilWallCollision(l, ball.getShape(),
 					ball.getVolecity());
 			if (tempTime > time) {
+				templine = l;
 				tempTime = time;
-			
+			}
 		}
 
-		// when time to collisions is less them time tick run timeTask on exactly
-		// collision time
+		// when time to collisions is less them tiem tick run timeTask on exacly
+		// colision time
 		if (tempTime < GizmoSettings.getInstance().getBallMovementUpdateDtime()) {
 			long msec = Utils.Sec2Msec(tempTime);
 			// update ball position on hit moment
 			GizmoDriver.getInstance().runTask(ball.newTask(msec), msec);
 			// run onHit method of gizmo on hit time
-			GizmoDriver.getInstance().runTask(new onColisionTimeTask(GetCircle()),
+			GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
 					msec);
 		}
 		return tempTime;
@@ -89,10 +102,10 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 	@Override
 	public void onColisionTime(GizmoBall ball, Object o) {
-		if (o instanceof Circle) {
-			Circle circle = (Circle) o;
-			Vect velocity = Geometry.reflectRotatingCircle(circle,GetCircle().getCenter(),
-						0,ball.getShape(),ball.getVolecity());
+		if (o instanceof LineSegment) {
+			LineSegment linesegment = (LineSegment) o;
+			Vect velocity = Geometry.reflectWall(linesegment,
+					ball.getVolecity());
 			ball.setVelocity(velocity);
 		}
 
@@ -103,7 +116,7 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 		String retstr = "";
 		// retstr += "Name: " + name + "\n";
-		retstr += "Type: Circle\n";
+		retstr += "Type: Triangle\n";
 		retstr += "Position: (" + (x / GizmoSettings.getInstance().getGizmoL())
 				+ "," + (y / GizmoSettings.getInstance().getGizmoL()) + ")\n";
 		retstr += "Connects to:";
@@ -114,14 +127,14 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 	@Override
 	public String getSaveString() {
-		return "Circle " + name + " "
+		return "Triangle " + name + " "
 				+ (x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
 				+ (y / GizmoSettings.getInstance().getGizmoL() - 1);
 	}
 
 	@Override
 	public String getType() {
-		return "Circle";
+		return "Triangle";
 	}
-	
+
 }

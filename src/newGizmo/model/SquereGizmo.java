@@ -14,22 +14,22 @@ import physics.Vect;
 public class SquereGizmo extends AbstractGizmoModel {
 	private final int L = GizmoSettings.getInstance().getGizmoL();
 
-	LineSegment squereLines[] = new LineSegment[4];
+	LineSegment squareLines[] = new LineSegment[4];
 
 	public SquereGizmo(int x, int y) {
 		super(x, y);
-		setBountryBox();
+		setBoundaryBox();
 	}
 
 	/**
-	 * setup the bourtly lines around the box for find the time to clisons and
+	 * setup the boundary lines around the box for find the time to collisions and
 	 * reflect the ball as needed
 	 */
-	private void setBountryBox() {
-		squereLines[0] = new LineSegment(x, y, x + L, y);
-		squereLines[1] = new LineSegment(x + L, y, x + L, y + L);
-		squereLines[2] = new LineSegment(x + L, y + L, x, y + L);
-		squereLines[3] = new LineSegment(x, y + L, x, y);
+	private void setBoundaryBox() {
+		squareLines[0] = new LineSegment(x, y, x + L, y);
+		squareLines[1] = new LineSegment(x + L, y, x + L, y + L);
+		squareLines[2] = new LineSegment(x + L, y + L, x, y + L);
+		squareLines[3] = new LineSegment(x, y + L, x, y);
 
 	}
 
@@ -71,9 +71,9 @@ public class SquereGizmo extends AbstractGizmoModel {
 	@Override
 	public double timeToColision(GizmoBall ball) {
 		double tempTime = Double.POSITIVE_INFINITY;
-		LineSegment templine = squereLines[0];
+		LineSegment templine = squareLines[0];
 
-		for (LineSegment l : squereLines) {
+		for (LineSegment l : squareLines) {
 			double time = Geometry.timeUntilWallCollision(l, ball.getShape(),
 					ball.getVolecity());
 			if (tempTime > time) {
