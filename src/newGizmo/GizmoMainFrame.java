@@ -24,6 +24,8 @@ import newGizmo.GizmoDriver.STATES;
 import newGizmo.model.Absorber;
 import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBoard;
+import newGizmo.model.LeftFlipper;
+import newGizmo.model.RightFlipper;
 import newGizmo.model.SquereGizmo;
 
 public class GizmoMainFrame extends JFrame {
@@ -223,13 +225,16 @@ public class GizmoMainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				String sx = (String) JOptionPane.showInputDialog(frame,"Enter the X value for the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null, null, null);
 				String sy = (String) JOptionPane.showInputDialog(frame,"Enter the Y value for the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null, null, null);
-				String sw = (String) JOptionPane.showInputDialog(frame,"Enter the value for the length of the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null, null, null);
-				String sh = (String) JOptionPane.showInputDialog(frame,"Enter the value for the height of the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null, null, null);
+//				String sw = (String) JOptionPane.showInputDialog(frame,"Enter the value for the length of the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null, null, null);
+//				String sh = (String) JOptionPane.showInputDialog(frame,"Enter the value for the height of the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null, null, null);
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				int w = Integer.parseInt(sw);
-				int h = Integer.parseInt(sh);
+				
+				Absorber ab1 = new Absorber(x*30,y*30);
+				GizmoBoard.getInstance().addGizmo(ab1);
+//				int w = Integer.parseInt(sw);
+//				int h = Integer.parseInt(sh);
 //				b.addAbsorber("Absorber"+a, "Absorber", x, y, w, h);
 //				a++;
 				System.out.println("Absorber added");
@@ -245,6 +250,9 @@ public class GizmoMainFrame extends JFrame {
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
+				
+				LeftFlipper lf1 = new LeftFlipper(x*30,y*30);
+				GizmoBoard.getInstance().addGizmo(lf1);
 //				b.addFlipper("FlipperL"+fl, "FlipperL", x, y, true);
 //				fl++;
 				System.out.println("FlipperL added");
@@ -268,6 +276,8 @@ public class GizmoMainFrame extends JFrame {
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
+				RightFlipper rf1 = new RightFlipper(x*30,y*30);
+				GizmoBoard.getInstance().addGizmo(rf1);
 //				b.addFlipper("FlipperR"+fr, "FlipperR", x, y, true);
 //				fr++;
 				System.out.println("FlipperR added");
@@ -323,14 +333,14 @@ public class GizmoMainFrame extends JFrame {
 		toolBar2.add(square);
 //		toolBar2.addSeparator();
 //
-//		toolBar2.add(absorber);
-//		toolBar2.addSeparator();
+		toolBar2.add(absorber);
+		toolBar2.addSeparator();
 //		
-//		toolBar2.add(flipperl);
-//		toolBar2.addSeparator();
+		toolBar2.add(flipperl);
+		toolBar2.addSeparator();
 //		
-//		toolBar2.add(flipperr);
-//		toolBar2.addSeparator();
+		toolBar2.add(flipperr);
+		toolBar2.addSeparator();
 		
 		//toolBar2.add(ball);
 
@@ -346,11 +356,13 @@ public class GizmoMainFrame extends JFrame {
 		//SquereGizmo sq1 = new SquereGizmo(30,30);
 		//SquereGizmo sq2 = new SquereGizmo(60,30);
 		CircleGizmo ci1 = new CircleGizmo(90,120);
-		Absorber absorb = new Absorber(0, 400);
+		Absorber absorb = new Absorber(0, 500);
+		LeftFlipper lf = new LeftFlipper(100,100);
 		//sq1.linkGizmo(sq2);
 		//GizmoBoard.getInstance().addGizmo(sq1);
 		//GizmoBoard.getInstance().addGizmo(sq2);
-		GizmoBoard.getInstance().addGizmo(ci1);
+		//GizmoBoard.getInstance().addGizmo(ci1);
+		GizmoBoard.getInstance().addGizmo(lf);
 		GizmoBoard.getInstance().addGizmo(absorb);
 		
 	}
