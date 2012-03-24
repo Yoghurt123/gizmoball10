@@ -6,22 +6,32 @@ import java.awt.Graphics;
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
 import newGizmo.Utils;
-import physics.Circle;
+import newGizmo.model.AbstractGizmoModel.DeactivateTask;
 import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 
-public class CircleGizmo extends AbstractGizmoModel {
+public class SquareGizmo extends AbstractGizmoModel {
+	private final int L = GizmoSettings.getInstance().getGizmoL();
 
-	Circle circleBoundary;
+	LineSegment squareLines[] = new LineSegment[4];
 
-	public CircleGizmo(int x, int y) {
+	public SquareGizmo(int x, int y) {
 		super(x, y);
-		GetCircle();
-		// TODO Auto-generated constructor stub
+		setBoundaryBox();
 	}
 
-	private final int L = GizmoSettings.getInstance().getGizmoL();
+	/**
+	 * setup the boundary lines around the box for find the time to collisions and
+	 * reflect the ball as needed
+	 */
+	private void setBoundaryBox() {
+		squareLines[0] = new LineSegment(x, y, x + L, y);
+		squareLines[1] = new LineSegment(x + L, y, x + L, y + L);
+		squareLines[2] = new LineSegment(x + L, y + L, x, y + L);
+		squareLines[3] = new LineSegment(x, y + L, x, y);
+
+	}
 
 	private static final Color gizmoColor = GizmoSettings.getInstance()
 			.getSquereGizmoColor();
@@ -33,19 +43,15 @@ public class CircleGizmo extends AbstractGizmoModel {
 	public Graphics paint(Graphics g) {
 
 		g.setColor(curent);
-		g.fillOval(x, y, L, L);
-    	return g;
+		g.fillRect(x, y, GizmoSettings.getInstance().getGizmoL(), GizmoSettings
+				.getInstance().getGizmoL());
+		return g;
 
-	}
-	
-	public Circle GetCircle(){
-		circleBoundary = new Circle(x, y, 15);
-		return circleBoundary;
 	}
 
 	@Override
 	public void update(double dtime) {
-		// nothing
+		// nohing
 
 	}
 
@@ -65,22 +71,25 @@ public class CircleGizmo extends AbstractGizmoModel {
 	@Override
 	public double timeToColision(GizmoBall ball) {
 		double tempTime = Double.POSITIVE_INFINITY;
+		LineSegment templine = squareLines[0];
 
-			double time = Geometry.timeUntilCircleCollision(GetCircle(), ball.getShape(),
+		for (LineSegment l : squareLines) {
+			double time = Geometry.timeUntilWallCollision(l, ball.getShape(),
 					ball.getVolecity());
 			if (tempTime > time) {
+				templine = l;
 				tempTime = time;
-			
+			}
 		}
 
-		// when time to collisions is less them time tick run timeTask on exactly
-		// collision time
+		// when time to collisions is less them tiem tick run timeTask on exacly
+		// colision time
 		if (tempTime < GizmoSettings.getInstance().getBallMovementUpdateDtime()) {
 			long msec = Utils.Sec2Msec(tempTime);
 			// update ball position on hit moment
 			GizmoDriver.getInstance().runTask(ball.newTask(msec), msec);
 			// run onHit method of gizmo on hit time
-			GizmoDriver.getInstance().runTask(new onColisionTimeTask(GetCircle()),
+			GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
 					msec);
 		}
 		return tempTime;
@@ -89,11 +98,11 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 	@Override
 	public void onColisionTime(GizmoBall ball, Object o) {
-		if (o instanceof Circle) {
-			Circle circle = (Circle) o;
-			Vect velocity = Geometry.reflectRotatingCircle(circle,GetCircle().getCenter(),
-						0,ball.getShape(),ball.getVolecity());
-			ball.setVelocity(velocity);
+		if (o instanceof LineSegment) {
+			LineSegment linesegment = (LineSegment) o;
+			Vect valocity = Geometry.reflectWall(linesegment,
+					ball.getVolecity());
+			ball.setVelocity(valocity);
 		}
 
 	}
@@ -103,7 +112,7 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 		String retstr = "";
 		// retstr += "Name: " + name + "\n";
-		retstr += "Type: Circle\n";
+		retstr += "Type: Square\n";
 		retstr += "Position: (" + (x / GizmoSettings.getInstance().getGizmoL())
 				+ "," + (y / GizmoSettings.getInstance().getGizmoL()) + ")\n";
 		retstr += "Connects to:";
@@ -114,14 +123,13 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 	@Override
 	public String getSaveString() {
-		return "Circle " + name + " "
+		return "Square " + name + " "
 				+ (x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
 				+ (y / GizmoSettings.getInstance().getGizmoL() - 1);
 	}
 
 	@Override
 	public String getType() {
-		return "Circle";
+		return "Square";
 	}
-	
 }

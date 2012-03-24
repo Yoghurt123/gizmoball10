@@ -26,7 +26,8 @@ import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBoard;
 import newGizmo.model.LeftFlipper;
 import newGizmo.model.RightFlipper;
-import newGizmo.model.SquereGizmo;
+import newGizmo.model.SquareGizmo;
+import newGizmo.model.TriangleGizmo;
 
 public class GizmoMainFrame extends JFrame {
 	private static JFrame frame;
@@ -180,6 +181,9 @@ public class GizmoMainFrame extends JFrame {
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
+				
+				TriangleGizmo tr1 = new TriangleGizmo(x*30,y*30);
+				GizmoBoard.getInstance().addGizmo(tr1);
 //				b.addGizmo("Triangle"+t, "Triangle", x, y);
 //				t++;
 				System.out.println("Triangle added");
@@ -202,7 +206,7 @@ public class GizmoMainFrame extends JFrame {
 				
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				SquereGizmo sq1 = new SquereGizmo(x*30,y*30);
+				SquareGizmo sq1 = new SquareGizmo(x*30,y*30);
 				GizmoBoard.getInstance().addGizmo(sq1);
 //				b.addGizmo("Square"+s, "Square", x, y);
 //				s++;
@@ -327,11 +331,11 @@ public class GizmoMainFrame extends JFrame {
 //		toolBar2.add(circle);
 //		toolBar2.addSeparator();
 //
-//		toolBar2.add(triangle);
-//		toolBar2.addSeparator();
+		toolBar2.add(triangle);
+		toolBar2.addSeparator();
 //
 		toolBar2.add(square);
-//		toolBar2.addSeparator();
+		toolBar2.addSeparator();
 //
 		toolBar2.add(absorber);
 		toolBar2.addSeparator();
@@ -353,17 +357,17 @@ public class GizmoMainFrame extends JFrame {
 		frame.setPreferredSize(new Dimension(680, 735));
 		frame.pack();
 		frame.setVisible(true);
-		//SquereGizmo sq1 = new SquereGizmo(30,30);
-		//SquereGizmo sq2 = new SquereGizmo(60,30);
-		CircleGizmo ci1 = new CircleGizmo(90,120);
-		Absorber absorb = new Absorber(0, 500);
-		LeftFlipper lf = new LeftFlipper(100,100);
-		//sq1.linkGizmo(sq2);
-		//GizmoBoard.getInstance().addGizmo(sq1);
-		//GizmoBoard.getInstance().addGizmo(sq2);
-		//GizmoBoard.getInstance().addGizmo(ci1);
-		GizmoBoard.getInstance().addGizmo(lf);
-		GizmoBoard.getInstance().addGizmo(absorb);
+//		SquereGizmo sq1 = new SquereGizmo(30,30);
+//		SquereGizmo sq2 = new SquereGizmo(60,30);
+//		CircleGizmo ci1 = new CircleGizmo(90,120);
+//		Absorber absorb = new Absorber(0, 500);
+//		LeftFlipper lf = new LeftFlipper(100,100);
+//		sq1.linkGizmo(sq2);
+//		GizmoBoard.getInstance().addGizmo(sq1);
+//		GizmoBoard.getInstance().addGizmo(sq2);
+//		GizmoBoard.getInstance().addGizmo(ci1);
+//		GizmoBoard.getInstance().addGizmo(lf);
+//		GizmoBoard.getInstance().addGizmo(absorb);
 		
 	}
 }
