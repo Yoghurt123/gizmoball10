@@ -62,7 +62,7 @@ public class GizmoBoard {
 	}
 
 	/**
-	 * Check all gizmos for coliding ones with ball
+	 * Check all gizmos for colliding ones with ball
 	 */
 	public void checkColisions() {
 		if(ball!=null)

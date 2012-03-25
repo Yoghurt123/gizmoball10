@@ -106,7 +106,7 @@ LineSegment RightFlipperLines[] = new LineSegment[4];
 
 	}
 	
-	public void triggerEvent() {
+	public static void triggerEvent() {
         if (rotating == 0 ) { // flipper is still
                 if (deg == 0)
                         rotating = 1;

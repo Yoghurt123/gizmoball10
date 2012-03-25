@@ -35,11 +35,11 @@ public class GizmoBoardView extends Canvas {
 
 	@Override
 	public void paint(Graphics g) {
-
+		
 		GizmoBall ball = GizmoBoard.getInstance().getBall();
 		if (ball != null)
 			ball.paint(g);
-
+			
 		for (AbstractGizmoModel giz : GizmoBoard.getInstance().getGizmos()) {
 			giz.paint(g);
 		}

@@ -106,7 +106,7 @@ public class GizmoBall extends AbstractGizmoModel {
 				getVolecity(), ball.getShape(), ball.getVolecity());
 
 		/**
-		 * if tiemtillcolision is before full tick run task on hit time
+		 * if timetilcollision is before full tick run task on hit time
 		 */
 		if (timeto < GizmoSettings.getInstance().getBallMovementUpdateDtime()) {
 

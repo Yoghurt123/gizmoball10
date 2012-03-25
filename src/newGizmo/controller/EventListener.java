@@ -23,7 +23,8 @@ MouseMotionListener, KeyListener, ActionListener {
 		int keynum = e.getKeyCode();
 		
 		if((keynum >= 65) && (keynum <= 91)){
-			RightFlipper.triggerEvent()
+			RightFlipper.triggerEvent();
+			System.out.println("TRIGGER PRESSED!!!!!!!!!!!!");
 		}
 		// TODO Auto-generated method stub
 		
