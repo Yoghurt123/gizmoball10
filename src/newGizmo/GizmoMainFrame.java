@@ -374,3 +374,4 @@ public class GizmoMainFrame extends JFrame {
 		
 	}
 }
+//
