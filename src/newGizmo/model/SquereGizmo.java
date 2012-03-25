@@ -11,12 +11,12 @@ import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 
-public class SquareGizmo extends AbstractGizmoModel {
+public class SquereGizmo extends AbstractGizmoModel {
 	private final int L = GizmoSettings.getInstance().getGizmoL();
 
 	LineSegment squareLines[] = new LineSegment[4];
 
-	public SquareGizmo(int x, int y) {
+	public SquereGizmo(int x, int y) {
 		super(x, y);
 		setBoundaryBox();
 	}
