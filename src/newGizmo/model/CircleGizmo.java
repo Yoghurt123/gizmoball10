@@ -9,7 +9,7 @@ import newGizmo.Utils;
 import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
 import physics.Circle;
 import physics.Geometry;
-import physics.LineSegment;
+
 import physics.Vect;
 
 public class CircleGizmo extends AbstractGizmoModel {

@@ -33,6 +33,7 @@ import newGizmo.model.SquereGizmo;
 import newGizmo.model.TriangleGizmo;
 
 public class GizmoMainFrame extends JFrame {
+	private static final int L = GizmoSettings.getInstance().getGizmoL();
 	GizmoBoardView board;
 	JButton playButton = null;
 	JButton pauseButton = null;
@@ -40,7 +41,7 @@ public class GizmoMainFrame extends JFrame {
 	JButton loadButton = null;
 	JButton quit = null;
 	private static JFrame frame;
-
+ 
 	public GizmoMainFrame() {
 		board = new GizmoBoardView();
 
@@ -68,6 +69,9 @@ public class GizmoMainFrame extends JFrame {
 		contentPane.add(board);
 		contentPane.add(toolBar2, BorderLayout.SOUTH);
 		setContentPane(contentPane);
+
+		// Absorber abs = new Absorber(0, 500);
+		// GizmoBoard.getInstance().addGizmo(abs);
 		
 		Absorber abs = new Absorber(0, 500);
 		GizmoBoard.getInstance().addGizmo(abs);
@@ -166,7 +170,7 @@ public class GizmoMainFrame extends JFrame {
 
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				CircleGizmo ci1 = new CircleGizmo((x * 30), (y * 30));
+				CircleGizmo ci1 = new CircleGizmo((x * L), (y * L));
 				GizmoBoard.getInstance().addGizmo(ci1);
 				// b.addGizmo("Circle"+c, "Circle", x, y);
 				// c++;
@@ -196,6 +200,9 @@ public class GizmoMainFrame extends JFrame {
 						"Enter the Y value for the Triangle ",
 						"Adding new Triangle", JOptionPane.PLAIN_MESSAGE, null,
 						null, null);
+				String sdeg = (String) JOptionPane.showInputDialog(frame,
+						"Enter the rotation 1--4", "Adding new Triangle",
+						JOptionPane.PLAIN_MESSAGE, null, null, null);
 
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
@@ -231,15 +238,7 @@ public class GizmoMainFrame extends JFrame {
 
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-//				addMouseListener(new MouseAdapter(){
-//					public void mousePressed(MouseEvent e){
-//						System.out.println("x: "+ e.getX() + " y: " + e.getY());
-//				SquereGizmo sq1 = new SquereGizmo(e.getX()/30, e.getY()/30);
-//				GizmoBoard.getInstance().addGizmo(sq1);
-//					}
-//				});
-				
-				SquereGizmo sq1 = new SquereGizmo(x*30,y*30);
+				SquereGizmo sq1 = new SquereGizmo(x * L, y * L);
 				GizmoBoard.getInstance().addGizmo(sq1);
 				// b.addGizmo("Square"+s, "Square", x, y);
 				// s++;
@@ -279,7 +278,7 @@ public class GizmoMainFrame extends JFrame {
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
 
-				Absorber ab1 = new Absorber(x * 30, y * 30);
+				Absorber ab1 = new Absorber(x * L, y * L);
 				GizmoBoard.getInstance().addGizmo(ab1);
 				// int w = Integer.parseInt(sw);
 				// int h = Integer.parseInt(sh);
@@ -305,7 +304,7 @@ public class GizmoMainFrame extends JFrame {
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
 
-				LeftFlipper lf1 = new LeftFlipper(x * 30, y * 30);
+				LeftFlipper lf1 = new LeftFlipper(x * L, y * L);
 				GizmoBoard.getInstance().addGizmo(lf1);
 				// b.addFlipper("FlipperL"+fl, "FlipperL", x, y, true);
 				// fl++;
@@ -337,7 +336,7 @@ public class GizmoMainFrame extends JFrame {
 
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				RightFlipper rf1 = new RightFlipper(x * 30, y * 30);
+				RightFlipper rf1 = new RightFlipper(x * L, y * L);
 				GizmoBoard.getInstance().addGizmo(rf1);
 				// b.addFlipper("FlipperR"+fr, "FlipperR", x, y, true);
 				// fr++;
@@ -398,6 +397,7 @@ public class GizmoMainFrame extends JFrame {
 		//
 		 toolBar2.add(triangle);
 		 toolBar2.addSeparator();
+
 		//
 		toolBar2.add(square);
 		toolBar2.addSeparator();
