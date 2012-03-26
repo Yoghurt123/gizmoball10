@@ -14,8 +14,14 @@ import newGizmo.Utils;
 
 public class GizmoBall extends AbstractGizmoModel {
 	private Vect volecity = null;
-	private static final Vect Gravity = GizmoSettings.getInstance()
-			.getGravityVector();
+	private static final double Gravity = GizmoSettings.getInstance()
+			.getGravity();
+	private static final double tickLen = GizmoSettings.getInstance()
+			.getBallMovementUpdateDtime() ;
+	private static final double mu = GizmoSettings.getInstance()
+			.getMuConstatnt();
+	private static final double mu2 = GizmoSettings.getInstance()
+			.getMuConstatnt();
 
 	public GizmoBall(int x, int y, Vect volecity) {
 		super(x, y);
@@ -68,21 +74,35 @@ public class GizmoBall extends AbstractGizmoModel {
 
 	@Override
 	public void update(double dtime) {
-		System.out.println(volecity.length());
-		//if (velocity.length() <1) velocity = new Vect(Angle.ZERO,0);
-		   double dvel = volecity.y() + 0.5*Gravity.y();// *dtime* dtime;
-		   volecity = volecity.plus(Gravity.times(1)); 
-           x += volecity.x(); 
-        		   
-           y += dvel;
+		double vx = volecity.x();
+		double vy = volecity.y();
+
+		x = (int) (x + vx * dtime);
+		y = (int) (y + vy * dtime);
+		vy = vy + Gravity * tickLen;
+
+		vx = vx * (1 - (mu * tickLen) - (mu2 * Math.abs(vx) * tickLen));
+		vy = vy * (1 - (mu * tickLen) - (mu2 * Math.abs(vy) * tickLen));
+		volecity = new Vect(vx, vy);
+
+		System.out.println("x:" + x + " y:" + y);
+		// System.out.println(volecity.length());
+		// // if (velocity.length() <1) velocity = new Vect(Angle.ZERO,0);
+		// double dvel = volecity.y() + 0.5 * Gravity.y();// *dtime* dtime;
+		// volecity = volecity.plus(Gravity.times(1));
+		// x += volecity.x();
+		//
+		// y += dvel;
 
 	}
 
 	public void startBallMovement() {
 		if (!moving) {
+			long ms = Utils.Sec2Msec(GizmoSettings.getInstance()
+					.getBallMovementUpdateDtime());
 			GizmoDriver.getInstance().runShudledTask(
 					new BallMoveTask(Utils.Sec2Msec(GizmoSettings.getInstance()
-							.getBallMovementUpdateDtime())), 0, 200);
+							.getBallMovementUpdateDtime())), 0, ms);
 			moving = true;
 		}
 
@@ -120,14 +140,14 @@ public class GizmoBall extends AbstractGizmoModel {
 	}
 
 	@Override
-	public void onColisionTime(GizmoBall ball,Object re) {
+	public void onColisionTime(GizmoBall ball, Object re) {
 		Vect newVolicity = Geometry.reflectCircle(getShape().getCenter(), ball
 				.getShape().getCenter(), ball.getVolecity());
 		ball.setVelocity(newVolicity);
 
 	}
 
-	public  BallMoveTask newTask(long time) {
+	public BallMoveTask newTask(long time) {
 		return new BallMoveTask(time);
 	}
 

@@ -17,9 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
+import GizmoballGUI.gizmoBoard;
+
 import newGizmo.GizmoDriver.STATES;
 import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBoard;
+import newGizmo.model.GizmoWalls;
 import newGizmo.model.SquereGizmo;
 
 public class GizmoMainFrame extends JFrame {
@@ -27,8 +30,7 @@ public class GizmoMainFrame extends JFrame {
 
 	public GizmoMainFrame() {
 		board = new GizmoBoardView();
-		
-		
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
@@ -81,7 +83,7 @@ public class GizmoMainFrame extends JFrame {
 		pauseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GizmoDriver.getInstance().setState(STATES.POUSE_STATE);
-				
+
 			}
 		});
 		pauseButton.setToolTipText("Click this button to pause the game");
@@ -128,13 +130,15 @@ public class GizmoMainFrame extends JFrame {
 		frame.setPreferredSize(new Dimension(680, 735));
 		frame.pack();
 		frame.setVisible(true);
-//		SquereGizmo sq1 = new SquereGizmo(30,30);
-//		SquereGizmo sq2 = new SquereGizmo(60,30);
-		CircleGizmo ci1 = new CircleGizmo(60,30);
-//		sq1.linkGizmo(sq2);
-//		GizmoBoard.getInstance().addGizmo(sq1);
-//		GizmoBoard.getInstance().addGizmo(sq2);
-		GizmoBoard.getInstance().addGizmo(ci1);
-		
+		// SquereGizmo sq1 = new SquereGizmo(30,30);
+		 SquereGizmo sq2 = new SquereGizmo(60,30);
+		//CircleGizmo ci1 = new CircleGizmo(60, 30);
+		GizmoWalls walls = new GizmoWalls(0, 0, 600, 600);
+		// sq1.linkGizmo(sq2);
+		// GizmoBoard.getInstance().addGizmo(sq1);
+		 GizmoBoard.getInstance().addGizmo(sq2);
+		GizmoBoard.getInstance().addGizmo(walls);
+		//GizmoBoard.getInstance().addGizmo(ci1);
+
 	}
 }

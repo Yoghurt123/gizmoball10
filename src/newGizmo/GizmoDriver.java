@@ -38,7 +38,7 @@ public class GizmoDriver {
 		@Override
 		public void run() {
 				onRun(GizmoBoard.getInstance());
-			System.out.println(this.getClass().getCanonicalName() + " runned");
+			//System.out.println(this.getClass().getCanonicalName() + " runned");
 
 		}
 

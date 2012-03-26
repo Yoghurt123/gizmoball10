@@ -17,7 +17,7 @@ public class GizmoBoard {
 	}
 
 	private GizmoBoard() {
-		ball = new GizmoBall(20, 20,new Vect(Angle.DEG_315,10));
+		ball = new GizmoBall(20, 20,new Vect(Angle.DEG_315,0.1));
 
 	}
 

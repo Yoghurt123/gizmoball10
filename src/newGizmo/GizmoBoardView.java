@@ -11,7 +11,7 @@ public class GizmoBoardView extends Canvas {
 
 	public GizmoBoardView() {
 		GizmoDriver.getInstance().runShudledTask(new GizmoUpdateViewTask(),
-				1000, 100);
+				1000, 50);
 	}
 
 	private class GizmoUpdateViewTask extends GizmoDriver.GizmoTask {

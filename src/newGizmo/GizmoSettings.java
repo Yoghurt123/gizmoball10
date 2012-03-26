@@ -53,10 +53,9 @@ public class GizmoSettings {
 	 */
 	public double getBallMovementUpdateDtime() {
 
-		return 0.25;
+		return 50.0/1000;
 	}
 
-	
 	public Color getCircleGizmoColor() {
 		return Color.yellow;
 	}
@@ -66,4 +65,15 @@ public class GizmoSettings {
 		return Color.gray;
 	}
 
+	public double getGravity() {
+		return 25.0 / getGizmoL();
+	}
+
+	public double getMuConstatnt() {
+		return 0.025;
+	}
+
+	public double getMu2Constatnt() {
+		return 0.025 / getGizmoL();
+	}
 }
