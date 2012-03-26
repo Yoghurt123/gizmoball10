@@ -72,7 +72,6 @@ public class TriangleGizmo extends AbstractGizmoModel {
 
 	}
 
-	@Override
 	public double timeToColision(GizmoBall ball) {
 		double tempTime = Double.POSITIVE_INFINITY;
 		LineSegment templine = triangleLines[0];
@@ -85,9 +84,10 @@ public class TriangleGizmo extends AbstractGizmoModel {
 				tempTime = time;
 			}
 		}
- 
+
 		// when time to collisions is less them tiem tick run timeTask on exacly
 		// colision time
+
 		if (!isReflecting)
 			if (tempTime < GizmoSettings.getInstance()
 					.getBallMovementUpdateDtime()) {
@@ -109,8 +109,10 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		if (o instanceof LineSegment) {
 			LineSegment linesegment = (LineSegment) o;
 			Vect velocity = Geometry.reflectWall(linesegment,
-					ball.getVolecity(),0.75);
+					ball.getVolecity(), 0.75);
+
 			ball.setVelocity(velocity);
+
 		}
 
 	}

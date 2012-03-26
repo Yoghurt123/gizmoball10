@@ -25,7 +25,7 @@ public class Absorber extends AbstractGizmoModel {
 	public Graphics paint(Graphics g) {
 		g.setColor(Color.BLACK);
 
-		g.fillRect(0, (int)y, 700, 20);
+		g.fillRect(0, (int)y, 600, 20);
  
 		return g;
 	}
@@ -51,8 +51,8 @@ public class Absorber extends AbstractGizmoModel {
 //		Geometry.t
 		absorbtemp = Geometry.timeUntilWallCollision(abs, ball.getShape(), ball.getVolecity());
 		
-		if(absorbtemp<35){
-			GizmoBall b= new GizmoBall(200, 200, new Vect(0,-0.5));
+		if(absorbtemp<0.000001){
+			GizmoBall b= new GizmoBall(200, 200, new Vect(20,-104.5));
 			GizmoBoard.getInstance().setBall(b);		
 			b.startBallMovement();
 

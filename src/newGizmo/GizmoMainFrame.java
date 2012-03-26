@@ -41,7 +41,7 @@ public class GizmoMainFrame extends JFrame {
 	JButton loadButton = null;
 	JButton quit = null;
 	private static JFrame frame;
-
+ 
 	public GizmoMainFrame() {
 		board = new GizmoBoardView();
 
