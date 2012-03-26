@@ -39,7 +39,7 @@ public class GizmoSettings {
 	}
 
 	public int getGizmoL() {
-		return 20;
+		return 30;
 	}
 
 	public Vect getGravityVector() {

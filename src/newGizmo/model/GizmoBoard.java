@@ -3,10 +3,15 @@ package newGizmo.model;
 import java.awt.List;
 import java.util.ArrayList;
 
+import newGizmo.controller.EventListener;
+
+import GizmoballGUI.animationEventListener;
+
 import physics.Angle;
 import physics.Vect;
 
 public class GizmoBoard {
+	private EventListener eventListener;
 
 	private static GizmoBoard instance = null;
 
@@ -17,7 +22,8 @@ public class GizmoBoard {
 	}
 
 	private GizmoBoard() {
-		ball = new GizmoBall(20, 20,new Vect(Angle.DEG_315,0.1));
+		eventListener = new EventListener();
+		ball = new GizmoBall(20, 20, new Vect(Angle.DEG_315, 10));
 
 	}
 
@@ -55,17 +61,15 @@ public class GizmoBoard {
 	}
 
 	/**
-	 * Check all gizmos for coliding ones with ball
+	 * Check all gizmos for colliding ones with ball
 	 */
 	public void checkColisions() {
-		if(ball!=null)
-		{
-			for(AbstractGizmoModel gizmo:gizmos)
-			{
+		if (ball != null) {
+			for (AbstractGizmoModel gizmo : gizmos) {
 				gizmo.timeToColision(ball);
 			}
 		}
-		
+
 	}
 
 }

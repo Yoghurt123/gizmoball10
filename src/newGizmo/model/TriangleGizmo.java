@@ -2,37 +2,35 @@ package newGizmo.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Polygon;
 
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
 import newGizmo.Utils;
-import newGizmo.model.AbstractGizmoModel.DeactivateTask;
+import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
+
 import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 
-public class SquereGizmo extends AbstractGizmoModel {
-	private final int L = GizmoSettings.getInstance().getGizmoL();
+public class TriangleGizmo extends AbstractGizmoModel {
 
-	LineSegment squareLines[] = new LineSegment[4];
+	LineSegment triangleLines[] = new LineSegment[3];
+	private final int GizmoLength = GizmoSettings.getInstance().getGizmoL();
 
-	public SquereGizmo(int x, int y) {
+	public TriangleGizmo(int x, int y) {
 		super(x, y);
-		setBoundaryBox();
+		SetBoundaryBox();
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * setup the boundary lines around the box for find the time to collisions
-	 * and reflect the ball as needed
-	 */
-	private void setBoundaryBox() {
-		squareLines[0] = new LineSegment(x, y, x + L, y);
-		squareLines[1] = new LineSegment(x + L, y, x + L, y + L);
-		squareLines[2] = new LineSegment(x + L, y + L, x, y + L);
-		squareLines[3] = new LineSegment(x, y + L, x, y);
+	public void SetBoundaryBox(){
 
+		triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
+		triangleLines[1] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y-GizmoLength);
+		triangleLines[2] = new LineSegment(x,y,x+GizmoLength,y-GizmoLength);
 	}
-
 	private static final Color gizmoColor = GizmoSettings.getInstance()
 			.getSquereGizmoColor();
 	private static final Color gizmoActivColor = GizmoSettings.getInstance()
@@ -42,9 +40,15 @@ public class SquereGizmo extends AbstractGizmoModel {
 	@Override
 	public Graphics paint(Graphics g) {
 
+		Point p1 = new Point(x,y);
+		Point p2 = new Point(x+GizmoLength,y);
+		Point p3 = new Point(x+GizmoLength,y-GizmoLength);
+	
+		int[] xCoordinates = {p1.x,p2.x,p3.x};
+		int[] yCoordinates = {p1.y,p2.y,p3.y};
+		Polygon triangle = new Polygon(xCoordinates,yCoordinates,xCoordinates.length);
 		g.setColor(curent);
-		g.fillRect(x, y, GizmoSettings.getInstance().getGizmoL(), GizmoSettings
-				.getInstance().getGizmoL());
+		g.fillPolygon(triangle);
 		return g;
 
 	}
@@ -71,9 +75,9 @@ public class SquereGizmo extends AbstractGizmoModel {
 	@Override
 	public double timeToColision(GizmoBall ball) {
 		double tempTime = Double.POSITIVE_INFINITY;
-		LineSegment templine = squareLines[0];
+		LineSegment templine = triangleLines[0];
 
-		for (LineSegment l : squareLines) {
+		for (LineSegment l : triangleLines) {
 			double time = Geometry.timeUntilWallCollision(l, ball.getShape(),
 					ball.getVolecity());
 			if (tempTime > time) {
@@ -102,9 +106,7 @@ public class SquereGizmo extends AbstractGizmoModel {
 			LineSegment linesegment = (LineSegment) o;
 			Vect velocity = Geometry.reflectWall(linesegment,
 					ball.getVolecity());
-
 			ball.setVelocity(velocity);
-
 		}
 
 	}
@@ -114,7 +116,7 @@ public class SquereGizmo extends AbstractGizmoModel {
 
 		String retstr = "";
 		// retstr += "Name: " + name + "\n";
-		retstr += "Type: Square\n";
+		retstr += "Type: Triangle\n";
 		retstr += "Position: (" + (x / GizmoSettings.getInstance().getGizmoL())
 				+ "," + (y / GizmoSettings.getInstance().getGizmoL()) + ")\n";
 		retstr += "Connects to:";
@@ -125,13 +127,14 @@ public class SquereGizmo extends AbstractGizmoModel {
 
 	@Override
 	public String getSaveString() {
-		return "Square " + name + " "
+		return "Triangle " + name + " "
 				+ (x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
 				+ (y / GizmoSettings.getInstance().getGizmoL() - 1);
 	}
 
 	@Override
 	public String getType() {
-		return "Square";
+		return "Triangle";
 	}
+
 }
