@@ -66,7 +66,7 @@ public class GizmoSettings {
 	}
 
 	public double getGravity() {
-		return (double)25 / getGizmoL();
+		return (double)25;// / getGizmoL();
 	}
 
 	public double getMuConstatnt() {

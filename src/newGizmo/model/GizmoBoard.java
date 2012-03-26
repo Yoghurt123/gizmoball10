@@ -23,7 +23,7 @@ public class GizmoBoard {
 
 	private GizmoBoard() {
 		eventListener = new EventListener();
-		ball = new GizmoBall(20, 20, new Vect(0,-0.5));
+		ball = new GizmoBall(10, 10, new Vect(0,100));
 
 	}
 

@@ -33,7 +33,7 @@ public class CircleGizmo extends AbstractGizmoModel {
 	public Graphics paint(Graphics g) {
 
 		g.setColor(curent);
-		g.fillOval(x, y, L, L);
+		g.fillOval((int)x, (int)y, L, L);
     	return g;
 
 	}

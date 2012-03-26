@@ -24,7 +24,9 @@ public class Absorber extends AbstractGizmoModel {
 	@Override
 	public Graphics paint(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(0, y, 20*length, 20);
+
+		g.fillRect(0, (int)y, 700, 20);
+ 
 		return g;
 	}
 

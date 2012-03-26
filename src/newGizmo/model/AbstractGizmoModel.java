@@ -10,6 +10,8 @@ import newGizmo.SavleLoadable;
 public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 		SavleLoadable {
 
+	protected boolean isReflecting = false;
+
 	protected class DeactivateTask extends GizmoDriver.GizmoTask {
 		public DeactivateTask() {
 			GizmoDriver.getInstance().super();
@@ -58,8 +60,8 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 
 	}
 
-	protected int x = 0;
-	protected int y = 0;
+	protected double x = 0;
+	protected double y = 0;
 	protected String name;
 
 	protected LinkedList<AbstractGizmoModel> linkedGizmos = null;

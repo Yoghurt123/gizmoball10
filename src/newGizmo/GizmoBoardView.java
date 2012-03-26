@@ -37,10 +37,15 @@ public class GizmoBoardView extends Canvas {
 
 	@Override
 	public void paint(Graphics g) {
-
-		GizmoBall ball = GizmoBoard.getInstance().getBall();
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 600, 600);
+		g.setColor(Color.BLACK);
+		GizmoBall ball = GizmoBoard.getInstance().getBall();
+
+
+
+		
+	
 		
 		if (ball != null)
 			ball.paint(g);

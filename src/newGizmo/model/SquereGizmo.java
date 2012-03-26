@@ -7,7 +7,8 @@ import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
 import newGizmo.Utils;
 import newGizmo.model.AbstractGizmoModel.DeactivateTask;
-import physics.Geometry;
+import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
+import physics.Geometry; 
 import physics.LineSegment;
 import physics.Vect;
 
@@ -43,8 +44,8 @@ public class SquereGizmo extends AbstractGizmoModel {
 	public Graphics paint(Graphics g) {
 
 		g.setColor(curent);
-		g.fillRect(x, y, GizmoSettings.getInstance().getGizmoL(), GizmoSettings
-				.getInstance().getGizmoL());
+		g.fillRect((int) x, (int) y, GizmoSettings.getInstance().getGizmoL(),
+				GizmoSettings.getInstance().getGizmoL());
 		return g;
 
 	}
@@ -84,8 +85,12 @@ public class SquereGizmo extends AbstractGizmoModel {
 
 		// when time to collisions is less them tiem tick run timeTask on exacly
 		// colision time
-		if(tempTime!=0.0)
-		if (tempTime < GizmoSettings.getInstance().getBallMovementUpdateDtime()) {
+
+		if (!isReflecting)
+			if (tempTime < GizmoSettings.getInstance()
+					.getBallMovementUpdateDtime()) {
+
+
 			long msec = Utils.Sec2Msec(tempTime);
 			// update ball position on hit moment
 			GizmoDriver.getInstance().runTask(ball.newTask(msec), msec);
@@ -94,15 +99,15 @@ public class SquereGizmo extends AbstractGizmoModel {
 					msec);
 		}
 		return tempTime;
-
 	}
 
 	@Override
 	public void onColisionTime(GizmoBall ball, Object o) {
+		isReflecting = false;
 		if (o instanceof LineSegment) {
 			LineSegment linesegment = (LineSegment) o;
 			Vect velocity = Geometry.reflectWall(linesegment,
-					ball.getVolecity());
+					ball.getVolecity(), 0.75);
 
 			ball.setVelocity(velocity);
 

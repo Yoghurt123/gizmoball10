@@ -40,9 +40,9 @@ public class TriangleGizmo extends AbstractGizmoModel {
 	@Override
 	public Graphics paint(Graphics g) {
 
-		Point p1 = new Point(x,y);
-		Point p2 = new Point(x+GizmoLength,y);
-		Point p3 = new Point(x+GizmoLength,y-GizmoLength);
+		Point p1 = new Point((int)x,(int)y);
+		Point p2 = new Point((int)x+GizmoLength,(int)y);
+		Point p3 = new Point((int)x+GizmoLength,(int)y-GizmoLength);
 	
 		int[] xCoordinates = {p1.x,p2.x,p3.x};
 		int[] yCoordinates = {p1.y,p2.y,p3.y};
