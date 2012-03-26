@@ -10,7 +10,9 @@ import physics.Vect;
 
 public class Absorber extends AbstractGizmoModel {
 
-	LineSegment abs = null;
+	int length = GizmoSettings.getInstance().getGizmoL();
+	
+	LineSegment abs;
 	public Absorber(int x, int y) {
 		super(x, y);
 		SetBoundary();
@@ -41,11 +43,13 @@ public class Absorber extends AbstractGizmoModel {
 
 	@Override
 	public double timeToColision(GizmoBall ball) {
-		double absorbtemp = 0;
-		absorbtemp = Geometry.timeUntilWallCollision(getRect(), ball.getShape(), ball.getVolecity());
-		if(absorbtemp<0.5){
-			GizmoBall b= new GizmoBall(200,400,new Vect(Angle.DEG_270, 50));
-			GizmoBoard.getInstance().setBall(b);
+		double absorbtemp;
+//		Geometry.t
+		absorbtemp = Geometry.timeUntilWallCollision(abs, ball.getShape(), ball.getVolecity());
+		
+		if(absorbtemp<35){
+			GizmoBall b= new GizmoBall(200, 200, new Vect(0,-0.5));
+			GizmoBoard.getInstance().setBall(b);		
 			b.startBallMovement();
 
 		}

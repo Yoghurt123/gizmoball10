@@ -41,6 +41,8 @@ public class GizmoBoardView extends Canvas {
 		g.fillRect(0, 0, 600, 600);
 		g.setColor(Color.BLACK);
 		GizmoBall ball = GizmoBoard.getInstance().getBall();
+
+		
 		if (ball != null)
 			ball.paint(g);
 
