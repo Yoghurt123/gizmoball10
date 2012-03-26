@@ -3,6 +3,8 @@ package newGizmo.model;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import newGizmo.GizmoSettings;
+
 import physics.Angle;
 import physics.Geometry;
 import physics.LineSegment;
