@@ -93,7 +93,7 @@ public class SquereGizmo extends AbstractGizmoModel {
 
 			long msec = Utils.Sec2Msec(tempTime);
 			// update ball position on hit moment
-			GizmoDriver.getInstance().runTask(ball.newTask(msec), msec);
+			GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
 			// run onHit method of gizmo on hit time
 			GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
 					msec);

@@ -69,8 +69,8 @@ public class GizmoMainFrame extends JFrame {
 		contentPane.add(toolBar2, BorderLayout.SOUTH);
 		setContentPane(contentPane);
 		
-		//Absorber abs = new Absorber(0, 500);
-		//GizmoBoard.getInstance().addGizmo(abs);
+		Absorber abs = new Absorber(0, 500);
+		GizmoBoard.getInstance().addGizmo(abs);
 	}
 
 	public void addButtons(JToolBar toolBar) {
@@ -199,6 +199,9 @@ public class GizmoMainFrame extends JFrame {
 
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
+				
+				TriangleGizmo tr1 = new TriangleGizmo((x * 30), (y * 30));
+				GizmoBoard.getInstance().addGizmo(tr1);
 				// b.addGizmo("Triangle"+t, "Triangle", x, y);
 				// t++;
 				System.out.println("Triangle added");
@@ -385,12 +388,12 @@ public class GizmoMainFrame extends JFrame {
 		// toolBar2.add(circle);
 		// toolBar2.addSeparator();
 		//
-		// toolBar2.add(triangle);
-		// toolBar2.addSeparator();
+		 toolBar2.add(triangle);
+		 toolBar2.addSeparator();
 		//
 		toolBar2.add(square);
 		toolBar2.addSeparator();
-		//
+		
 		toolBar2.add(absorber);
 		toolBar2.addSeparator();
 		//
