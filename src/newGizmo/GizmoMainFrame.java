@@ -231,7 +231,15 @@ public class GizmoMainFrame extends JFrame {
 
 				int x = Integer.parseInt(sx);
 				int y = Integer.parseInt(sy);
-				SquereGizmo sq1 = new SquereGizmo(x * 30, y * 30);
+//				addMouseListener(new MouseAdapter(){
+//					public void mousePressed(MouseEvent e){
+//						System.out.println("x: "+ e.getX() + " y: " + e.getY());
+//				SquereGizmo sq1 = new SquereGizmo(e.getX()/30, e.getY()/30);
+//				GizmoBoard.getInstance().addGizmo(sq1);
+//					}
+//				});
+				
+				SquereGizmo sq1 = new SquereGizmo(x*30,y*30);
 				GizmoBoard.getInstance().addGizmo(sq1);
 				// b.addGizmo("Square"+s, "Square", x, y);
 				// s++;
