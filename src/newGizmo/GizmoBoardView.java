@@ -10,8 +10,9 @@ import newGizmo.model.GizmoBoard;
 public class GizmoBoardView extends Canvas {
 
 	public GizmoBoardView() {
+		long ltime = Utils.Sec2Msec(GizmoSettings.getInstance().getBallMovementUpdateDtime());
 		GizmoDriver.getInstance().runShudledTask(new GizmoUpdateViewTask(),
-				1000, 50);
+				1000, ltime);
 	}
 
 	private class GizmoUpdateViewTask extends GizmoDriver.GizmoTask {
@@ -24,7 +25,7 @@ public class GizmoBoardView extends Canvas {
 			switch (getCurentDriverState())
 			{
 			case RUN_STATE:
-				board.checkColisions();
+				
 				break;
 			}
 			paint(getGraphics());

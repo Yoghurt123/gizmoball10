@@ -46,7 +46,9 @@ public class GizmoBall extends AbstractGizmoModel {
 		public void onRun(GizmoBoard board) {
 			switch (getCurentDriverState()) {
 			case RUN_STATE:
+				board.checkColisions();
 				update(dtime);
+				
 				break;
 
 			default:
@@ -65,6 +67,8 @@ public class GizmoBall extends AbstractGizmoModel {
 			.getBallColor();
 	private int radius = 10;
 
+	
+	
 	@Override
 	public Graphics paint(Graphics g) {
 		g.setColor(color_of_ball);
@@ -74,18 +78,25 @@ public class GizmoBall extends AbstractGizmoModel {
 
 	@Override
 	public void update(double dtime) {
+		
+		
 		double vx = volecity.x();
 		double vy = volecity.y();
-
-		x = (int) (x + vx * dtime);
-		y = (int) (y + vy * dtime);
+		x = (int) ( x + (vx * dtime));
+		y = (int) ( y + (vy * dtime));
+		System.out.println("vx:" + vx + " vy:" + vy);
+		System.out.println("x:" + x + " y:" + y);
+		
+		//gravity
 		vy = vy + Gravity * tickLen;
 
+		//fractions
 		vx = vx * (1 - (mu * tickLen) - (mu2 * Math.abs(vx) * tickLen));
 		vy = vy * (1 - (mu * tickLen) - (mu2 * Math.abs(vy) * tickLen));
 		volecity = new Vect(vx, vy);
-
-		System.out.println("x:" + x + " y:" + y);
+		
+		
+		
 		// System.out.println(volecity.length());
 		// // if (velocity.length() <1) velocity = new Vect(Angle.ZERO,0);
 		// double dvel = volecity.y() + 0.5 * Gravity.y();// *dtime* dtime;
