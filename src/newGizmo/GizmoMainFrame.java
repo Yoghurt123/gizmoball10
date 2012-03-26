@@ -56,7 +56,7 @@ public class GizmoMainFrame extends JFrame {
 		toolBar2.setFloatable(false);
 
 		addButtons(toolBar);
-		// addGizmoButtons(toolBar2);
+		 addGizmoButtons(toolBar2);
 
 		JScrollPane scrollPane = new JScrollPane();
 
