@@ -24,6 +24,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		SetBoundaryBox();
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	public void SetBoundaryBox(){
 

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Random;
@@ -32,7 +33,7 @@ import newGizmo.model.RightFlipper;
 import newGizmo.model.SquereGizmo;
 import newGizmo.model.TriangleGizmo;
 
-public class GizmoMainFrame extends JFrame {
+public class GizmoMainFrame extends JFrame implements MouseListener {
 	private static final int L = GizmoSettings.getInstance().getGizmoL();
 	GizmoBoardView board;
 	JButton playButton = null;
@@ -41,6 +42,8 @@ public class GizmoMainFrame extends JFrame {
 	JButton loadButton = null;
 	JButton quit = null;
 	private static JFrame frame;
+	String buttonPressed = "";
+
  
 	public GizmoMainFrame() {
 		board = new GizmoBoardView();
@@ -69,15 +72,12 @@ public class GizmoMainFrame extends JFrame {
 		contentPane.add(board);
 		contentPane.add(toolBar2, BorderLayout.SOUTH);
 		setContentPane(contentPane);
-
-		// Absorber abs = new Absorber(0, 500);
-		// GizmoBoard.getInstance().addGizmo(abs);
 		
 		Absorber abs = new Absorber(0, 500);
 		GizmoBoard.getInstance().addGizmo(abs);
 	}
 
-	public void addButtons(JToolBar toolBar) {
+	public void addButtons(JToolBar toolBar)  {
 
 		final FileDialog loadDialog = new FileDialog(this,
 				"Select GizmoBall file to load.", FileDialog.LOAD);
@@ -144,7 +144,8 @@ public class GizmoMainFrame extends JFrame {
 	}
 
 	private void addGizmoButtons(JToolBar toolBar2) {
-		final JButton circle = new JButton("Circle");
+		//Create Jbuttons
+		JButton circle = null;
 		JButton triangle = null;
 		JButton square = null;
 		JButton absorber = null;
@@ -152,206 +153,85 @@ public class GizmoMainFrame extends JFrame {
 		JButton flipperr = null;
 		JButton delete = null;
 		JButton ball = null;
-
-		// MouseListenerActive = false;
-
-		// circle = new JToggleButton("Circle");
+		
+		//Add labels and tips to buttons
+		circle = new JButton("Circle");
 		circle.setToolTipText("Click this button to add a Circle");
-		circle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String sx = (String) JOptionPane.showInputDialog(frame,
-						"Enter the X value for the Circle ",
-						"Adding new Circle", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				String sy = (String) JOptionPane.showInputDialog(frame,
-						"Enter the Y value for the Circle ",
-						"Adding new Circle", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-
-				int x = Integer.parseInt(sx);
-				int y = Integer.parseInt(sy);
-				CircleGizmo ci1 = new CircleGizmo((x * L), (y * L));
-				GizmoBoard.getInstance().addGizmo(ci1);
-				// b.addGizmo("Circle"+c, "Circle", x, y);
-				// c++;
-				System.out.println("Circle added");
-				// addMouseListener(new MouseAdapter(){
-				// public void mouseClicked(MouseEvent mc){
-				// b.addGizmo("Circle"+c, "Circle", mc.getX()/30,
-				// (mc.getY()/30)-2);
-				// c++;
-				// System.out.println("Circle added");
-				// //circle.set;
-				// }
-				// });
-			};
-
-		});
-
 		triangle = new JButton("Triangle");
 		triangle.setToolTipText("Click this button to add a Triangle");
-		triangle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String sx = (String) JOptionPane.showInputDialog(frame,
-						"Enter the X value for the Triangle ",
-						"Adding new Triangle", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				String sy = (String) JOptionPane.showInputDialog(frame,
-						"Enter the Y value for the Triangle ",
-						"Adding new Triangle", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				String sdeg = (String) JOptionPane.showInputDialog(frame,
-						"Enter the rotation 1--4", "Adding new Triangle",
-						JOptionPane.PLAIN_MESSAGE, null, null, null);
-
-				int x = Integer.parseInt(sx);
-				int y = Integer.parseInt(sy);
-				
-				TriangleGizmo tr1 = new TriangleGizmo((x * 30), (y * 30));
-				GizmoBoard.getInstance().addGizmo(tr1);
-				// b.addGizmo("Triangle"+t, "Triangle", x, y);
-				// t++;
-				System.out.println("Triangle added");
-				// addMouseListener(new MouseAdapter(){
-				// public void mouseClicked(MouseEvent mt){
-				// b.addGizmo("Triangle"+t, "Triangle", mt.getX()/30,
-				// (mt.getY()/30)-2);
-				// t++;
-				// System.out.println("Triangle added");
-				// }
-				// });
-			};
-		});
-
 		square = new JButton("Square");
 		square.setToolTipText("Click this button to add a Square");
-		square.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String sx = (String) JOptionPane.showInputDialog(frame,
-						"Enter the X value for the Square ",
-						"Adding new Square", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				String sy = (String) JOptionPane.showInputDialog(frame,
-						"Enter the Y value for the Square ",
-						"Adding new Square", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-
-				int x = Integer.parseInt(sx);
-				int y = Integer.parseInt(sy);
-				SquereGizmo sq1 = new SquereGizmo(x * L, y * L);
-				GizmoBoard.getInstance().addGizmo(sq1);
-				// b.addGizmo("Square"+s, "Square", x, y);
-				// s++;
-				System.out.println("Square added");
-				// addMouseListener(new MouseAdapter(){
-				// public void mousePressed(MouseEvent ms){
-				//
-				// b.addGizmo("Square"+s, "Square", ms.getX()/30,
-				// (ms.getY()/30)-2);
-				// s++;
-				// //System.out.println("Square added");
-				// }
-				// });
-
-			};
-		});
-
-		absorber = new JButton("Absorber");
-		absorber.setToolTipText("Click this button to add a Absorber");
-		absorber.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String sx = (String) JOptionPane.showInputDialog(frame,
-						"Enter the X value for the Absorber ",
-						"Adding new Absorber", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				String sy = (String) JOptionPane.showInputDialog(frame,
-						"Enter the Y value for the Absorber ",
-						"Adding new Absorber", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				// String sw = (String)
-				// JOptionPane.showInputDialog(frame,"Enter the value for the length of the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null,
-				// null, null);
-				// String sh = (String)
-				// JOptionPane.showInputDialog(frame,"Enter the value for the height of the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null,
-				// null, null);
-
-				int x = Integer.parseInt(sx);
-				int y = Integer.parseInt(sy);
-
-				Absorber ab1 = new Absorber(x * L, y * L);
-				GizmoBoard.getInstance().addGizmo(ab1);
-				// int w = Integer.parseInt(sw);
-				// int h = Integer.parseInt(sh);
-				// b.addAbsorber("Absorber"+a, "Absorber", x, y, w, h);
-				// a++;
-				System.out.println("Absorber added");
-			}
-		});
-
 		flipperl = new JButton("Left Flipper");
 		flipperl.setToolTipText("Click this button to add a Left Flipper");
-		flipperl.addActionListener(new ActionListener() {
+		flipperr = new JButton("Right Flipper");
+		flipperr.setToolTipText("Click this button to add a Right Flipper");
+		
+		
+		circle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sx = (String) JOptionPane.showInputDialog(frame,
-						"Enter the X value for the FlipperL ",
-						"Adding new FlipperL", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				String sy = (String) JOptionPane.showInputDialog(frame,
-						"Enter the Y value for the FlipperL ",
-						"Adding new FlipperL", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
+				board.addMouseListener(new MouseAdapter(){
+					 public void mouseClicked(MouseEvent mt){
+					 CircleGizmo ci1 = new CircleGizmo((mt.getX()), (mt.getY()));
+					 GizmoBoard.getInstance().addGizmo(ci1);
+					 
+				 System.out.println("Circle added");
+				 }
+				 });
+			};
 
-				int x = Integer.parseInt(sx);
-				int y = Integer.parseInt(sy);
+		});
 
-				LeftFlipper lf1 = new LeftFlipper(x * L, y * L);
-				GizmoBoard.getInstance().addGizmo(lf1);
-				// b.addFlipper("FlipperL"+fl, "FlipperL", x, y, true);
-				// fl++;
-				System.out.println("FlipperL added");
-				// addMouseListener(new MouseAdapter(){
-				// public void mousePressed(MouseEvent ml){
-				//
-				// b.addFlipper("FlipperL"+fl, "FlipperL", ml.getX()/30,
-				// (ml.getY()/30)-2, true);
-				// fl++;
-				// System.out.println("FlipperL added");
-				// }
-				// });
+		
+		triangle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		 		 System.out.println("Triangle added");
+				 board.addMouseListener(new MouseAdapter(){		 
+					 public void mouseClicked(MouseEvent mt){					 
+					 TriangleGizmo tr1 = new TriangleGizmo((mt.getX()), (mt.getY()));
+					 GizmoBoard.getInstance().addGizmo(tr1);
+				 System.out.println("Triangle added");
+				 }
+				 });
 			};
 		});
 
-		flipperr = new JButton("Right Flipper");
-		flipperr.setToolTipText("Click this button to add a Right Flipper");
-		flipperr.addActionListener(new ActionListener() {
+	
+		square.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sx = (String) JOptionPane.showInputDialog(frame,
-						"Enter the X value for the FlipperR ",
-						"Adding new FlipperR", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				String sy = (String) JOptionPane.showInputDialog(frame,
-						"Enter the Y value for the FlipperR ",
-						"Adding new FlipperR", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
+				board.addMouseListener(new MouseAdapter(){				 
+					 public void mouseClicked(MouseEvent mt){					 
+					 SquereGizmo sq1 = new SquereGizmo((mt.getX()), (mt.getY()));
+					 GizmoBoard.getInstance().addGizmo(sq1);
+				 System.out.println("Square added");
+				 }
+				 });
+			};
+		});
 
-				int x = Integer.parseInt(sx);
-				int y = Integer.parseInt(sy);
-				RightFlipper rf1 = new RightFlipper(x * L, y * L);
-				GizmoBoard.getInstance().addGizmo(rf1);
-				// b.addFlipper("FlipperR"+fr, "FlipperR", x, y, true);
-				// fr++;
-				System.out.println("FlipperR added");
-				// addMouseListener(new MouseAdapter(){
-				// public void mousePressed(MouseEvent mr){
-				//
-				// b.addFlipper("FlipperR"+fr, "FlipperR", mr.getX()/30,
-				// (mr.getY()/30)-2, false);
-				// fr++;
-				// System.out.println("FlipperR added");
-				//
-				// }
-				// });
 
+		flipperl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				board.addMouseListener(new MouseAdapter(){					 
+					 public void mouseClicked(MouseEvent mt){					 
+					 LeftFlipper lf1 = new LeftFlipper((mt.getX()), (mt.getY()));
+					 GizmoBoard.getInstance().addGizmo(lf1);
+
+				 System.out.println("Left Flipper Added");
+				 }
+				 });
+			};
+		});
+
+		
+		flipperr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				board.addMouseListener(new MouseAdapter(){				 
+					 public void mouseClicked(MouseEvent mt){				 
+					 RightFlipper rf1 = new RightFlipper((mt.getX()), (mt.getY()));
+					 GizmoBoard.getInstance().addGizmo(rf1);
+					 System.out.println("Right Flipper added");
+				 }
+				 });
 			};
 		});
 
@@ -388,13 +268,45 @@ public class GizmoMainFrame extends JFrame {
 				});
 			};
 		});
+		
+		absorber = new JButton("Absorber");
+		absorber.setToolTipText("Click this button to add a Absorber");
+		absorber.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sx = (String) JOptionPane.showInputDialog(frame,
+						"Enter the X value for the Absorber ",
+						"Adding new Absorber", JOptionPane.PLAIN_MESSAGE, null,
+						null, null);
+				String sy = (String) JOptionPane.showInputDialog(frame,
+						"Enter the Y value for the Absorber ",
+						"Adding new Absorber", JOptionPane.PLAIN_MESSAGE, null,
+						null, null);
+				// String sw = (String)
+				// JOptionPane.showInputDialog(frame,"Enter the value for the length of the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null,
+				// null, null);
+				// String sh = (String)
+				// JOptionPane.showInputDialog(frame,"Enter the value for the height of the Absorber ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null,
+				// null, null);
+
+				int x = Integer.parseInt(sx);
+				int y = Integer.parseInt(sy);
+
+				Absorber ab1 = new Absorber(x * L, y * L);
+				GizmoBoard.getInstance().addGizmo(ab1);
+				// int w = Integer.parseInt(sw);
+				// int h = Integer.parseInt(sh);
+				// b.addAbsorber("Absorber"+a, "Absorber", x, y, w, h);
+				// a++;
+				System.out.println("Absorber added");
+			}
+		});
 
 		toolBar2.add(circle);
 		toolBar2.addSeparator();
-		//
-		// toolBar2.add(circle);
-		// toolBar2.addSeparator();
-		//
+		
+		 toolBar2.add(circle);
+		 toolBar2.addSeparator();
+		
 		 toolBar2.add(triangle);
 		 toolBar2.addSeparator();
 
@@ -440,5 +352,35 @@ public class GizmoMainFrame extends JFrame {
 		GizmoBoard.getInstance().addGizmo(lf);
 		// GizmoBoard.getInstance().addGizmo(absorb);
 
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
