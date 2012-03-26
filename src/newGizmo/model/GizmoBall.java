@@ -17,7 +17,7 @@ public class GizmoBall extends AbstractGizmoModel {
 	private static final double Gravity = GizmoSettings.getInstance()
 			.getGravity();
 	private static final double tickLen = GizmoSettings.getInstance()
-			.getBallMovementUpdateDtime();
+			.getBallMovementUpdateDtime() ;
 	private static final double mu = GizmoSettings.getInstance()
 			.getMuConstatnt();
 	private static final double mu2 = GizmoSettings.getInstance()
@@ -46,7 +46,7 @@ public class GizmoBall extends AbstractGizmoModel {
 		public void onRun(GizmoBoard board) {
 			switch (getCurentDriverState()) {
 			case RUN_STATE:
-
+				
 				update(dtime);
 				board.checkColisions();
 				break;
@@ -67,6 +67,8 @@ public class GizmoBall extends AbstractGizmoModel {
 			.getBallColor();
 	private int radius = 10;
 
+	
+	
 	@Override
 	public Graphics paint(Graphics g) {
 		g.setColor(color_of_ball);
@@ -76,27 +78,36 @@ public class GizmoBall extends AbstractGizmoModel {
 
 	@Override
 	public void update(double dtime) {
-
+		
 		/**
 		 * the normal tick ...
 		 */
+		
+		
+		
+			double vx = volecity.x();
+			double vy = volecity.y();
+			
+			System.out.println("vx:" + vx + " vy:" + vy);
+			System.out.println("x:" + x + " y:" + y);
+			
+			//gravity
+			vy = vy + Gravity*dtime ;
 
-		double vx = volecity.x();
-		double vy = volecity.y();
-
-		System.out.println("vx:" + vx + " vy:" + vy);
-		System.out.println("x:" + x + " y:" + y);
-
-		// gravity
-		vy = vy + Gravity * dtime;
-
-		// fractions
-		// vx = vx * (1 - (mu * dtime) - (mu2 * Math.abs(vx) * dtime));
-		// vy = vy * (1 - (mu * dtime) - (mu2 * Math.abs(vy) * dtime));
-		volecity = new Vect(vx, vy);
-		x = (x + (vx * dtime));
-		y = (y + (vy * dtime));
-
+			//fractions
+			//vx = vx * (1 - (mu * dtime) - (mu2 * Math.abs(vx) * dtime));
+			//vy = vy * (1 - (mu * dtime) - (mu2 * Math.abs(vy) * dtime));
+			volecity = new Vect(vx, vy);
+			x = (int) ( x + (vx *dtime));
+			y = (int) ( y + (vy *dtime));
+	
+			
+		
+		
+		
+		
+		
+		
 		// System.out.println(volecity.length());
 		// // if (velocity.length() <1) velocity = new Vect(Angle.ZERO,0);
 		// double dvel = volecity.y() + 0.5 * Gravity.y();// *dtime* dtime;
@@ -158,7 +169,7 @@ public class GizmoBall extends AbstractGizmoModel {
 
 	}
 
-	public BallMoveTask newTask(double time) {
+	public BallMoveTask newTask(double  time) {
 		return new BallMoveTask(time);
 	}
 

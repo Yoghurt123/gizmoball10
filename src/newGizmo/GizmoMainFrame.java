@@ -69,8 +69,8 @@ public class GizmoMainFrame extends JFrame {
 		contentPane.add(toolBar2, BorderLayout.SOUTH);
 		setContentPane(contentPane);
 		
-		Absorber abs = new Absorber(0, 500);
-		GizmoBoard.getInstance().addGizmo(abs);
+		//Absorber abs = new Absorber(0, 500);
+		//GizmoBoard.getInstance().addGizmo(abs);
 	}
 
 	public void addButtons(JToolBar toolBar) {
