@@ -56,7 +56,7 @@ public class GizmoMainFrame extends JFrame {
 		toolBar2.setFloatable(false);
 
 		addButtons(toolBar);
-		// addGizmoButtons(toolBar2);
+		addGizmoButtons(toolBar2);
 
 		JScrollPane scrollPane = new JScrollPane();
 
@@ -68,6 +68,9 @@ public class GizmoMainFrame extends JFrame {
 		contentPane.add(board);
 		contentPane.add(toolBar2, BorderLayout.SOUTH);
 		setContentPane(contentPane);
+		
+		Absorber abs = new Absorber(0, 500);
+		GizmoBoard.getInstance().addGizmo(abs);
 	}
 
 	public void addButtons(JToolBar toolBar) {
@@ -386,7 +389,7 @@ public class GizmoMainFrame extends JFrame {
 		// toolBar2.addSeparator();
 		//
 		toolBar2.add(square);
-		// toolBar2.addSeparator();
+		toolBar2.addSeparator();
 		//
 		toolBar2.add(absorber);
 		toolBar2.addSeparator();

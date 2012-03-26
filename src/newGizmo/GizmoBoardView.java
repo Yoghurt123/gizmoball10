@@ -1,6 +1,7 @@
 package newGizmo;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 
 import newGizmo.model.AbstractGizmoModel;
@@ -38,6 +39,9 @@ public class GizmoBoardView extends Canvas {
 	public void paint(Graphics g) {
 
 		GizmoBall ball = GizmoBoard.getInstance().getBall();
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, 600, 600);
+		
 		if (ball != null)
 			ball.paint(g);
 

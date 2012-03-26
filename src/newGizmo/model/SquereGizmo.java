@@ -84,6 +84,7 @@ public class SquereGizmo extends AbstractGizmoModel {
 
 		// when time to collisions is less them tiem tick run timeTask on exacly
 		// colision time
+		if(tempTime!=0.0)
 		if (tempTime < GizmoSettings.getInstance().getBallMovementUpdateDtime()) {
 			long msec = Utils.Sec2Msec(tempTime);
 			// update ball position on hit moment

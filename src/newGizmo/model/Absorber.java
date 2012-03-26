@@ -3,6 +3,8 @@ package newGizmo.model;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import newGizmo.GizmoSettings;
+
 import physics.Angle;
 import physics.Geometry;
 import physics.LineSegment;
@@ -10,7 +12,9 @@ import physics.Vect;
 
 public class Absorber extends AbstractGizmoModel {
 
-	LineSegment abs = null;
+	int length = GizmoSettings.getInstance().getGizmoL();
+	
+	LineSegment abs;
 	public Absorber(int x, int y) {
 		super(x, y);
 		SetBoundary();
@@ -20,7 +24,7 @@ public class Absorber extends AbstractGizmoModel {
 	@Override
 	public Graphics paint(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect(0, y, 700, 20);
+		g.fillRect(0, y, 20*length, 20);
 		return g;
 	}
 
@@ -31,7 +35,7 @@ public class Absorber extends AbstractGizmoModel {
 	}
 	
 	public void SetBoundary(){
-		abs = new LineSegment(0,y,900,y);
+		abs = new LineSegment(0,y,20*length,y);
 	}
 	
 	public LineSegment getRect() {
@@ -41,11 +45,13 @@ public class Absorber extends AbstractGizmoModel {
 
 	@Override
 	public double timeToColision(GizmoBall ball) {
-		double absorbtemp = 0;
-		absorbtemp = Geometry.timeUntilWallCollision(getRect(), ball.getShape(), ball.getVolecity());
-		if(absorbtemp<0.5){
-			GizmoBall b= new GizmoBall(200,400,new Vect(Angle.DEG_270, 50));
-			GizmoBoard.getInstance().setBall(b);
+		double absorbtemp;
+//		Geometry.t
+		absorbtemp = Geometry.timeUntilWallCollision(abs, ball.getShape(), ball.getVolecity());
+		
+		if(absorbtemp<35){
+			GizmoBall b= new GizmoBall(200, 200, new Vect(0,-0.5));
+			GizmoBoard.getInstance().setBall(b);		
 			b.startBallMovement();
 
 		}

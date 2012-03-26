@@ -64,9 +64,10 @@ public class GizmoWalls extends AbstractGizmoModel {
 		System.out.println(tempTime);
 		System.out.println(GizmoSettings.getInstance()
 				.getBallMovementUpdateDtime());
-		// when time to collisions is less them tiem tick run timeTask on exacly
-		// colision time
-
+		// when time to collisions is less them time tick run timeTask on exacly
+		// collision time
+		System.out.println("time til wall collision: " +tempTime);
+		if(tempTime!=0)
 		if (tempTime < 10) {//GizmoSettings.getInstance().getBallMovementUpdateDtime()) {
 			System.out.println("reflecyt");
 			long msec = Utils.Sec2Msec(tempTime);
