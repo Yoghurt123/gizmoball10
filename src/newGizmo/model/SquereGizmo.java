@@ -11,7 +11,7 @@ import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
 import physics.Geometry; 
 import physics.LineSegment;
 import physics.Vect;
- 
+
 public class SquereGizmo extends AbstractGizmoModel {
 	private final int L = GizmoSettings.getInstance().getGizmoL();
 

@@ -8,7 +8,7 @@ import java.awt.Polygon;
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
 import newGizmo.Utils;
-import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
+
 
 import physics.Geometry;
 import physics.LineSegment;

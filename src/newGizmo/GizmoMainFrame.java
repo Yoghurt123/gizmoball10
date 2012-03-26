@@ -395,12 +395,13 @@ public class GizmoMainFrame extends JFrame {
 		// toolBar2.add(circle);
 		// toolBar2.addSeparator();
 		//
-		toolBar2.add(triangle);
-		toolBar2.addSeparator();
+		 toolBar2.add(triangle);
+		 toolBar2.addSeparator();
+
 		//
 		toolBar2.add(square);
 		toolBar2.addSeparator();
-		//
+		
 		toolBar2.add(absorber);
 		toolBar2.addSeparator();
 		//

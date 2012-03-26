@@ -51,7 +51,7 @@ public class Absorber extends AbstractGizmoModel {
 //		Geometry.t
 		absorbtemp = Geometry.timeUntilWallCollision(abs, ball.getShape(), ball.getVolecity());
 		
-		if(absorbtemp<0.000001){
+		if(absorbtemp<GizmoSettings.getInstance().getBallMovementUpdateDtime()){
 			GizmoBall b= new GizmoBall(200, 200, new Vect(20,-104.5));
 			GizmoBoard.getInstance().setBall(b);		
 			b.startBallMovement();
