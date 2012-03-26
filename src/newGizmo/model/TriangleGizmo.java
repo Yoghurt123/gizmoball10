@@ -85,27 +85,31 @@ public class TriangleGizmo extends AbstractGizmoModel {
 				tempTime = time;
 			}
 		}
-
+ 
 		// when time to collisions is less them tiem tick run timeTask on exacly
 		// colision time
-		if (tempTime < GizmoSettings.getInstance().getBallMovementUpdateDtime()) {
+		if (!isReflecting)
+			if (tempTime < GizmoSettings.getInstance()
+					.getBallMovementUpdateDtime()) {
+
+
 			long msec = Utils.Sec2Msec(tempTime);
 			// update ball position on hit moment
-			GizmoDriver.getInstance().runTask(ball.newTask(msec), msec);
+			GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
 			// run onHit method of gizmo on hit time
 			GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
 					msec);
 		}
 		return tempTime;
-
 	}
 
 	@Override
 	public void onColisionTime(GizmoBall ball, Object o) {
+		isReflecting = false;
 		if (o instanceof LineSegment) {
 			LineSegment linesegment = (LineSegment) o;
 			Vect velocity = Geometry.reflectWall(linesegment,
-					ball.getVolecity());
+					ball.getVolecity(),0.75);
 			ball.setVelocity(velocity);
 		}
 
