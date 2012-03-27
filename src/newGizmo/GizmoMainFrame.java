@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -50,10 +51,13 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 	JButton quit = null;
 	JButton play = null;
 	JButton build = null;
+	JButton circle = null;
+	JButton triangle = null;
 	private static JFrame frame;
 	boolean[][] addedBoard = new boolean[19][19];
 	Gizmo gizmo;
 	RightFlipper rf;
+	loadSave ls;
 	
 	private JToolBar toolBar;
 	private JToolBar GizmotoolBar;
@@ -112,6 +116,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 			public void actionPerformed(ActionEvent e) {
 				GizmoDriver.getInstance().setState(STATES.RUN_STATE);
 				GizmoBoard.getInstance().run();
+				circle.setSelected(false);
 				temp.setVisible(false);
 				playButton.setEnabled(false);
 			}
@@ -131,8 +136,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		saveButton.setToolTipText("Click this button to save the board layout");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// saveDialog.setVisible(true);
-				// b.save(saveDialog.getDirectory() + saveDialog.getFile());
+				 saveDialog.setVisible(true);
+				 ls.save(saveDialog.getDirectory() + saveDialog.getFile());
 			}
 		});
 		loadButton = new JButton(new ImageIcon("fldr_obj.gif", "Load"));
@@ -141,7 +146,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadDialog.setVisible(true);
-				// b.load(loadDialog.getDirectory() + loadDialog.getFile());
+				ls.load(loadDialog.getDirectory() + loadDialog.getFile());
 			}
 		});
 
@@ -434,6 +439,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		// GizmoBoard.getInstance().addGizmo(sq1);
 		//GizmoBoard.getInstance().addGizmo(sq2);
 		GizmoBoard.getInstance().addGizmo(walls);
+		//keyPress();
 		// GizmoBoard.getInstance().addGizmo(ci1);
 		// GizmoBoard.getInstance().addGizmo(sq2);
 		// GizmoBoard.getInstance().addGizmo(ci1);
@@ -442,6 +448,10 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		// GizmoBoard.getInstance().addGizmo(absorb);
 
 	}
+	
+//	public static void keyPress(){
+//		keyList();
+//	}
 	
 	public void addGizmo(){
 //		
@@ -530,15 +540,31 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void keyList(){
+		board.addKeyListener(new KeyAdapter(){
+			public void kerPressed(KeyEvent e){
+			int keynum = e.getKeyCode();
+			
+			if(e.getKeyCode()==KeyEvent.VK_C){
+				rf.rotate();
+				System.out.println("TRIGGER PRESSED!!!!!!!!!!!!");
+			}
+			}
+			});
+	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int keynum = e.getKeyCode();
 		
-		if(e.getKeyCode()==KeyEvent.VK_C){
-			rf.rotate();
-			System.out.println("TRIGGER PRESSED!!!!!!!!!!!!");
-		}
+//		board.addKeyListener(new KeyAdapter(){
+//		int keynum = e.getKeyCode();
+//		
+//		if(e.getKeyCode()==KeyEvent.VK_C){
+//			rf.rotate();
+//			System.out.println("TRIGGER PRESSED!!!!!!!!!!!!");
+//		}
+//		});
 		// TODO Auto-generated method stub
 		
 	}
