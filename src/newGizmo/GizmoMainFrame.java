@@ -15,6 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -30,6 +31,7 @@ import GizmoballGUI.gizmoBoard;
 import newGizmo.GizmoDriver.STATES;
 import newGizmo.controller.EventListener;
 import newGizmo.model.Absorber;
+import newGizmo.model.AbstractGizmoModel;
 import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBoard;
 import newGizmo.model.GizmoWalls;
@@ -190,6 +192,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		flipperl.setToolTipText("Click this button to add a Left Flipper");
 		flipperr = new JButton("Right Flipper");
 		flipperr.setToolTipText("Click this button to add a Right Flipper");
+		delete = new JButton("Delete");
+		delete.setToolTipText("Click this button to delete a Gizmo");
 
 
 		circle.addActionListener(new ActionListener() {
@@ -311,45 +315,17 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 			public void actionPerformed(ActionEvent e) {	
 				gizmo = Gizmo.FlipperR;
 				addGizmo();
-				
-//				board.addMouseListener(new MouseAdapter(){				 
-//					public void mouseClicked(MouseEvent mt){
-//						int x = (Math.round(mt.getX()/30)*30);
-//						int y = (Math.round(mt.getY()/30)*30);
-//						int tempx = Math.round(mt.getX()/30);
-//						int tempy = Math.round(mt.getY()/30);
-//						if(addedBoard[tempx][tempy] != true ){
-//							addedBoard[tempx][tempy] = true;
-//							if(x<600){
-//								if(y<600){
-//									RightFlipper rf1 = new RightFlipper(x, y);
-//									GizmoBoard.getInstance().addGizmo(rf1);
-//									System.out.println("Right Flipper added");
-//								}
-//							}
-//						}
-//					}
-//				});
 			};
 		});
 
-		delete = new JButton("Delete");
-		delete.setToolTipText("Click this button to delete a Gizmo");
+		
 		delete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sx = (String) JOptionPane.showInputDialog(frame,
-						"Enter the X value for the Gizmo you want to delete ",
-						"Deleting a Gizmo", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-				String sy = (String) JOptionPane.showInputDialog(frame,
-						"Enter the Y value for the Gizmo you want to delete ",
-						"Deleting a Gizmo", JOptionPane.PLAIN_MESSAGE, null,
-						null, null);
-
-				int x = Integer.parseInt(sx);
-				int y = Integer.parseInt(sy);
+				gizmo = Gizmo.Delete;
+				addGizmo();
 			}
 		});
+		
 
 		ball = new JButton("Ball");
 		ball.setToolTipText("Click this button to add a Ball");
@@ -421,6 +397,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		GizmotoolBar.add(flipperr);
 		GizmotoolBar.addSeparator();
 		
+		GizmotoolBar.add(delete);
+		
 		// toolBar2.add(ball);
 
 	}
@@ -447,12 +425,26 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 
 	}
 	
+	public void Delete(int x,int y,int tempx,int tempy){
+				AbstractGizmoModel toDelete = null;
+				ArrayList<AbstractGizmoModel> temp =  GizmoBoard.getInstance().getGizmos();
+				for(AbstractGizmoModel mo:temp )
+				{
+					if(mo.getX() == x && mo.getY() == y)
+					{
+						toDelete  = mo;
+					}
+				}
+				
+				if(toDelete!=null)
+				{
+					GizmoBoard.getInstance().removeGizmo(toDelete);
+					board.update();
+
+				}
+	}
+	
 	public void addGizmo(){
-//		
-//		System.out.println(gizmo);
-//		int x = 0;
-//		int y = 0;
-//		
 		
 		board.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent mt){
@@ -460,6 +452,10 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				int y = (Math.round(mt.getY()/30)*30);
 				int tempx = Math.round(mt.getX()/30);
 				int tempy = Math.round(mt.getY()/30);
+				if(gizmo == Gizmo.Delete){
+					addedBoard[tempx][tempy] = false;
+
+				}
 				if(addedBoard[tempx][tempy] != true ){
 					addedBoard[tempx][tempy] = true;
 					if(x<=630){
@@ -485,6 +481,9 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 							case FlipperR: RightFlipper rf1 = new RightFlipper(x,y);
 											GizmoBoard.getInstance().addGizmo(rf1);
 											System.out.println("Right Flipper added");
+											break;
+							case Delete:   	addedBoard[tempx][tempy] = false;
+											Delete(x,y,tempx,tempy);
 											break;
 							
 							}

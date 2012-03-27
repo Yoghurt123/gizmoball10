@@ -18,7 +18,10 @@ public class SquereGizmo extends AbstractGizmoModel implements SavleLoadable {
 	private final int L = GizmoSettings.getInstance().getGizmoL();
 
 	LineSegment squareLines[] = new LineSegment[4];
-
+	Circle corner1 = null;
+	Circle corner2 = null;
+	Circle corner3 = null;
+	Circle corner4 = null;
 	public SquereGizmo(int x, int y) {
 		super(x, y);
 		setBoundaryBox();
@@ -33,10 +36,10 @@ public class SquereGizmo extends AbstractGizmoModel implements SavleLoadable {
 		squareLines[1] = new LineSegment(x + L, y, x + L, y + L);
 		squareLines[2] = new LineSegment(x + L, y + L, x, y + L);
 		squareLines[3] = new LineSegment(x, y + L, x, y);
-		Circle corner1 = new Circle(x, y, 0);
-		Circle corner2 = new Circle(x, y + L, 0);
-		Circle corner3 = new Circle(x + L, y, 0);
-		Circle corner4 = new Circle(x + L, y + L, 0);
+		corner1 = new Circle(x, y, 0);
+		corner2 = new Circle(x, y + L, 0);
+		corner3 = new Circle(x + L, y, 0);
+		corner4 = new Circle(x + L, y + L, 0);
 	}
 
 	private static final Color gizmoColor = GizmoSettings.getInstance()

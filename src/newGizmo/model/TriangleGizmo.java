@@ -17,17 +17,16 @@ import physics.Vect;
 public class TriangleGizmo extends AbstractGizmoModel {
 
 	LineSegment triangleLines[] = new LineSegment[3];
-	Circle corner1, corner2, corner3;
+	Circle corner1 =null, corner2=null, corner3=null;
 	private final int GizmoLength = GizmoSettings.getInstance().getGizmoL();
-	int rotate = 1;
 
 	public TriangleGizmo(int x, int y) {
 		super(x, y);
-		SetBoundaryBox(rotate);
+		SetBoundaryBox();
 		// TODO Auto-generated constructor stub
 	}
 
-	public void SetBoundaryBox(int rotate) {
+	public void SetBoundaryBox() {
 
 		// switch(rotate){
 		// case 1:{
@@ -36,9 +35,9 @@ public class TriangleGizmo extends AbstractGizmoModel {
 				y + GizmoLength); 
 		triangleLines[2] = new LineSegment(x, y, x + GizmoLength, y
 				+ GizmoLength);
-		Circle corner1 = new Circle(x, y, 0);
-		Circle corner2 = new Circle(x + GizmoLength, y, 0);
-		Circle corner3 = new Circle(x + GizmoLength, y + GizmoLength, 0);
+		corner1 = new Circle(x, y, 0);
+		corner2 = new Circle(x + GizmoLength, y, 0);
+		corner3 = new Circle(x + GizmoLength, y + GizmoLength, 0);
 
 			
 //		}
@@ -60,14 +59,6 @@ public class TriangleGizmo extends AbstractGizmoModel {
 //		}
 
 
-
-	}
-
-	public void Rotate() {
-		if (rotate == 4) {
-			this.rotate = 0;
-		}
-		this.rotate++;
 
 	}
 

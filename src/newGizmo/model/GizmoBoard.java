@@ -36,7 +36,15 @@ public class GizmoBoard extends JPanel{
 	public ArrayList<AbstractGizmoModel> getGizmos() {
 		return gizmos;
 	}
+	
+	public void setGizmos(ArrayList<AbstractGizmoModel> deletedGizmos){
+		this.gizmos = deletedGizmos; 
+	}
 
+	public void removeGizmo(AbstractGizmoModel model)
+	{
+		gizmos.remove(model);
+	}
 	/**
 	 * add gizmo to board
 	 * 
