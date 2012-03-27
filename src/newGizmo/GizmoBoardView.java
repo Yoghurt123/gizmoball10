@@ -3,6 +3,8 @@ package newGizmo;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import newGizmo.controller.EventListener;
 import newGizmo.model.AbstractGizmoModel;
@@ -12,6 +14,7 @@ import newGizmo.model.GizmoBoard;
 public class GizmoBoardView extends Canvas {
 
 	public GizmoBoardView() {
+		
 		long ltime = GizmoSettings.getInstance().getScreenRefreshRate();
 		GizmoDriver.getInstance().runShudledTask(new GizmoUpdateViewTask(),
 				1000, ltime);
