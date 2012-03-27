@@ -54,14 +54,13 @@ public class GizmoBoard extends JPanel{
 	}
 
 	/**
-	 * when is run button pressted
+	 * when is run button pressed
 	 */
 	public void run() {
 		if (ball != null) {
 			ball.startBallMovement();
 			requestFocus();
 			addKeyListener(eventListener);
-			
 		}
 	}
 
