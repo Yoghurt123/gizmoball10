@@ -42,7 +42,7 @@ public class GizmoBoardView extends Canvas {
 		public void onRun(GizmoBoard board) {
 			switch (getCurentDriverState())
 			{
-			case RUN_STATE:
+			case RUN_STATE: 
 				paint(getGraphics());
 				break;
 			}
