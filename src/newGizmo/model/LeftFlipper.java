@@ -120,8 +120,9 @@ public class LeftFlipper extends AbstractGizmoModel {
 
 	@Override
 	public String getSaveString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "LeftFlipper " + name + " "
+				+ ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
+				+ ((int)y / GizmoSettings.getInstance().getGizmoL() - 1);
 	}
 
 	@Override

@@ -143,6 +143,22 @@ public class GizmoBoardView extends Canvas {
 	    	  
 	    	  CircleGizmo ci1 = new CircleGizmo((tempX*3)-3, (tempY*3)-6);
 	    	  GizmoBoard.getInstance().addGizmo(ci1);
+	      } else if(type.equals("LeftFlipper")){
+	    	  String tempName = command.nextToken();
+	    	  int tempX = Integer.parseInt(command.nextToken()+1);
+	    	  int tempY = Integer.parseInt(command.nextToken()+2);
+	    	  
+	    	  LeftFlipper fl1 = new LeftFlipper((tempX*3)-3,(tempY*3)-6);
+	    	  GizmoBoard.getInstance().addGizmo(fl1);
+	      }else if(type.equals("RightFlipper")){
+	    	  String tempName = command.nextToken();
+	    	  int tempX = Integer.parseInt(command.nextToken()+1);
+	    	  int tempY = Integer.parseInt(command.nextToken()+2);
+	    	  
+	    	  RightFlipper fr1 = new RightFlipper((tempX*3)-3,(tempY*3)-6);
+	    	  GizmoBoard.getInstance().addGizmo(fr1);
+	      }
+	    	  
 	    	  
 //		CircleClass circle = new CircleClass(this, command.nextToken(),
 //						     Integer.parseInt(command.nextToken())+1,
@@ -166,19 +182,20 @@ public class GizmoBoardView extends Canvas {
 //		    active = Walls;
 //		else
 //		  active = (Gizmo)gizmos.get(giz);
+	      else{
 		
-		String consume = command.nextToken();
-		GizmoWalls consumer;
-		if (consume.equals("Walls"))
-		  consumer = walls;
-		else
-		  consumer = (GizmoWalls)gizmos.get(consume);
-		
-		int actionNum = 0;
-
-	    currentFile = filename;
-	      }
+//	    	  String consume = command.nextToken();
+//		GizmoWalls consumer;
+//		if (consume.equals("Walls"))
+//		  consumer = walls;
+//		else
+//		  consumer = (GizmoWalls)gizmos.get(consume);
+//		
+//		int actionNum = 0;
+//
+//	    currentFile = filename;
 	    }
+	}
 	}
 	
 	 private static String fileRead(String filename) {
@@ -209,7 +226,7 @@ public class GizmoBoardView extends Canvas {
 			filename = filename +".txt";
 		      
 		      output = new PrintStream(new FileOutputStream(filename));
-		      Iterator saveElement = ((List<AbstractGizmoModel>) GizmoBoard.getInstance()).iterator();//gizmos.values().iterator();
+		      Iterator saveElement = GizmoBoard.getInstance().getGizmos().iterator();
 		      while (saveElement.hasNext()) {
 			AbstractGizmoModel nextGiz = (AbstractGizmoModel)saveElement.next();
 			output.println(nextGiz.getSaveString());

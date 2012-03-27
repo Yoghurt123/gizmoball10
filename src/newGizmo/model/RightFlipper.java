@@ -132,8 +132,9 @@ LineSegment RightFlipperLines[] = new LineSegment[4];
 
 	@Override
 	public String getSaveString() {
-		// TODO Auto-generated method stub
-		return null;
+		 return "RightFlipper " + name + " "
+                 + ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
+                 + ((int)y / GizmoSettings.getInstance().getGizmoL() - 1); 
 	}
 
 	@Override
