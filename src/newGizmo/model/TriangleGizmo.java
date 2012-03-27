@@ -40,6 +40,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		Circle corner2 = new Circle(x + GizmoLength, y, 0);
 		Circle corner3 = new Circle(x + GizmoLength, y + GizmoLength, 0);
 
+<<<<<<< HEAD
 		// }
 		// case 2:{
 		// triangleLines[0] = new
@@ -60,6 +61,35 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		// triangleLines[2] = new LineSegment(x,y-GizmoLength,x,y);
 		// }
 		// }
+=======
+//		switch(rotate){
+//		case 1:{
+			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y+GizmoLength);
+			triangleLines[2] = new LineSegment(x,y,x+GizmoLength,y+GizmoLength);
+			Circle corner1 = new Circle(x,y,0);
+			Circle corner2 = new Circle(x+GizmoLength,y,0);
+			Circle corner3 = new Circle(x+GizmoLength,y+GizmoLength,0);
+			
+//		}
+//		case 2:{
+//			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
+//			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y+GizmoLength);
+//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x,y);
+//		}
+//		case 3:{
+//			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y+GizmoLength);
+//			triangleLines[1] = new LineSegment(x+GizmoLength,y+GizmoLength,x,y+GizmoLength);
+//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x,y);
+//		}
+//		case 4:{
+//			triangleLines[0] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y+GizmoLength);
+//			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y+GizmoLength);
+//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x+GizmoLength,y);
+//		}
+//		}
+
+>>>>>>> branch 'master' of https://code.google.com/p/gizmoball10/
 
 	}
 
@@ -129,7 +159,6 @@ public class TriangleGizmo extends AbstractGizmoModel {
 	public void onDeactivationEvent() {
 		curent = gizmoColor;
 		deactivateLinkedGizmos();
-
 	}
 
 	public double timeToColision(GizmoBall ball) {
@@ -139,7 +168,10 @@ public class TriangleGizmo extends AbstractGizmoModel {
 
 		for (LineSegment l : triangleLines) {
 			time = Geometry.timeUntilWallCollision(l, ball.getShape(),
+
+
 					ball.getVolecity());
+
 			if (tempTime > time) {
 				templine = l;
 				tempTime = time;
@@ -151,11 +183,25 @@ public class TriangleGizmo extends AbstractGizmoModel {
 			//
 			// ball.setVelocity(velocity);
 			// }
+=======
+//			if (tempTime > time) {
+//				templine = l;
+//				tempTime = time;
+//			}
+			if(time==0.000000000000){
+				LineSegment linesegment = (LineSegment) l;
+				Vect velocity = Geometry.reflectWall(linesegment,
+						ball.getVolecity(), 0.75);
+
+				ball.setVelocity(velocity);
+		}
+>>>>>>> branch 'master' of https://code.google.com/p/gizmoball10/
 		}
 
 		// when time to collisions is less them tiem tick run timeTask on exacly
 		// colision time
 
+<<<<<<< HEAD
 		if (!isReflecting)
 			if (tempTime < GizmoSettings.getInstance()
 					.getBallMovementUpdateDtime()) {
@@ -169,6 +215,22 @@ public class TriangleGizmo extends AbstractGizmoModel {
 			}
 		return tempTime;
 		// return time;
+=======
+//		if (!isReflecting)
+//			if (tempTime < GizmoSettings.getInstance()
+//					.getBallMovementUpdateDtime()) {
+////
+//
+//				long msec = Utils.Sec2Msec(tempTime);
+//				// update ball position on hit moment
+//				GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
+//				// run onHit method of gizmo on hit time
+//				GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
+//						msec);
+//			}
+//		return tempTime;
+		return time;
+>>>>>>> branch 'master' of https://code.google.com/p/gizmoball10/
 	}
 
 	@Override

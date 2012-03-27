@@ -386,7 +386,7 @@ public void update(Observable o, Object arg) {
 	// method.  One could also call repaint(), but this would
 	// repaint the entire window as opposed to only the portion that
 	// has changed.
-	this.repaint(); 
+	this.repaint();
 
 //	repaint(repaintArea.x,
 //	repaintArea.y,

@@ -25,7 +25,7 @@ import newGizmo.model.TriangleGizmo;
 
 public class GizmoBoardView extends Canvas {
 
-	public GizmoBoardView() {		
+	public GizmoBoardView() {
 		long ltime = GizmoSettings.getInstance().getScreenRefreshRate();
 		GizmoDriver.getInstance().runShudledTask(new GizmoUpdateViewTask(),
 				1000, ltime);

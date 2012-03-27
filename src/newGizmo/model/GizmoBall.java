@@ -144,7 +144,7 @@ public class GizmoBall extends AbstractGizmoModel {
 		this.volecity = volicity;
 	}
 
-	@Override 
+	@Override
 	public double timeToColision(GizmoBall ball) {
 		double timeto = Geometry.timeUntilBallBallCollision(getShape(),
 				getVolecity(), ball.getShape(), ball.getVolecity());

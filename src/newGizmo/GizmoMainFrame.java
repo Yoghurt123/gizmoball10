@@ -96,7 +96,9 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		GizmoBoard.getInstance().addGizmo(abs);
 	}
 
-	public void addButtons(JToolBar toolBar, JToolBar toolBar2)   {
+
+	public void addButtons(JToolBar toolBar, JToolBar toolBar2)  {
+
 		
 		final JToolBar temp = toolBar2;
 
@@ -204,7 +206,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 //							if(x<600){
 //								if(y<600){
 				gizmo = Gizmo.Circle;
-				addGizmo();
+				addGizmo(); 
 //									CircleGizmo ci1 = new CircleGizmo(x, y);
 //									GizmoBoard.getInstance().addGizmo(ci1);				 
 									//System.out.println("Circle added");

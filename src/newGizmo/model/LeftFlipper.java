@@ -137,7 +137,8 @@ public class LeftFlipper extends AbstractGizmoModel {
 	}
 
 	@Override
-	public void onDeactivationEvent() { 
+
+	public void onDeactivationEvent() {
 		// TODO Auto-generated method stub
 		
 	}
