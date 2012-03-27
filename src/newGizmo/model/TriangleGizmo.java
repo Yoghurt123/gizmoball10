@@ -41,19 +41,19 @@ public class TriangleGizmo extends AbstractGizmoModel {
 			
 //		}
 //		case 2:{
-//			triangleLines[0] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y-GizmoLength);
-//			triangleLines[1] = new LineSegment(x+GizmoLength,y-GizmoLength,x,y-GizmoLength);
-//			triangleLines[2] = new LineSegment(x,y-GizmoLength,x+GizmoLength,y);
+//			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
+//			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y+GizmoLength);
+//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x,y);
 //		}
 //		case 3:{
-//			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y-GizmoLength);
-//			triangleLines[1] = new LineSegment(x+GizmoLength,y-GizmoLength,x,y-GizmoLength);
-//			triangleLines[2] = new LineSegment(x,y-GizmoLength,x,y);
+//			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y+GizmoLength);
+//			triangleLines[1] = new LineSegment(x+GizmoLength,y+GizmoLength,x,y+GizmoLength);
+//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x,y);
 //		}
 //		case 4:{
-//			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
-//			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y-GizmoLength);
-//			triangleLines[2] = new LineSegment(x,y-GizmoLength,x,y);
+//			triangleLines[0] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y+GizmoLength);
+//			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y+GizmoLength);
+//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x+GizmoLength,y);
 //		}
 //		}
 
@@ -127,7 +127,6 @@ public class TriangleGizmo extends AbstractGizmoModel {
 	public void onDeactivationEvent() {
 		curent = gizmoColor;
 		deactivateLinkedGizmos();
-
 	}
 
 	public double timeToColision(GizmoBall ball) {
@@ -136,13 +135,14 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		double time =0;
 
 		for (LineSegment l : triangleLines) {
+			
 			 time = Geometry.timeUntilWallCollision(l, ball.getShape(),
 					ball.getVolecity());
 //			if (tempTime > time) {
 //				templine = l;
 //				tempTime = time;
 //			}
-			if(time<0.00000000000001){
+			if(time==0.000000000000){
 				LineSegment linesegment = (LineSegment) l;
 				Vect velocity = Geometry.reflectWall(linesegment,
 						ball.getVolecity(), 0.75);
@@ -157,7 +157,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 //		if (!isReflecting)
 //			if (tempTime < GizmoSettings.getInstance()
 //					.getBallMovementUpdateDtime()) {
-//
+////
 //
 //				long msec = Utils.Sec2Msec(tempTime);
 //				// update ball position on hit moment

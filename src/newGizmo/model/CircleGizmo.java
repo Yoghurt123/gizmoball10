@@ -93,7 +93,7 @@ public class CircleGizmo extends AbstractGizmoModel {
 //						msec);
 //			}
 		
-		if(time<0.00000001){
+		if(time == 0.0000000){
 			Vect centre = new Vect(x, y);
 
 			Vect velocity = Geometry.reflectCircle(centre,ball.getShape().getCenter(), ball.getVolecity());

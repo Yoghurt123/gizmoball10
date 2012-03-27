@@ -155,7 +155,6 @@ public class GizmoBall extends AbstractGizmoModel {
 			long timetoL = Utils.Sec2Msec(timeto);
 			GizmoDriver.getInstance().runTask(new BallMoveTask(timetoL),
 					timetoL);
-
 		}
 
 		return timeto;
