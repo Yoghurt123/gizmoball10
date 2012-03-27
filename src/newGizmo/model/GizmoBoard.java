@@ -1,3 +1,4 @@
+
 package newGizmo.model;
 
 import java.awt.List;
@@ -74,6 +75,12 @@ public class GizmoBoard extends JPanel{
 			}
 		}
 
+	}
+
+	public void resetReflectiinFlagOnGizmos(AbstractGizmoModel object) {
+		for (AbstractGizmoModel m: gizmos)
+			m.isReflecting = false;
+		
 	}
 
 }

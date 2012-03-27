@@ -63,7 +63,6 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	protected double x = 0;
 	protected double y = 0;
 	protected String name;
-	
 	public String getName(){
 		return name;
 	}

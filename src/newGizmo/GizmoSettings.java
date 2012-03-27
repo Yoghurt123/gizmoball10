@@ -53,7 +53,12 @@ public class GizmoSettings {
 	 */
 	public double getBallMovementUpdateDtime() {
 
-		return 50.0/1000;
+		return 10.0/1000;
+	}
+	
+	public long getScreenRefreshRate()
+	{
+		return 60;
 	}
 
 	public Color getCircleGizmoColor() {

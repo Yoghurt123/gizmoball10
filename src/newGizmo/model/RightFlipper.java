@@ -20,7 +20,7 @@ import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
 public class RightFlipper extends AbstractGizmoModel {
 	private AffineTransform transform = new AffineTransform();
 	private int deg = 0;
-	private int rotating = 0;
+	private int rotating = 1; 
 	
 	public RightFlipper(int x, int y) {
 		super(x, y);
@@ -132,9 +132,9 @@ LineSegment RightFlipperLines[] = new LineSegment[4];
 
 	@Override
 	public String getSaveString() {
-		return "RightFlipper " + name + " "
-				+ ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
-				+ ((int)y / GizmoSettings.getInstance().getGizmoL() - 1);	}
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public String getType() {

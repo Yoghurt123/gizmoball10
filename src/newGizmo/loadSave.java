@@ -121,7 +121,7 @@ public class loadSave {
 		
 		int actionNum = 0;
 
-	    currentFile = filename;
+	    currentFile = filename; 
 	      }
 	    }
 	  }
@@ -159,6 +159,10 @@ public class loadSave {
 			AbstractGizmoModel nextGiz = (AbstractGizmoModel)saveElement.next();
 			output.println(nextGiz.getSaveString());
 		      }
+
+ 
+
+
 
 		      currentFile = filename;
 		      

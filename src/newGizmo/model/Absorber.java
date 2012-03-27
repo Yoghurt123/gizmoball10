@@ -75,7 +75,7 @@ public class Absorber extends AbstractGizmoModel {
 		GizmoBall b = new GizmoBall(580, (int)y, new Vect(0, -200));
 		GizmoBoard.getInstance().setBall(b);
 		b.startBallMovement();
-	}
+	} 
 
 	@Override
 	public String getDescription() {
