@@ -8,6 +8,7 @@ import newGizmo.GizmoSettings;
 import newGizmo.Utils;
 import newGizmo.model.AbstractGizmoModel.DeactivateTask;
 import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
+import physics.Circle;
 import physics.Geometry; 
 import physics.LineSegment;
 import physics.Vect;
@@ -31,7 +32,10 @@ public class SquereGizmo extends AbstractGizmoModel {
 		squareLines[1] = new LineSegment(x + L, y, x + L, y + L);
 		squareLines[2] = new LineSegment(x + L, y + L, x, y + L);
 		squareLines[3] = new LineSegment(x, y + L, x, y);
-
+		Circle corner1 = new Circle(x,y,0);
+		Circle corner2 = new Circle(x,y+L,0);
+		Circle corner3 = new Circle(x+L,y,0);
+		Circle corner4 = new Circle(x+L,y+L,0);
 	}
 
 	private static final Color gizmoColor = GizmoSettings.getInstance()
@@ -73,33 +77,48 @@ public class SquereGizmo extends AbstractGizmoModel {
 	public double timeToColision(GizmoBall ball) {
 		double tempTime = Double.POSITIVE_INFINITY;
 		LineSegment templine = squareLines[0];
+		double time =0;
 
 		for (LineSegment l : squareLines) {
-			double time = Geometry.timeUntilWallCollision(l, ball.getShape(),
+			 time = Geometry.timeUntilWallCollision(l, ball.getShape(),
 					ball.getVolecity());
-			if (tempTime > time) {
-				templine = l;
-				tempTime = time;
+
+			if(time<0.00000001){
+					LineSegment linesegment = (LineSegment) l;
+					Vect velocity = Geometry.reflectWall(linesegment,
+							ball.getVolecity(), 0.75);
+
+					ball.setVelocity(velocity);
+
+				//			if (tempTime > time) {
+				//				templine = l;
+				//				tempTime = time;
+				//			}
+				//		}
+				//
+				//		// when time to collisions is less them tiem tick run timeTask on exacly
+				//		// colision time
+				//
+				//		if (!isReflecting)
+				//			if (tempTime < GizmoSettings.getInstance()
+				//					.getBallMovementUpdateDtime()) {
+				//
+				//
+				//			long msec = Utils.Sec2Msec(tempTime);
+				//			// update ball position on hit moment
+				//			GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
+				//			// run onHit method of gizmo on hit time
+				//			GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
+				//					msec);
+				//		}
+				//		return tempTime;
 			}
+
 		}
+	    return time;
 
-		// when time to collisions is less them tiem tick run timeTask on exacly
-		// colision time
-
-		if (!isReflecting)
-			if (tempTime < GizmoSettings.getInstance()
-					.getBallMovementUpdateDtime()) {
-
-
-			long msec = Utils.Sec2Msec(tempTime);
-			// update ball position on hit moment
-			GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
-			// run onHit method of gizmo on hit time
-			GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
-					msec);
-		}
-		return tempTime;
 	}
+
 
 	@Override
 	public void onColisionTime(GizmoBall ball, Object o) {

@@ -51,7 +51,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 	JButton play = null;
 	JButton build = null;
 	private static JFrame frame;
-	boolean[][] addedBoard = new boolean[19][19];
+	boolean[][] addedBoard = new boolean[20][20];
 	Gizmo gizmo;
 	RightFlipper rf;
 	
@@ -399,7 +399,6 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		GizmotoolBar.add(triangle);
 		GizmotoolBar.addSeparator();
 
-		//
 		GizmotoolBar.add(square);
 		GizmotoolBar.addSeparator();
 
@@ -434,12 +433,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		// GizmoBoard.getInstance().addGizmo(sq1);
 		//GizmoBoard.getInstance().addGizmo(sq2);
 		GizmoBoard.getInstance().addGizmo(walls);
-		// GizmoBoard.getInstance().addGizmo(ci1);
-		// GizmoBoard.getInstance().addGizmo(sq2);
-		// GizmoBoard.getInstance().addGizmo(ci1);
-		// GizmoBoard.getInstance().addGizmo(tr1);
-		//GizmoBoard.getInstance().addGizmo(lf);
-		// GizmoBoard.getInstance().addGizmo(absorb);
+		
 
 	}
 	
@@ -449,6 +443,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 //		int x = 0;
 //		int y = 0;
 //		
+		
 		board.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent mt){
 				int x = (Math.round(mt.getX()/30)*30);
@@ -457,8 +452,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				int tempy = Math.round(mt.getY()/30);
 				if(addedBoard[tempx][tempy] != true ){
 					addedBoard[tempx][tempy] = true;
-					if(x<600){
-						if(y<600){
+					if(x<=630){
+						if(y<=630){
 							switch(gizmo){
 							case Circle: CircleGizmo ci1 = new CircleGizmo(x,y);
 											GizmoBoard.getInstance().addGizmo(ci1);
@@ -466,6 +461,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 											break;
 							case Triangle: TriangleGizmo tr1 = new TriangleGizmo(x,y);
 											GizmoBoard.getInstance().addGizmo(tr1);
+											System.out.println("x is: " + x + " y is: " + y);
 											System.out.println("Triangle added");
 											break;
 							case Square: SquereGizmo sq1 = new SquereGizmo(x,y);
