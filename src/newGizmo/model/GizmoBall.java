@@ -74,7 +74,7 @@ public class GizmoBall extends AbstractGizmoModel {
 	@Override
 	public Graphics paint(Graphics g) {
 		g.setColor(color_of_ball);
-		g.fillOval((int)x, (int)y, L/2, L/2);
+		g.fillOval((int)x, (int)y, L/2, L/2); 
 		return g;
 	}
 

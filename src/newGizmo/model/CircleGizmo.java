@@ -117,7 +117,7 @@ public class CircleGizmo extends AbstractGizmoModel {
 		ball.setVelocity(velocity);
 
 	}
-
+ 
 	@Override
 	public String getDescription() {
 

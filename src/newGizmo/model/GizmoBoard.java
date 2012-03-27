@@ -91,7 +91,7 @@ public class GizmoBoard extends JPanel {
 		for (AbstractGizmoModel m : gizmos) {
 			if ((xClicked > m.x) && (xClicked < m.x + L) && (yClicked > m.y)
 					&& (yClicked < m.y + L)) {
-				System.out.println(m.getSaveString());
+				System.out.println(m.getSaveString()); 
 				return m;
 			}
 		}

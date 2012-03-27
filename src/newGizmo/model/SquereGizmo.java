@@ -154,4 +154,9 @@ public class SquereGizmo extends AbstractGizmoModel {
 	public String getType() {
 		return "Square";
 	}
+	
+	@Override
+	public String getName(){
+		return name;
+	}
 }

@@ -177,7 +177,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		if (o instanceof LineSegment) {
 			LineSegment linesegment = (LineSegment) o;
 			Vect velocity = Geometry.reflectWall(linesegment,
-					ball.getVolecity());
+					ball.getVolecity()); 
 			GizmoBoard.getInstance().resetReflectiinFlagOnGizmos(this);
 			ball.setVelocity(velocity);
 		}
