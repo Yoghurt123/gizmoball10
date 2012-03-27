@@ -3,8 +3,6 @@ package newGizmo;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -27,8 +25,7 @@ import newGizmo.model.TriangleGizmo;
 
 public class GizmoBoardView extends Canvas {
 
-	public GizmoBoardView() {
-		
+	public GizmoBoardView() {		
 		long ltime = GizmoSettings.getInstance().getScreenRefreshRate();
 		GizmoDriver.getInstance().runShudledTask(new GizmoUpdateViewTask(),
 				1000, ltime);

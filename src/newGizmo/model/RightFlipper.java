@@ -20,7 +20,7 @@ import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
 public class RightFlipper extends AbstractGizmoModel {
 	private AffineTransform transform = new AffineTransform();
 	private int deg = 0;
-	private int rotating = 0;  
+	private int rotating = 1;
 	
 	public RightFlipper(int x, int y) {
 		super(x, y);

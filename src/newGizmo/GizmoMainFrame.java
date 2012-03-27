@@ -96,7 +96,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		GizmoBoard.getInstance().addGizmo(abs);
 	}
 
-	public void addButtons(JToolBar toolBar, JToolBar toolBar2)  {
+	public void addButtons(JToolBar toolBar, JToolBar toolBar2)   {
 		
 		final JToolBar temp = toolBar2;
 

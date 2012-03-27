@@ -33,7 +33,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		// case 1:{
 		triangleLines[0] = new LineSegment(x, y, x + GizmoLength, y);
 		triangleLines[1] = new LineSegment(x + GizmoLength, y, x + GizmoLength,
-				y + GizmoLength);
+				y + GizmoLength); 
 		triangleLines[2] = new LineSegment(x, y, x + GizmoLength, y
 				+ GizmoLength);
 		Circle corner1 = new Circle(x, y, 0);

@@ -91,7 +91,7 @@ public class SquereGizmo extends AbstractGizmoModel implements SavleLoadable {
 			//
 			// ball.setVelocity(velocity);
 
-			if (tempTime > time) {
+			if (tempTime > time) { 
 				templine = l;
 				tempTime = time;
 			}

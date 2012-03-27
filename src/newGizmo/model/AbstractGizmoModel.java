@@ -65,7 +65,7 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	protected String name;
 	
 	public String getName(){ 
-		return name;
+		return name; 
 	}
 
 	protected LinkedList<AbstractGizmoModel> linkedGizmos = null;

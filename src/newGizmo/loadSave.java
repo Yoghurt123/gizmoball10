@@ -159,7 +159,7 @@ public class loadSave {
 			AbstractGizmoModel nextGiz = (AbstractGizmoModel)saveElement.next();
 			output.println(nextGiz.getSaveString());
 		      }
-
+ 
 		      currentFile = filename;
 		      
 		    } catch (FileNotFoundException e) {

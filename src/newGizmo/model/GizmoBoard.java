@@ -11,7 +11,7 @@ import newGizmo.controller.EventListener;
 import GizmoballGUI.animationEventListener;
 
 import physics.Angle;
-import physics.Vect;
+import physics.Vect; 
 
 public class GizmoBoard extends JPanel { 
 	public static final int L = GizmoSettings.getInstance().getGizmoL();
