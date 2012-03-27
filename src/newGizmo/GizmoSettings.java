@@ -57,7 +57,7 @@ public class GizmoSettings {
 	}
 
 	public Color getCircleGizmoColor() {
-		return Color.yellow;
+		return Color.CYAN;
 	}
 
 	public Color getCircleGizmoActivatedColor() {

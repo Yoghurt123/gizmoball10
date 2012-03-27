@@ -18,20 +18,51 @@ public class TriangleGizmo extends AbstractGizmoModel {
 
 	LineSegment triangleLines[] = new LineSegment[3];
 	private final int GizmoLength = GizmoSettings.getInstance().getGizmoL();
-
+	int rotate = 1;
 	public TriangleGizmo(int x, int y) {
 		super(x, y);
-		SetBoundaryBox();
+		SetBoundaryBox(rotate);
 		// TODO Auto-generated constructor stub
 	}
-	
 
-	public void SetBoundaryBox(){
 
-		triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
-		triangleLines[1] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y-GizmoLength);
-		triangleLines[2] = new LineSegment(x,y,x+GizmoLength,y-GizmoLength);
+	public void SetBoundaryBox(int rotate){
+
+		switch(rotate){
+		case 1:{
+			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y-GizmoLength);
+			triangleLines[2] = new LineSegment(x,y,x+GizmoLength,y-GizmoLength);
+		}
+		case 2:{
+			triangleLines[0] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y-GizmoLength);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y-GizmoLength,x,y-GizmoLength);
+			triangleLines[2] = new LineSegment(x,y-GizmoLength,x+GizmoLength,y);
+		}
+		case 3:{
+			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y-GizmoLength);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y-GizmoLength,x,y-GizmoLength);
+			triangleLines[2] = new LineSegment(x,y-GizmoLength,x,y);
+		}
+		case 4:{
+			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y-GizmoLength);
+			triangleLines[2] = new LineSegment(x,y-GizmoLength,x,y);
+		}
+		}
+
+
 	}
+
+	public void Rotate(){
+		if(rotate == 4){
+			this.rotate=0;
+		}		
+		this.rotate++;
+
+	}
+
+
 	private static final Color gizmoColor = GizmoSettings.getInstance()
 			.getSquereGizmoColor();
 	private static final Color gizmoActivColor = GizmoSettings.getInstance()
@@ -40,19 +71,38 @@ public class TriangleGizmo extends AbstractGizmoModel {
 
 	@Override
 	public Graphics paint(Graphics g) {
-
-		Point p1 = new Point((int)x,(int)y);
-		Point p2 = new Point((int)x+GizmoLength,(int)y);
-		Point p3 = new Point((int)x+GizmoLength,(int)y-GizmoLength);
-	
+		Point p1 = null,p2 = null,p3=null;
+		switch(rotate){
+		case 1:{
+			p1 = new Point((int)x,(int)y);
+			p2 = new Point((int)x+GizmoLength,(int)y);
+			p3 = new Point((int)x+GizmoLength,(int)y-GizmoLength);
+		}
+		case 2:{
+			p1 = new Point((int)x,(int)y-GizmoLength);
+			p2 = new Point((int)x+GizmoLength,(int)y-GizmoLength);
+			p3 = new Point((int)x+GizmoLength,(int)y);
+		}
+		case 3:{
+			p1 = new Point((int)x,(int)y);
+			p2 = new Point((int)x,(int)y- GizmoLength);
+			p3 = new Point((int)x+GizmoLength,(int)y-GizmoLength);
+		}
+		case 4:{
+			p1 = new Point((int)x,(int)y);
+			p2 = new Point((int)x+GizmoLength,(int)y);
+			p3 = new Point((int)x,(int)y-GizmoLength);
+		}
+		}
 		int[] xCoordinates = {p1.x,p2.x,p3.x};
 		int[] yCoordinates = {p1.y,p2.y,p3.y};
 		Polygon triangle = new Polygon(xCoordinates,yCoordinates,xCoordinates.length);
-		g.setColor(curent);
+		g.setColor(Color.GREEN);
 		g.fillPolygon(triangle);
 		return g;
 
 	}
+
 
 	@Override
 	public void update(double dtime) {
@@ -94,13 +144,13 @@ public class TriangleGizmo extends AbstractGizmoModel {
 					.getBallMovementUpdateDtime()) {
 
 
-			long msec = Utils.Sec2Msec(tempTime);
-			// update ball position on hit moment
-			GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
-			// run onHit method of gizmo on hit time
-			GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
-					msec);
-		}
+				long msec = Utils.Sec2Msec(tempTime);
+				// update ball position on hit moment
+				GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
+				// run onHit method of gizmo on hit time
+				GizmoDriver.getInstance().runTask(new onColisionTimeTask(templine),
+						msec);
+			}
 		return tempTime;
 	}
 
@@ -113,9 +163,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 					ball.getVolecity(), 0.75);
 
 			ball.setVelocity(velocity);
-
 		}
-
 	}
 
 	@Override

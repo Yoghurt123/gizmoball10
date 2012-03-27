@@ -22,7 +22,6 @@ public class Absorber extends AbstractGizmoModel {
 	public Absorber(int x, int y) {
 		super(x, y);
 		SetBoundary();
-
 	}
 
 	@Override
@@ -73,10 +72,9 @@ public class Absorber extends AbstractGizmoModel {
 	public void onColisionTime(GizmoBall ball, Object reflectigfrom) {
 		isReflecting = false;
 		System.out.println("on colision");
-		GizmoBall b = new GizmoBall(300, (int)y, new Vect(50, -200));
+		GizmoBall b = new GizmoBall(300, (int)y, new Vect(0, -200));
 		GizmoBoard.getInstance().setBall(b);
 		b.startBallMovement();
-
 	}
 
 	@Override

@@ -116,7 +116,7 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	}
 
 	/**
-	 * this event is runed when ball hit gizmo
+	 * this event is run when ball hit gizmo
 	 */
 	public void onHitEvent() {
 		GizmoDriver.getInstance().runTask(new DeactivateTask(), 1000);

@@ -65,7 +65,7 @@ public class GizmoBall extends AbstractGizmoModel {
 	public boolean moving = false;
 	public static final Color color_of_ball = GizmoSettings.getInstance()
 			.getBallColor();
-	private int radius = 10;
+	private int radius = 15;
 
 	
 	
@@ -131,7 +131,7 @@ public class GizmoBall extends AbstractGizmoModel {
 	}
 
 	public Circle getShape() {
-		return new Circle(x, y, 10);
+		return new Circle(x, y, radius);
 	}
 
 	public Vect getVolecity() {
