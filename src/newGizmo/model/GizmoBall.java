@@ -22,6 +22,8 @@ public class GizmoBall extends AbstractGizmoModel {
 			.getMuConstatnt();
 	private static final double mu2 = GizmoSettings.getInstance()
 			.getMuConstatnt();
+	
+	private static final int L = GizmoSettings.getInstance().getGizmoL();
 
 	public GizmoBall(int x, int y, Vect volecity) {
 		super(x, y);
@@ -46,9 +48,9 @@ public class GizmoBall extends AbstractGizmoModel {
 		public void onRun(GizmoBoard board) {
 			switch (getCurentDriverState()) {
 			case RUN_STATE:
-				
-				update(dtime);
 				board.checkColisions();
+				update(dtime);
+				
 				break;
 
 			default:
@@ -72,7 +74,7 @@ public class GizmoBall extends AbstractGizmoModel {
 	@Override
 	public Graphics paint(Graphics g) {
 		g.setColor(color_of_ball);
-		g.fillOval((int)x, (int)y, radius, radius);
+		g.fillOval((int)x, (int)y, L/2, L/2);
 		return g;
 	}
 
@@ -87,7 +89,8 @@ public class GizmoBall extends AbstractGizmoModel {
 		
 			double vx = volecity.x();
 			double vy = volecity.y();
-			
+			x =  ( x + (vx *dtime));
+			y =  ( y + (vy *dtime));
 			System.out.println("vx:" + vx + " vy:" + vy);
 			System.out.println("x:" + x + " y:" + y);
 			
@@ -98,8 +101,7 @@ public class GizmoBall extends AbstractGizmoModel {
 			//vx = vx * (1 - (mu * dtime) - (mu2 * Math.abs(vx) * dtime));
 			//vy = vy * (1 - (mu * dtime) - (mu2 * Math.abs(vy) * dtime));
 			volecity = new Vect(vx, vy);
-			x = (int) ( x + (vx *dtime));
-			y = (int) ( y + (vy *dtime));
+			
 	
 			
 		
@@ -131,7 +133,7 @@ public class GizmoBall extends AbstractGizmoModel {
 	}
 
 	public Circle getShape() {
-		return new Circle(x, y, radius);
+		return new Circle(x, y, L/2/2);
 	}
 
 	public Vect getVolecity() {

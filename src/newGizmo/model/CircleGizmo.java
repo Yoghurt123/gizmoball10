@@ -1,6 +1,5 @@
 package newGizmo.model;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -33,18 +32,18 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 	@Override
 	public Graphics paint(Graphics g) {
-
+		
 		g.setColor(curent);
-		g.fillOval((int)x, (int)y, L, L);
+		g.fillOval((int) x, (int) y, L, L);
 		return g;
 
 	}
 
-	public void SetCircle(){
-		circleBoundary = new Circle(x, y, 15);
+	public void SetCircle() {
+		circleBoundary = new Circle(x, y, L / 2 );
 	}
-	
-	public Circle GetCircle(){
+
+	public Circle GetCircle() {
 		return circleBoundary;
 	}
 
@@ -70,51 +69,54 @@ public class CircleGizmo extends AbstractGizmoModel {
 	@Override
 	public double timeToColision(GizmoBall ball) {
 		double tempTime = Double.POSITIVE_INFINITY;
-//
-		double time = Geometry.timeUntilCircleCollision(GetCircle(), ball.getShape(),
-				ball.getVolecity());
-//		if (tempTime > time) {
-//			tempTime = time;
-//		}
-//
-//		// when time to collisions is less them tiem tick run timeTask on exacly
-//		// colision time
-//
-//		if (!isReflecting)
-//			if (tempTime < GizmoSettings.getInstance()
-//					.getBallMovementUpdateDtime()) {
-//
-//
-//				long msec = Utils.Sec2Msec(tempTime);
-//				// update ball position on hit moment
-//				GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
-//				// run onHit method of gizmo on hit time
-//				GizmoDriver.getInstance().runTask(new onColisionTimeTask(GetCircle()),
-//						msec);
-//			}
-		
-		if(time<0.00000001){
-			Vect centre = new Vect(x, y);
+		//
+		tempTime = Geometry.timeUntilCircleCollision(GetCircle(),
+				ball.getShape(), ball.getVolecity());
+		// if (tempTime > time) {
+		// tempTime = time;
+		// }
+		//
+		// // when time to collisions is less them tiem tick run timeTask on
+		// exacly
+		// // colision time
+		//
+		if (!isReflecting)
+			if (tempTime < GizmoSettings.getInstance()
+					.getBallMovementUpdateDtime()) {
 
-			Vect velocity = Geometry.reflectCircle(centre,ball.getShape().getCenter(), ball.getVolecity());
-			
-			ball.setVelocity(velocity);
-			
-	     }
-	    return time;
+				isReflecting = true;
+				long msec = Utils.Sec2Msec(tempTime);
+				// update ball position on hit moment
+				GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);
+				// run onHit method of gizmo on hit time
+				GizmoDriver.getInstance().runTask(
+						new onColisionTimeTask(GetCircle()), msec);
+			}
+
+		// if(time<0.00000001){
+		// Vect centre = new Vect(x, y);
+		//
+		// Vect velocity =
+		// Geometry.reflectCircle(centre,ball.getShape().getCenter(),
+		// ball.getVolecity());
+		//
+		// ball.setVelocity(velocity);
+		//
+		// }
+		// return time;
+		return tempTime;
 	}
 
 	@Override
 	public void onColisionTime(GizmoBall ball, Object o) {
 		Vect centre = new Vect(x, y);
+		GizmoBoard.getInstance().resetReflectiinFlagOnGizmos(null);
+		Vect velocity = Geometry.reflectCircle(centre, ball.getShape()
+				.getCenter(), ball.getVolecity());
 
-			Vect velocity = Geometry.reflectCircle(centre,ball.getShape().getCenter(), ball.getVolecity());
-			
-			ball.setVelocity(velocity);
-		
+		ball.setVelocity(velocity);
+
 	}
-
-
 
 	@Override
 	public String getDescription() {

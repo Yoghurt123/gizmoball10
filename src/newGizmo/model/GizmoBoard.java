@@ -15,6 +15,7 @@ import physics.Vect;
 public class GizmoBoard extends JPanel{
 	private EventListener eventListener;
 
+	
 	private static GizmoBoard instance = null;
 
 	public static GizmoBoard getInstance() {
@@ -29,6 +30,7 @@ public class GizmoBoard extends JPanel{
 
 	}
 
+	
 	ArrayList<AbstractGizmoModel> gizmos = new ArrayList<AbstractGizmoModel>();
 	GizmoBall ball = null;
 
@@ -74,6 +76,16 @@ public class GizmoBoard extends JPanel{
 			}
 		}
 
+	}
+
+	public void resetReflectiinFlagOnGizmos(AbstractGizmoModel triangleGizmo) {
+		
+		for (AbstractGizmoModel m: gizmos)
+		{
+			if(m!= triangleGizmo)
+				m.isReflecting = false;
+		}
+		
 	}
 
 }

@@ -12,7 +12,7 @@ import newGizmo.model.GizmoBoard;
 public class GizmoBoardView extends Canvas {
 
 	public GizmoBoardView() {
-		long ltime = Utils.Sec2Msec(GizmoSettings.getInstance().getBallMovementUpdateDtime());
+		long ltime = GizmoSettings.getInstance().getScreenRefreshRate();
 		GizmoDriver.getInstance().runShudledTask(new GizmoUpdateViewTask(),
 				1000, ltime);
 	}

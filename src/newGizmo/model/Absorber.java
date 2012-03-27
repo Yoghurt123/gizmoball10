@@ -72,7 +72,7 @@ public class Absorber extends AbstractGizmoModel {
 	public void onColisionTime(GizmoBall ball, Object reflectigfrom) {
 		isReflecting = false;
 		System.out.println("on colision");
-		GizmoBall b = new GizmoBall(580, (int)y, new Vect(0, -200));
+		GizmoBall b = new GizmoBall(570, (int)y, new Vect(0, -300));
 		GizmoBoard.getInstance().setBall(b);
 		b.startBallMovement();
 	}
