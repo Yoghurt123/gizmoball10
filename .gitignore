@@ -1,2 +1,5 @@
 *.class
 .metadata
+/gizmotest.gb
+/gizmotest.txt
+/test.txt
