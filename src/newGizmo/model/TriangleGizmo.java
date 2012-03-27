@@ -31,8 +31,8 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		switch(rotate){
 		case 1:{
 			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
-			triangleLines[1] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y-GizmoLength);
-			triangleLines[2] = new LineSegment(x,y,x+GizmoLength,y-GizmoLength);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y+GizmoLength);
+			triangleLines[2] = new LineSegment(x,y,x+GizmoLength,y+GizmoLength);
 		}
 		case 2:{
 			triangleLines[0] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y-GizmoLength);
@@ -76,22 +76,22 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		case 1:{
 			p1 = new Point((int)x,(int)y);
 			p2 = new Point((int)x+GizmoLength,(int)y);
-			p3 = new Point((int)x+GizmoLength,(int)y-GizmoLength);
+			p3 = new Point((int)x+GizmoLength,(int)y+GizmoLength);
 		}
 		case 2:{
 			p1 = new Point((int)x,(int)y-GizmoLength);
-			p2 = new Point((int)x+GizmoLength,(int)y-GizmoLength);
+			p2 = new Point((int)x+GizmoLength,(int)y+GizmoLength);
 			p3 = new Point((int)x+GizmoLength,(int)y);
 		}
 		case 3:{
 			p1 = new Point((int)x,(int)y);
 			p2 = new Point((int)x,(int)y- GizmoLength);
-			p3 = new Point((int)x+GizmoLength,(int)y-GizmoLength);
+			p3 = new Point((int)x+GizmoLength,(int)y+GizmoLength);
 		}
 		case 4:{
 			p1 = new Point((int)x,(int)y);
 			p2 = new Point((int)x+GizmoLength,(int)y);
-			p3 = new Point((int)x,(int)y-GizmoLength);
+			p3 = new Point((int)x,(int)y+GizmoLength);
 		}
 		}
 		int[] xCoordinates = {p1.x,p2.x,p3.x};

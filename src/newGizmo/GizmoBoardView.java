@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import newGizmo.controller.EventListener;
 import newGizmo.model.AbstractGizmoModel;
 import newGizmo.model.GizmoBall;
 import newGizmo.model.GizmoBoard;
@@ -25,8 +26,7 @@ public class GizmoBoardView extends Canvas {
 		public void onRun(GizmoBoard board) {
 			switch (getCurentDriverState())
 			{
-			case RUN_STATE:
-				
+			case RUN_STATE: 
 				break;
 			}
 			paint(getGraphics());

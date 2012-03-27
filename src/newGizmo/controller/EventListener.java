@@ -24,7 +24,7 @@ MouseMotionListener, KeyListener, ActionListener {
 	public void keyPressed(KeyEvent e) {
 		int keynum = e.getKeyCode();
 		
-		if((keynum >= 65) && (keynum <= 91)){
+		if(e.getKeyCode()==KeyEvent.VK_C){
 			rf.rotate();
 			System.out.println("TRIGGER PRESSED!!!!!!!!!!!!");
 		}
