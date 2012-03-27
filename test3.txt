@@ -1,0 +1,4 @@
+null
+Triangle null 3.0 9.0
+Triangle null 11.0 6.0
+Triangle null 6.0 2.0

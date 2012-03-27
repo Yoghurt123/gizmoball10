@@ -1,0 +1,7 @@
+null
+Walls null -1.0 -1.0
+LeftFlipper null 0 10
+RightFlipper null 17 10
+Circle null 5 10
+Triangle null 10 10
+Square null 15 10

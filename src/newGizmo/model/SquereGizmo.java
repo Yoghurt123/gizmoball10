@@ -152,8 +152,8 @@ public class SquereGizmo extends AbstractGizmoModel implements SavleLoadable {
 	@Override
 	public String getSaveString() {
 		return "Square " + name + " "
-				+ (x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
-				+ (y / GizmoSettings.getInstance().getGizmoL() - 1);
+				+ ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
+				+ ((int)y / GizmoSettings.getInstance().getGizmoL() - 1);
 	}
 
 	@Override

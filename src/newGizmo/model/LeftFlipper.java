@@ -14,7 +14,7 @@ import physics.*;
 public class LeftFlipper extends AbstractGizmoModel {
 	private AffineTransform transform = new AffineTransform();
 	private int deg = 0;
-	private int rotating = 1;
+	private int rotating = 0;
 	
 
 	public LeftFlipper(int x, int y) {
@@ -120,9 +120,9 @@ public class LeftFlipper extends AbstractGizmoModel {
 
 	@Override
 	public String getSaveString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return "LeftFlipper " + name + " "
+				+ ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
+				+ ((int)y / GizmoSettings.getInstance().getGizmoL() - 1);	}
 
 	@Override
 	public String getType() {

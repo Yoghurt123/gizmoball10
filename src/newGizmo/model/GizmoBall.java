@@ -200,8 +200,9 @@ public class GizmoBall extends AbstractGizmoModel {
 
 	@Override
 	public String getSaveString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Ball " + name + " "
+				+ ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
+				+ ((int)y / GizmoSettings.getInstance().getGizmoL() - 1);
 	}
 
 	@Override

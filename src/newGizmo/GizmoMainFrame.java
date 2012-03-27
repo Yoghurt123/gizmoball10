@@ -28,6 +28,7 @@ import javax.swing.JToolBar;
 import GizmoballGUI.gizmoBoard;
 
 import newGizmo.GizmoDriver.STATES;
+import newGizmo.controller.EventListener;
 import newGizmo.model.Absorber;
 import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBoard;
@@ -55,6 +56,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 	Gizmo gizmo;
 	RightFlipper rf;
 	loadSave ls;
+	EventListener eventListener;
 	
 	private JToolBar toolBar;
 	private JToolBar GizmotoolBar;
@@ -81,7 +83,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.addMouseListener(this);
 		scrollPane.addMouseMotionListener(this);
-		scrollPane.addKeyListener(this);
+		scrollPane.addKeyListener(eventListener);
 		
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());

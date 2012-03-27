@@ -1,0 +1,7 @@
+null
+Walls null -1.0 -1.0
+Circle null 11 10
+Circle null 2 10
+Triangle null 5 7
+Triangle null 7 11
+Triangle null 12 5

@@ -353,14 +353,7 @@ public class Board extends JPanel implements Observer {
 	    try {
 	      if (!((filename.substring(filename.length()-3)).equals(".gb")))
 		filename = filename +".gb";
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
+	     
 	      output = new PrintStream(new FileOutputStream(filename));
 	      Iterator saveElement = gizmos.values().iterator();
 	      while (saveElement.hasNext()) {

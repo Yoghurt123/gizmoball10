@@ -133,8 +133,8 @@ public class CircleGizmo extends AbstractGizmoModel {
 	@Override
 	public String getSaveString() {
 		return "Circle " + name + " "
-				+ (x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
-				+ (y / GizmoSettings.getInstance().getGizmoL() - 1);
+				+ ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
+				+ ((int)y / GizmoSettings.getInstance().getGizmoL() - 1);
 	}
 
 	@Override

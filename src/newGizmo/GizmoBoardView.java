@@ -20,6 +20,8 @@ import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBall;
 import newGizmo.model.GizmoBoard;
 import newGizmo.model.GizmoWalls;
+import newGizmo.model.LeftFlipper;
+import newGizmo.model.RightFlipper;
 import newGizmo.model.SquereGizmo;
 import newGizmo.model.TriangleGizmo;
 
@@ -82,9 +84,9 @@ public class GizmoBoardView extends Canvas {
 	    gizmos = new HashMap();
 	    
 	    activeList = null;
-	    activeList = new ArrayList();
+	    activeList = new ArrayList<Object>();
 	    hitList = null;
-	    hitList = new ArrayList();
+	    hitList = new ArrayList<Object>();
 	    
 	    currentFile = "default.gb";
 
@@ -127,6 +129,7 @@ public class GizmoBoardView extends Canvas {
 	    	  
 	    	  TriangleGizmo tr1 = new TriangleGizmo((tempX*3)-3, (tempY*3)-6);
 	    	  GizmoBoard.getInstance().addGizmo(tr1);
+	    	  gizmos.put(tr1.getName(), tr1);
 //		TriangleClass triangle = new TriangleClass(this, command.nextToken(),
 //							   Integer.parseInt(command.nextToken())+1,
 //							   Integer.parseInt(command.nextToken())+1);
@@ -141,7 +144,26 @@ public class GizmoBoardView extends Canvas {
 	    	  
 	    	  CircleGizmo ci1 = new CircleGizmo((tempX*3)-3, (tempY*3)-6);
 	    	  GizmoBoard.getInstance().addGizmo(ci1);
+	    	  gizmos.put(ci1.getName(), ci1);
+	      }else if (type.equals("LeftFlipper")){
+	    	  String tempName = command.nextToken();
+	    	  int tempX = Integer.parseInt(command.nextToken()+1);
+	    	  int tempY = Integer.parseInt(command.nextToken()+2);
 	    	  
+	    	  System.out.println("Left Flipper" + ((tempX*3)-3) + " " + ((tempY*3)-6));
+	    	  
+	    	  LeftFlipper  fl1 = new LeftFlipper((tempX*3)-3,(tempY*3)-6);
+	    	  GizmoBoard.getInstance().addGizmo(fl1);
+	      }else if (type.equals("RightFlipper")){
+	    	  String tempName = command.nextToken();
+	    	  int tempX = Integer.parseInt(command.nextToken()+1);
+	    	  int tempY = Integer.parseInt(command.nextToken()+2);
+	    	  
+	    	  System.out.println("Right Flipper" + ((tempX*3)-3) + " " + ((tempY*3)-6));
+	    	  
+	    	  RightFlipper  fr1 = new RightFlipper((tempX*3)-3,(tempY*3)-6);
+	    	  GizmoBoard.getInstance().addGizmo(fr1);
+	      }
 //		CircleClass circle = new CircleClass(this, command.nextToken(),
 //						     Integer.parseInt(command.nextToken())+1,
 //						     Integer.parseInt(command.nextToken())+1);
@@ -164,17 +186,19 @@ public class GizmoBoardView extends Canvas {
 //		    active = Walls;
 //		else
 //		  active = (Gizmo)gizmos.get(giz);
-		
-		String consume = command.nextToken();
-		GizmoWalls consumer;
-		if (consume.equals("Walls"))
-		  consumer = walls;
-		else
-		  consumer = (GizmoWalls)gizmos.get(consume);
-		
-		int actionNum = 0;
-
-	    currentFile = filename;
+	      else{
+	    	  
+//		
+//		String consume = command.nextToken();
+//		GizmoWalls consumer;
+//		if (consume.equals("Walls"))
+//		  consumer = walls;
+//		else
+//		  consumer = (GizmoWalls)gizmos.get(consume);
+//		
+//		int actionNum = 0;
+//
+//	    currentFile = filename;
 	      }
 	    }
 	}
@@ -199,15 +223,15 @@ public class GizmoBoardView extends Canvas {
 		  }
 	 
 	 public void save(String filename) {
-		    PrintStream output = System.out;
+		   PrintStream output = System.out;
 		    output.println("Filename: " + filename);
 		    
 		    try {
 		      if (!((filename.substring(filename.length()-3)).equals(".txt")))
 			filename = filename +".txt";
-		      
+		     
 		      output = new PrintStream(new FileOutputStream(filename));
-		      Iterator saveElement = ((List<AbstractGizmoModel>) GizmoBoard.getInstance()).iterator();//gizmos.values().iterator();
+		      Iterator saveElement = GizmoBoard.getInstance().getGizmos().iterator();
 		      while (saveElement.hasNext()) {
 			AbstractGizmoModel nextGiz = (AbstractGizmoModel)saveElement.next();
 			output.println(nextGiz.getSaveString());
