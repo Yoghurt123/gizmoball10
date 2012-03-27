@@ -18,10 +18,12 @@ import java.util.StringTokenizer;
 
 import newGizmo.controller.EventListener;
 import newGizmo.model.AbstractGizmoModel;
+import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBall;
 import newGizmo.model.GizmoBoard;
 import newGizmo.model.GizmoWalls;
 import newGizmo.model.SquereGizmo;
+import newGizmo.model.TriangleGizmo;
 
 public class GizmoBoardView extends Canvas {
 

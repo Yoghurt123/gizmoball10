@@ -54,6 +54,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 	boolean[][] addedBoard = new boolean[20][20];
 	Gizmo gizmo;
 	RightFlipper rf;
+	loadSave ls;
 	
 	private JToolBar toolBar;
 	private JToolBar GizmotoolBar;
@@ -99,10 +100,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		
 		final JToolBar temp = toolBar2;
 
-		final FileDialog loadDialog = new FileDialog(this,
-				"Select GizmoBall file to load.", FileDialog.LOAD);
-		final FileDialog saveDialog = new FileDialog(this,
-				"Select GizmoBall file to save.", FileDialog.SAVE);
+		final FileDialog loadDialog = new FileDialog(this,"Select GizmoBall file to load.", FileDialog.LOAD);
+		final FileDialog saveDialog = new FileDialog(this,"Select GizmoBall file to save.", FileDialog.SAVE);
 
 		final Random ran = new Random();
 		playButton = new JButton(new ImageIcon("run_exc.gif", "Run"));
@@ -131,8 +130,9 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		saveButton.setToolTipText("Click this button to save the board layout");
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// saveDialog.setVisible(true);
-				// b.save(saveDialog.getDirectory() + saveDialog.getFile());
+				 saveDialog.setVisible(true);
+				 System.out.println(saveDialog.getFile());
+				 board.save(saveDialog.getDirectory() + saveDialog.getFile());
 			}
 		});
 		loadButton = new JButton(new ImageIcon("fldr_obj.gif", "Load"));
@@ -141,7 +141,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadDialog.setVisible(true);
-				// b.load(loadDialog.getDirectory() + loadDialog.getFile());
+				System.out.println(loadDialog.getFile());
+				board.load(loadDialog.getDirectory() + loadDialog.getFile());
 			}
 		});
 

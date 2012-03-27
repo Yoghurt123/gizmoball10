@@ -22,7 +22,7 @@ public class GizmoBall extends AbstractGizmoModel {
 			.getMuConstatnt();
 	private static final double mu2 = GizmoSettings.getInstance()
 			.getMuConstatnt();
-	
+	 
 	private static final int L = GizmoSettings.getInstance().getGizmoL();
 
 	public GizmoBall(int x, int y, Vect volecity) {
@@ -157,7 +157,6 @@ public class GizmoBall extends AbstractGizmoModel {
 			long timetoL = Utils.Sec2Msec(timeto);
 			GizmoDriver.getInstance().runTask(new BallMoveTask(timetoL),
 					timetoL);
-
 		}
 
 		return timeto;

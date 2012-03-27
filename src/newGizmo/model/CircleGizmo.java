@@ -69,7 +69,7 @@ public class CircleGizmo extends AbstractGizmoModel {
 	@Override
 	public double timeToColision(GizmoBall ball) {
 		double tempTime = Double.POSITIVE_INFINITY;
-		//
+		// 
 		tempTime = Geometry.timeUntilCircleCollision(GetCircle(),
 				ball.getShape(), ball.getVolecity());
 		// if (tempTime > time) {

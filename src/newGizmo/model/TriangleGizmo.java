@@ -159,7 +159,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		if (!isReflecting)
 			if (tempTime < GizmoSettings.getInstance()
 					.getBallMovementUpdateDtime()) {
-				isReflecting = true;
+				isReflecting = true; 
 				long msec = Utils.Sec2Msec(tempTime);
 				// update ball position on hit moment
 				GizmoDriver.getInstance().runTask(ball.newTask(tempTime), msec);

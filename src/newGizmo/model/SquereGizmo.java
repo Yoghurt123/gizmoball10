@@ -5,15 +5,16 @@ import java.awt.Graphics;
 
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
+import newGizmo.SavleLoadable;
 import newGizmo.Utils;
 import newGizmo.model.AbstractGizmoModel.DeactivateTask;
 import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
 import physics.Circle;
-import physics.Geometry;
+import physics.Geometry; 
 import physics.LineSegment;
 import physics.Vect;
 
-public class SquereGizmo extends AbstractGizmoModel {
+public class SquereGizmo extends AbstractGizmoModel implements SavleLoadable {
 	private final int L = GizmoSettings.getInstance().getGizmoL();
 
 	LineSegment squareLines[] = new LineSegment[4];
