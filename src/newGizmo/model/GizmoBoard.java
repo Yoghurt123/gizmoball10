@@ -77,4 +77,10 @@ public class GizmoBoard extends JPanel{
 
 	}
 
+	public void resetReflectiinFlagOnGizmos(AbstractGizmoModel object) {
+		for (AbstractGizmoModel m: gizmos)
+			m.isReflecting = false;
+		
+	}
+
 }
