@@ -145,6 +145,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				loadDialog.setVisible(true);
 				System.out.println(loadDialog.getFile());
 				board.load(loadDialog.getDirectory() + loadDialog.getFile());
+				
 			}
 		});
 
@@ -207,6 +208,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 //								if(y<600){
 				gizmo = Gizmo.Circle;
 				addGizmo();
+				
+				
 //									CircleGizmo ci1 = new CircleGizmo(x, y);
 //									GizmoBoard.getInstance().addGizmo(ci1);				 
 									//System.out.println("Circle added");
@@ -236,6 +239,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 //								if(y<600){
 				gizmo = Gizmo.Triangle;
 				addGizmo();
+
 									//addGizmo(gizmo.Triangle);
 //									TriangleGizmo tr1 = new TriangleGizmo(x, y);
 //									GizmoBoard.getInstance().addGizmo(tr1);
@@ -253,6 +257,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 			public void actionPerformed(ActionEvent e) {
 				gizmo = Gizmo.Square;
 				addGizmo();
+				
 //				board.addMouseListener(new MouseAdapter(){				 
 //					public void mouseClicked(MouseEvent mt){	
 //						int x = (Math.round(mt.getX()/30)*30);
@@ -279,6 +284,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 			public void actionPerformed(ActionEvent e) {
 				gizmo = Gizmo.FlipperL;
 				addGizmo();
+
 //				board.addMouseListener(new MouseAdapter(){					 
 //					public void mouseClicked(MouseEvent mt){
 //						int x = (Math.round(mt.getX()/30)*30);
@@ -306,6 +312,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 			public void actionPerformed(ActionEvent e) {	
 				gizmo = Gizmo.FlipperR;
 				addGizmo();
+				
 //				board.addMouseListener(new MouseAdapter(){				 
 //					public void mouseClicked(MouseEvent mt){
 //						int x = (Math.round(mt.getX()/30)*30);
@@ -385,6 +392,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 
 				Absorber ab1 = new Absorber(x * L, y * L);
 				GizmoBoard.getInstance().addGizmo(ab1);
+				
 				// int w = Integer.parseInt(sw);
 				// int h = Integer.parseInt(sh);
 				// b.addAbsorber("Absorber"+a, "Absorber", x, y, w, h);
@@ -413,7 +421,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		//
 		GizmotoolBar.add(flipperr);
 		GizmotoolBar.addSeparator();
-
+		
 		// toolBar2.add(ball);
 
 	}
@@ -482,6 +490,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 							
 							}
 						}
+						board.update();
 					}
 				}
 			}
