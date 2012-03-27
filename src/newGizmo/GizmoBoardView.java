@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import newGizmo.controller.EventListener;
@@ -107,8 +108,8 @@ public class GizmoBoardView extends Canvas {
 	    	  String tempName = command.nextToken();
 	    	  int tempX = Integer.parseInt(command.nextToken()+1);
 	    	  int tempY = Integer.parseInt(command.nextToken()+1);
-	    	  
-	    	  SquereGizmo sq1 = new SquereGizmo(tempX, tempY);
+	    	  System.out.println("Square" + ((tempX*3)-3) + " " + ((tempY*3)-3));
+	    	  SquereGizmo sq1 = new SquereGizmo((tempX*3)-3, (tempY*3)-3);
 	    	  GizmoBoard.getInstance().addGizmo(sq1);
 	    	  
 //		SquereClass square = new SquereClass(this, command.nextToken(),
@@ -120,9 +121,11 @@ public class GizmoBoardView extends Canvas {
 	    	  
 	    	  String tempName = command.nextToken();
 	    	  int tempX = Integer.parseInt(command.nextToken()+1);
-	    	  int tempY = Integer.parseInt(command.nextToken()+1);
+	    	  int tempY = Integer.parseInt(command.nextToken()+2);
 	    	  
-	    	  TriangleGizmo tr1 = new TriangleGizmo(tempX, tempY);
+	    	  System.out.println("Triangle" + ((tempX*3)-3) + " " + ((tempY*3)-6));
+	    	  
+	    	  TriangleGizmo tr1 = new TriangleGizmo((tempX*3)-3, (tempY*3)-6);
 	    	  GizmoBoard.getInstance().addGizmo(tr1);
 //		TriangleClass triangle = new TriangleClass(this, command.nextToken(),
 //							   Integer.parseInt(command.nextToken())+1,
@@ -132,9 +135,11 @@ public class GizmoBoardView extends Canvas {
 	      } else if (type.equals("Circle")) {
 	    	  String tempName = command.nextToken();
 	    	  int tempX = Integer.parseInt(command.nextToken()+1);
-	    	  int tempY = Integer.parseInt(command.nextToken()+1);
+	    	  int tempY = Integer.parseInt(command.nextToken()+2);
 	    	  
-	    	  CircleGizmo ci1 = new CircleGizmo(tempX, tempY);
+	    	  System.out.println("Circle" + ((tempX*3)-3) + " " + ((tempY*3)-6));
+	    	  
+	    	  CircleGizmo ci1 = new CircleGizmo((tempX*3)-3, (tempY*3)-6);
 	    	  GizmoBoard.getInstance().addGizmo(ci1);
 	    	  
 //		CircleClass circle = new CircleClass(this, command.nextToken(),
@@ -172,7 +177,7 @@ public class GizmoBoardView extends Canvas {
 	    currentFile = filename;
 	      }
 	    }
-	  }
+	}
 	
 	 private static String fileRead(String filename) {
 		    if (filename == null)
@@ -202,7 +207,7 @@ public class GizmoBoardView extends Canvas {
 			filename = filename +".txt";
 		      
 		      output = new PrintStream(new FileOutputStream(filename));
-		      Iterator saveElement = gizmos.values().iterator();
+		      Iterator saveElement = ((List<AbstractGizmoModel>) GizmoBoard.getInstance()).iterator();//gizmos.values().iterator();
 		      while (saveElement.hasNext()) {
 			AbstractGizmoModel nextGiz = (AbstractGizmoModel)saveElement.next();
 			output.println(nextGiz.getSaveString());
