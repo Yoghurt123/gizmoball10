@@ -100,10 +100,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		
 		final JToolBar temp = toolBar2;
 
-		final FileDialog loadDialog = new FileDialog(this,
-				"Select GizmoBall file to load.", FileDialog.LOAD);
-		final FileDialog saveDialog = new FileDialog(this,
-				"Select GizmoBall file to save.", FileDialog.SAVE);
+		final FileDialog loadDialog = new FileDialog(this,"Select GizmoBall file to load.", FileDialog.LOAD);
+		final FileDialog saveDialog = new FileDialog(this,"Select GizmoBall file to save.", FileDialog.SAVE);
 
 		final Random ran = new Random();
 		playButton = new JButton(new ImageIcon("run_exc.gif", "Run"));
@@ -133,7 +131,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 saveDialog.setVisible(true);
-				 ls.save(saveDialog.getDirectory() + saveDialog.getFile());
+				 System.out.println(saveDialog.getFile());
+				 board.save(saveDialog.getDirectory() + saveDialog.getFile());
 			}
 		});
 		loadButton = new JButton(new ImageIcon("fldr_obj.gif", "Load"));
@@ -142,7 +141,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		loadButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadDialog.setVisible(true);
-				ls.load(loadDialog.getDirectory() + loadDialog.getFile());
+				System.out.println(loadDialog.getFile());
+				board.load(loadDialog.getDirectory() + loadDialog.getFile());
 			}
 		});
 
