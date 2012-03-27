@@ -188,7 +188,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 //							if(x<600){
 //								if(y<600){
 				gizmo = Gizmo.Circle;
-				addGizmo(gizmo);
+				addGizmo();
 //									CircleGizmo ci1 = new CircleGizmo(x, y);
 //									GizmoBoard.getInstance().addGizmo(ci1);				 
 									//System.out.println("Circle added");
@@ -217,7 +217,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 //							if(x<600){
 //								if(y<600){
 				gizmo = Gizmo.Triangle;
-				addGizmo(gizmo);
+				addGizmo();
 									//addGizmo(gizmo.Triangle);
 //									TriangleGizmo tr1 = new TriangleGizmo(x, y);
 //									GizmoBoard.getInstance().addGizmo(tr1);
@@ -233,73 +233,79 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 
 		square.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				board.addMouseListener(new MouseAdapter(){				 
-					public void mouseClicked(MouseEvent mt){	
-						int x = (Math.round(mt.getX()/30)*30);
-						int y = (Math.round(mt.getY()/30)*30);
-						int tempx = Math.round(mt.getX()/30);
-						int tempy = Math.round(mt.getY()/30);
-						if(addedBoard[tempx][tempy] != true ){
-							addedBoard[tempx][tempy] = true;
-							if(x<600){
-								if(y<600){
-									SquereGizmo sq1 = new SquereGizmo(x, y);
-									GizmoBoard.getInstance().addGizmo(sq1);
-									System.out.println("Square added");
-								}
-							}
-						}
-					}
-				});
+				gizmo = Gizmo.Square;
+				addGizmo();
+//				board.addMouseListener(new MouseAdapter(){				 
+//					public void mouseClicked(MouseEvent mt){	
+//						int x = (Math.round(mt.getX()/30)*30);
+//						int y = (Math.round(mt.getY()/30)*30);
+//						int tempx = Math.round(mt.getX()/30);
+//						int tempy = Math.round(mt.getY()/30);
+//						if(addedBoard[tempx][tempy] != true ){
+//							addedBoard[tempx][tempy] = true;
+//							if(x<600){
+//								if(y<600){
+//									SquereGizmo sq1 = new SquereGizmo(x, y);
+//									GizmoBoard.getInstance().addGizmo(sq1);
+//									System.out.println("Square added");
+//								}
+//							}
+//						}
+//					}
+//				});
 			};
 		});
 
 
 		flipperl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				board.addMouseListener(new MouseAdapter(){					 
-					public void mouseClicked(MouseEvent mt){
-						int x = (Math.round(mt.getX()/30)*30);
-						int y = (Math.round(mt.getY()/30)*30);
-						int tempx = Math.round(mt.getX()/30);
-						int tempy = Math.round(mt.getY()/30);
-						if(addedBoard[tempx][tempy] != true ){
-							addedBoard[tempx][tempy] = true;
-							if(x<600){
-								if(y<600){
-									LeftFlipper lf1 = new LeftFlipper(x, y);
-									GizmoBoard.getInstance().addGizmo(lf1);
-								}
-							}
-						}
-
-						System.out.println("Left Flipper Added");
-					}
-				});
+				gizmo = Gizmo.FlipperL;
+				addGizmo();
+//				board.addMouseListener(new MouseAdapter(){					 
+//					public void mouseClicked(MouseEvent mt){
+//						int x = (Math.round(mt.getX()/30)*30);
+//						int y = (Math.round(mt.getY()/30)*30);
+//						int tempx = Math.round(mt.getX()/30);
+//						int tempy = Math.round(mt.getY()/30);
+//						if(addedBoard[tempx][tempy] != true ){
+//							addedBoard[tempx][tempy] = true;
+//							if(x<600){
+//								if(y<600){
+//									LeftFlipper lf1 = new LeftFlipper(x, y);
+//									GizmoBoard.getInstance().addGizmo(lf1);
+//								}
+//							}
+//						}
+//
+//						System.out.println("Left Flipper Added");
+//					}
+//				});
 			};
 		});
 
 
 		flipperr.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				board.addMouseListener(new MouseAdapter(){				 
-					public void mouseClicked(MouseEvent mt){
-						int x = (Math.round(mt.getX()/30)*30);
-						int y = (Math.round(mt.getY()/30)*30);
-						int tempx = Math.round(mt.getX()/30);
-						int tempy = Math.round(mt.getY()/30);
-						if(addedBoard[tempx][tempy] != true ){
-							addedBoard[tempx][tempy] = true;
-							if(x<600){
-								if(y<600){
-									RightFlipper rf1 = new RightFlipper(x, y);
-									GizmoBoard.getInstance().addGizmo(rf1);
-									System.out.println("Right Flipper added");
-								}
-							}
-						}
-					}
-				});
+			public void actionPerformed(ActionEvent e) {	
+				gizmo = Gizmo.FlipperR;
+				addGizmo();
+//				board.addMouseListener(new MouseAdapter(){				 
+//					public void mouseClicked(MouseEvent mt){
+//						int x = (Math.round(mt.getX()/30)*30);
+//						int y = (Math.round(mt.getY()/30)*30);
+//						int tempx = Math.round(mt.getX()/30);
+//						int tempy = Math.round(mt.getY()/30);
+//						if(addedBoard[tempx][tempy] != true ){
+//							addedBoard[tempx][tempy] = true;
+//							if(x<600){
+//								if(y<600){
+//									RightFlipper rf1 = new RightFlipper(x, y);
+//									GizmoBoard.getInstance().addGizmo(rf1);
+//									System.out.println("Right Flipper added");
+//								}
+//							}
+//						}
+//					}
+//				});
 			};
 		});
 
@@ -422,7 +428,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 
 	}
 	
-	public void addGizmo(final Gizmo gizmo){
+	public void addGizmo(){
 //		
 //		System.out.println(gizmo);
 //		int x = 0;
@@ -451,6 +457,18 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 							case Triangle: TriangleGizmo tr1 = new TriangleGizmo(x,y);
 											GizmoBoard.getInstance().addGizmo(tr1);
 											System.out.println("Triangle added");
+											break;
+							case Square: SquereGizmo sq1 = new SquereGizmo(x,y);
+											GizmoBoard.getInstance().addGizmo(sq1);
+											System.out.println("Square added");
+											break;
+							case FlipperL: LeftFlipper lf1 = new LeftFlipper(x,y);
+											GizmoBoard.getInstance().addGizmo(lf1);
+											System.out.println("Left Flipper added");
+											break;
+							case FlipperR: RightFlipper rf1 = new RightFlipper(x,y);
+											GizmoBoard.getInstance().addGizmo(rf1);
+											System.out.println("Right Flipper added");
 											break;
 							
 							}
