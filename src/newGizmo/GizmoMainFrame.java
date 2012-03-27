@@ -492,11 +492,11 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 	}
 	
 	public void addGizmo(MouseEvent e){
-		System.out.println("X: " + (Math.round(e.getX()/30)*30));
-		int x = (Math.round(e.getX()/30)*30);
-		int y = (Math.round(e.getY()/30)*30);
-		int tempx = Math.round(e.getX()/30);
-		int tempy = Math.round(e.getY()/30);
+		System.out.println("X: " + (Math.round(e.getX()/L)*L));
+		int x = (Math.round(e.getX()/L)*L);
+		int y = (Math.round(e.getY()/L)*L);
+		int tempx = Math.round(e.getX()/L);
+		int tempy = Math.round(e.getY()/L);
 		if(addedBoard[tempx][tempy] != true ){
 			addedBoard[tempx][tempy] = true;
 			if(x<600){
