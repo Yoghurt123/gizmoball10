@@ -43,10 +43,9 @@ public class GizmoBoardView extends Canvas {
 			switch (getCurentDriverState())
 			{
 			case RUN_STATE: 
-				paint(getGraphics());
 				break;
 			}
-			
+			paint(getGraphics());
 
 		}
 
@@ -78,10 +77,7 @@ public class GizmoBoardView extends Canvas {
 	private ArrayList hitList;
 	private String currentFile;
 	//GizmoBoardView board;
-	public void update()
-	{
-		paint(getGraphics());
-	}
+	
 	public void load(String filename) throws RuntimeException {
 	    
 	    gizmos = null;
@@ -147,7 +143,7 @@ public class GizmoBoardView extends Canvas {
 	    	  
 	    	  CircleGizmo ci1 = new CircleGizmo((tempX*3)-3, (tempY*3)-6);
 	    	  GizmoBoard.getInstance().addGizmo(ci1);
-	      } else if(type.equals("LeftFlipper")){ 
+	      } else if(type.equals("LeftFlipper")){
 	    	  String tempName = command.nextToken();
 	    	  int tempX = Integer.parseInt(command.nextToken()+1);
 	    	  int tempY = Integer.parseInt(command.nextToken()+2);

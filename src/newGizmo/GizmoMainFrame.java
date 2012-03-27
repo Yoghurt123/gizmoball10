@@ -489,7 +489,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 							
 							}
 						}
-						board.update();
+						
 					}
 				}
 			}
