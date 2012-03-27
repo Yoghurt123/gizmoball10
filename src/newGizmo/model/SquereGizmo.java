@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
 import newGizmo.SavleLoadable;
-import newGizmo.SavleLoadable;
 import newGizmo.Utils;
 import newGizmo.model.AbstractGizmoModel.DeactivateTask;
 import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;

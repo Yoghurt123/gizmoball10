@@ -14,7 +14,7 @@ import physics.*;
 public class LeftFlipper extends AbstractGizmoModel {
 	private AffineTransform transform = new AffineTransform();
 	private int deg = 0;
-	private boolean rotating = false;
+	private int rotating = 1;
 	
 
 	public LeftFlipper(int x, int y) {
@@ -49,13 +49,20 @@ public class LeftFlipper extends AbstractGizmoModel {
 	}
 	
 	public void rotating(){
-		if(rotating == true){
+		if(rotating == 1){
 			if(deg<= 0 && deg > -90){
-				deg = -15;
+				deg -= 15;
 				System.out.println("Rotating");
 			}
 			else
-				rotating = false;
+				rotating = 0;
+			if(rotating == -1){
+				if(deg > 0){
+					deg += 15;
+				}
+				else
+					rotating = 0;
+			}
 		}
 		
 	}
