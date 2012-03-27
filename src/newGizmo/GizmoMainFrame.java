@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Random;
@@ -33,9 +34,12 @@ import newGizmo.model.LeftFlipper;
 import newGizmo.model.RightFlipper;
 import newGizmo.model.SquereGizmo;
 import newGizmo.model.TriangleGizmo;
+import newGizmo.Gizmo;
 
-public class GizmoMainFrame extends JFrame implements MouseListener {
+
+public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotionListener {
 	private static final int L = GizmoSettings.getInstance().getGizmoL();
+	protected static MouseEvent me;
 	GizmoBoardView board;
 	JButton playButton = null;
 	JButton pauseButton = null;
@@ -44,6 +48,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener {
 	JButton quit = null;
 	private static JFrame frame;
 	boolean[][] addedBoard = new boolean[19][19];
+	Gizmo gizmo;
 
 	public GizmoMainFrame() {
 		board = new GizmoBoardView();
@@ -63,7 +68,9 @@ public class GizmoMainFrame extends JFrame implements MouseListener {
 		addGizmoButtons(toolBar2);
 
 		JScrollPane scrollPane = new JScrollPane();
-
+		scrollPane.addMouseListener(this);
+		scrollPane.addMouseMotionListener(this);
+		
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
 		contentPane.setPreferredSize(new Dimension(510, 530));
@@ -170,25 +177,27 @@ public class GizmoMainFrame extends JFrame implements MouseListener {
 		circle.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				board.addMouseListener(new MouseAdapter(){
-					public void mouseClicked(MouseEvent mt){
-						int x = (Math.round(mt.getX()/30)*30);
-						int y = (Math.round(mt.getY()/30)*30);
-						int tempx = Math.round(mt.getX()/30);
-						int tempy = Math.round(mt.getY()/30);
-						if(addedBoard[tempx][tempy] != true ){
-							addedBoard[tempx][tempy] = true;
-							if(x<600){
-								if(y<600){
-									CircleGizmo ci1 = new CircleGizmo(x, y);
-									GizmoBoard.getInstance().addGizmo(ci1);				 
-									System.out.println("Circle added");
-								}
-							}
-						}
+//				board.addMouseListener(new MouseAdapter(){
+//					public void mouseClicked(MouseEvent mt){
+//						int x = (Math.round(mt.getX()/30)*30);
+//						int y = (Math.round(mt.getY()/30)*30);
+//						int tempx = Math.round(mt.getX()/30);
+//						int tempy = Math.round(mt.getY()/30);
+//						if(addedBoard[tempx][tempy] != true ){
+//							addedBoard[tempx][tempy] = true;
+//							if(x<600){
+//								if(y<600){
+				gizmo = Gizmo.Circle;
+				addGizmo(gizmo);
+//									CircleGizmo ci1 = new CircleGizmo(x, y);
+//									GizmoBoard.getInstance().addGizmo(ci1);				 
+									//System.out.println("Circle added");
+//								}
+//							}
+//						}
 
-					}
-				});
+//					}
+//				});
 			};
 
 		});
@@ -197,24 +206,27 @@ public class GizmoMainFrame extends JFrame implements MouseListener {
 		triangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Triangle added");
-				board.addMouseListener(new MouseAdapter(){		 
-					public void mouseClicked(MouseEvent mt){
-						int x = (Math.round(mt.getX()/30)*30);
-						int y = (Math.round(mt.getY()/30)*30);
-						int tempx = Math.round(mt.getX()/30);
-						int tempy = Math.round(mt.getY()/30);
-						if(addedBoard[tempx][tempy] != true ){
-							addedBoard[tempx][tempy] = true;
-							if(x<600){
-								if(y<600){
-									TriangleGizmo tr1 = new TriangleGizmo(x, y);
-									GizmoBoard.getInstance().addGizmo(tr1);
-									System.out.println("Triangle added");
-								}
-							}
-						}
-					}
-				});
+//				board.addMouseListener(new MouseAdapter(){		 
+//					public void mouseClicked(MouseEvent mt){
+//						int x = (Math.round(mt.getX()/30)*30);
+//						int y = (Math.round(mt.getY()/30)*30);
+//						int tempx = Math.round(mt.getX()/30);
+//						int tempy = Math.round(mt.getY()/30);
+//						if(addedBoard[tempx][tempy] != true ){
+//							addedBoard[tempx][tempy] = true;
+//							if(x<600){
+//								if(y<600){
+				gizmo = Gizmo.Triangle;
+				addGizmo(gizmo);
+									//addGizmo(gizmo.Triangle);
+//									TriangleGizmo tr1 = new TriangleGizmo(x, y);
+//									GizmoBoard.getInstance().addGizmo(tr1);
+//									System.out.println("Triangle added");
+//								}
+//							}
+//						}
+//					}
+//				});
 			};
 		});
 
@@ -405,13 +417,96 @@ public class GizmoMainFrame extends JFrame implements MouseListener {
 		// GizmoBoard.getInstance().addGizmo(sq2);
 		// GizmoBoard.getInstance().addGizmo(ci1);
 		// GizmoBoard.getInstance().addGizmo(tr1);
-		GizmoBoard.getInstance().addGizmo(lf);
+		//GizmoBoard.getInstance().addGizmo(lf);
 		// GizmoBoard.getInstance().addGizmo(absorb);
 
 	}
+	
+	public void addGizmo(final Gizmo gizmo){
+//		
+//		System.out.println(gizmo);
+//		int x = 0;
+//		int y = 0;
+//		
+		board.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent mt){
+				int x = (Math.round(mt.getX()/30)*30);
+				int y = (Math.round(mt.getY()/30)*30);
+				int tempx = Math.round(mt.getX()/30);
+				int tempy = Math.round(mt.getY()/30);
+				if(addedBoard[tempx][tempy] != true ){
+					addedBoard[tempx][tempy] = true;
+					if(x<600){
+						if(y<600){
+//						}
+//					}
+//				}
+//			}
+//		});
+							switch(gizmo){
+							case Circle: CircleGizmo ci1 = new CircleGizmo(x,y);
+											GizmoBoard.getInstance().addGizmo(ci1);
+											System.out.println("Circle added");
+											break;
+							case Triangle: TriangleGizmo tr1 = new TriangleGizmo(x,y);
+											GizmoBoard.getInstance().addGizmo(tr1);
+											System.out.println("Triangle added");
+											break;
+							
+							}
+					
+		
+//		if(gizmo.equals("circle")){
+//			CircleGizmo ci1 = new CircleGizmo(x,y);
+//			GizmoBoard.getInstance().addGizmo(ci1);
+//		}
+//		else
+//			if(gizmo.equals("triangle")){
+//				TriangleGizmo tr1 = new TriangleGizmo(x,y);
+//				GizmoBoard.getInstance().addGizmo(tr1);
+//			}
+		
+						}
+					}
+				}
+			}
+		});
+	}
+	
+	public void addGizmo(MouseEvent e){
+		System.out.println("X: " + (Math.round(e.getX()/30)*30));
+		int x = (Math.round(e.getX()/30)*30);
+		int y = (Math.round(e.getY()/30)*30);
+		int tempx = Math.round(e.getX()/30);
+		int tempy = Math.round(e.getY()/30);
+		if(addedBoard[tempx][tempy] != true ){
+			addedBoard[tempx][tempy] = true;
+			if(x<600){
+				if(y<600){
+			
+					switch(gizmo){
+					case Circle: CircleGizmo ci1 = new CircleGizmo(x,y);
+									GizmoBoard.getInstance().addGizmo(ci1);
+									System.out.println("Circle added");
+									break;
+					case Triangle: TriangleGizmo tr1 = new TriangleGizmo(x,y);
+									GizmoBoard.getInstance().addGizmo(tr1);
+									System.out.println("Triangle added");
+									break;
+					
+					}
+				}
+			}
+		}
+	}
+	
+//	public void mouseDrag(MouseEvent e){
+//		addGizmo(e);
+//	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		addGizmo(e);
 		// TODO Auto-generated method stub
 
 	}
@@ -438,5 +533,17 @@ public class GizmoMainFrame extends JFrame implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -11,6 +11,8 @@ import newGizmo.model.RightFlipper;
 
 public class EventListener extends MouseAdapter implements
 MouseMotionListener, KeyListener, ActionListener {
+	
+	RightFlipper rf;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -23,7 +25,7 @@ MouseMotionListener, KeyListener, ActionListener {
 		int keynum = e.getKeyCode();
 		
 		if((keynum >= 65) && (keynum <= 91)){
-			RightFlipper.triggerEvent();
+			rf.rotate();
 			System.out.println("TRIGGER PRESSED!!!!!!!!!!!!");
 		}
 		// TODO Auto-generated method stub

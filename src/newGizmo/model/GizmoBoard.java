@@ -3,6 +3,8 @@ package newGizmo.model;
 import java.awt.List;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
+
 import newGizmo.controller.EventListener;
 
 import GizmoballGUI.animationEventListener;
@@ -10,7 +12,7 @@ import GizmoballGUI.animationEventListener;
 import physics.Angle;
 import physics.Vect;
 
-public class GizmoBoard {
+public class GizmoBoard extends JPanel{
 	private EventListener eventListener;
 
 	private static GizmoBoard instance = null;
@@ -57,6 +59,9 @@ public class GizmoBoard {
 	public void run() {
 		if (ball != null) {
 			ball.startBallMovement();
+			requestFocus();
+			addKeyListener(eventListener);
+			
 		}
 	}
 

@@ -19,8 +19,8 @@ import newGizmo.model.AbstractGizmoModel.onColisionTimeTask;
 
 public class RightFlipper extends AbstractGizmoModel {
 	private AffineTransform transform = new AffineTransform();
-	private static int deg = 0;
-	private static int rotating = 0;
+	private int deg = 0;
+	private int rotating = 0;
 	
 	public RightFlipper(int x, int y) {
 		super(x, y);
@@ -57,12 +57,19 @@ LineSegment RightFlipperLines[] = new LineSegment[4];
 	
 	public void rotating(){
 		if(rotating == 1){
-			if(deg< 90){
-				deg = +15;
+			if(deg < 90){
+				deg += 15;
 				System.out.println("Rotating");
 			}
 			else
 				rotating = 0;
+			if(rotating == -1){
+				if(deg > 0){
+					deg -= 15;
+				}
+				else
+					rotating = 0;
+			}
 		}
 		
 	}
@@ -106,14 +113,14 @@ LineSegment RightFlipperLines[] = new LineSegment[4];
 
 	}
 	
-	public static void triggerEvent() {
-        if (rotating == 0 ) { // flipper is still
+	public void rotate() {
+        if (rotating == 0 ) {
                 if (deg == 0)
                         rotating = 1;
                 if (deg == 90)
                         rotating = -1;
         }
-        else // flipper is currently moving
+        else
                 rotating = -rotating;       
 }
 
