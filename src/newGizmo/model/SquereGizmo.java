@@ -52,8 +52,7 @@ public class SquereGizmo extends AbstractGizmoModel implements SavleLoadable {
 	public Graphics paint(Graphics g) {
 
 		g.setColor(curent);
-		g.fillRect((int) x, (int) y, GizmoSettings.getInstance().getGizmoL(),
-				GizmoSettings.getInstance().getGizmoL());
+		g.fillRect((int) x, (int) y, L,L);
 		return g;
 
 	}

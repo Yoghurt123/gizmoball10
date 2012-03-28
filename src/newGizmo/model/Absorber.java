@@ -16,7 +16,6 @@ import physics.Vect;
 public class Absorber extends AbstractGizmoModel {
 
 	int length = GizmoSettings.getInstance().getGizmoL();
-
 	LineSegment abs;
 
 	public Absorber(int x, int y) {
@@ -24,23 +23,18 @@ public class Absorber extends AbstractGizmoModel {
 		SetBoundary();
 	}
 
-	@Override
 	public Graphics paint(Graphics g) {
 		g.setColor(Color.BLACK);
-
-		g.fillRect(0, (int) y, 600, 20);
-
+		g.fillRect((int) x, (int) y,length,length);
 		return g;
 	}
 
-	@Override
 	public void update(double dtime) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void SetBoundary() {
-		abs = new LineSegment(0, y, 20 * length, y);
+		abs = new LineSegment(x,y,x+length,y+length);
 	}
 
 	public LineSegment getRect() {

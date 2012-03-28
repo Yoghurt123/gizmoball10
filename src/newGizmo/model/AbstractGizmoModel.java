@@ -138,6 +138,13 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	 */
 	public abstract void onDeactivationEvent();
 
+	public void setX(int newx){
+		this.x = newx;
+	}
+	
+	public void setY(int newy){
+		this.y = newy;
+	}
 	public int getX() {
 		return (int )x;	}
 
