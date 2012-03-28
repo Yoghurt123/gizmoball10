@@ -103,7 +103,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 			break;
 		}
 		}
-
+		try{
 		int[] xCoordinates = { p1.x, p2.x, p3.x };
 		int[] yCoordinates = { p1.y, p2.y, p3.y };
 		Polygon triangle = new Polygon(xCoordinates, yCoordinates,
@@ -113,6 +113,9 @@ public class TriangleGizmo extends AbstractGizmoModel {
 		AffineTransform at = new AffineTransform();
 		at.rotate(Math.toRadians(90));
 		Shape rotatedRect = at.createTransformedShape(triangle);
+		}catch(Exception e){
+			System.out.println("triangle error");
+		}
 		return g;
 
 	}

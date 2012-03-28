@@ -60,10 +60,11 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 	RightFlipper rf;
 	loadSave ls;
 	EventListener eventListener;
-	int newx,newy;
-	int move = 1,rot=1;
+	int newx,newy, rotate = 1,move = 1;
 	AbstractGizmoModel movefrom = null;
-
+	char keypressed;
+	
+	
 	private JToolBar toolBar;
 	private JToolBar GizmotoolBar;
 	private JToolBar modeToolBar;
@@ -121,6 +122,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				GizmoBoard.getInstance().run();
 				temp.setVisible(false);
 				playButton.setEnabled(false);
+				gizmo = Gizmo.Nothing;
 			}
 		});
 
@@ -204,41 +206,33 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 
 
 		circle.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
-				//				board.addMouseListener(new MouseAdapter(){
-				//					public void mouseClicked(MouseEvent mt){
-				//						int x = (Math.round(mt.getX()/30)*30);
-				//						int y = (Math.round(mt.getY()/30)*30);
-				//						int tempx = Math.round(mt.getX()/30);
-				//						int tempy = Math.round(mt.getY()/30);
-				//						if(addedBoard[tempx][tempy] != true ){
-				//							addedBoard[tempx][tempy] = true;
-				//							if(x<600){
-				//								if(y<600){
 				gizmo = Gizmo.Circle;
 				addGizmo();
-
-
-				//									CircleGizmo ci1 = new CircleGizmo(x, y);
-				//									GizmoBoard.getInstance().addGizmo(ci1);				 
-				//System.out.println("Circle added");
-				//								}
-				//							}
-				//						}
-
-				//					}
-				//				});
 			};
-
 		});
 
 
 		triangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Triangle added");
-				gizmo = Gizmo.Triangle;
-				addGizmo();
+				try{
+					String sw = (String)
+							JOptionPane.showInputDialog(frame,"Please select rotation" +
+									" angle ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null,
+									null, null);
+					rotate = Integer.parseInt(sw);
+					rotate = (int) Math.ceil(rotate/90);
+					if(rotate< 1 && rotate > 4){
+						String message = "Select either 90, 180, 270 or 360";
+						JOptionPane.showMessageDialog(new JFrame(),message, "Dialog",
+								JOptionPane.ERROR_MESSAGE);
+					}
+					System.out.println("Triangle added");
+					gizmo = Gizmo.Triangle;
+					addGizmo();
+				}catch(NumberFormatException e3){
+					System.out.println("No number entered");
+				}
 			};
 		});
 
@@ -299,7 +293,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				addGizmo();
 			}
 		});
-		
+
 		move.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				gizmo = Gizmo.Move;
@@ -349,7 +343,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		// CircleGizmo ci1 = new CircleGizmo(60, 30);
 		GizmoWalls walls = new GizmoWalls(0, 0, 600, 600);
 		// SquereGizmo sq2 = new SquereGizmo(60,30);
-//		TriangleGizmo tr1 = new TriangleGizmo(70, 100);
+		//		TriangleGizmo tr1 = new TriangleGizmo(70, 100);
 		CircleGizmo ci1 = new CircleGizmo(90, 120);
 		// Absorber absorb = new Absorber(0, 500);
 		LeftFlipper lf = new LeftFlipper(100, 100);
@@ -418,63 +412,73 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				int y = (Math.round(mt.getY()/30)*30);
 				int tempx = Math.round(mt.getX()/30);
 				int tempy = Math.round(mt.getY()/30);
-				
-				if(gizmo == Gizmo.Delete){
-					addedBoard[tempx][tempy] = false;
-				}
-				if(gizmo == Gizmo.Move){
-					addedBoard[tempx][tempy] = false;
-				}
-
-				if(addedBoard[tempx][tempy] != true ){
-					addedBoard[tempx][tempy] = true;
-					if(x<=630){
-						if(y<=630){
-							switch(gizmo){
-							case Circle: CircleGizmo ci1 = new CircleGizmo(x,y);
-							GizmoBoard.getInstance().addGizmo(ci1);
-							System.out.println("Circle added");
-							break;
-							case Triangle: TriangleGizmo tr1 = new TriangleGizmo(x,y,rot);
-							GizmoBoard.getInstance().addGizmo(tr1);
-							System.out.println("x is: " + x + " y is: " + y);
-							System.out.println("Triangle added");
-							break;
-							case Square: SquereGizmo sq1 = new SquereGizmo(x,y);
-							GizmoBoard.getInstance().addGizmo(sq1);
-							System.out.println("Square added");
-							break;
-							case FlipperL: LeftFlipper lf1 = new LeftFlipper(x,y);
-							GizmoBoard.getInstance().addGizmo(lf1);
-							System.out.println("Left Flipper added");
-							break;
-							case FlipperR:  RightFlipper rf1 = new RightFlipper(x,y);
-							GizmoBoard.getInstance().addGizmo(rf1);
-							System.out.println("Right Flipper added");
-							break;
-							case Delete:   	addedBoard[tempx][tempy] = false;
-							Delete(x,y,tempx,tempy);
-							break;
-							case Absorber:  Absorber a = new Absorber(x,y);
-							GizmoBoard.getInstance().addGizmo(a);
-							break;
-							case Move:		if(move == 1){
-								movefrom = MoveFrom(x,y);
-								System.out.println(movefrom);
-								addedBoard[tempx][tempy] = false;
-								break;
-							}
-							if(move == 2){
-								MoveTo(x, y, movefrom);
-								break;
-							}
-							case Rotate: 
-
-							}
-						}
-						board.update();
+				try{
+					if(gizmo == Gizmo.Delete){
+						addedBoard[tempx][tempy] = false;
 					}
+					if(gizmo == Gizmo.Move){
+						addedBoard[tempx][tempy] = false;
+					}
+
+					if(addedBoard[tempx][tempy] != true ){
+						addedBoard[tempx][tempy] = true;
+						if(x<=630){
+							if(y<=630){
+								try{
+								switch(gizmo){
+								case Circle: CircleGizmo ci1 = new CircleGizmo(x,y);
+								GizmoBoard.getInstance().addGizmo(ci1);
+								System.out.println("Circle added");
+								break;
+								case Triangle: TriangleGizmo tr1 = new TriangleGizmo(x,y,rotate);
+								GizmoBoard.getInstance().addGizmo(tr1);
+								System.out.println("x is: " + x + " y is: " + y);
+								System.out.println("Triangle added");
+								break;
+								case Square: SquereGizmo sq1 = new SquereGizmo(x,y);
+								GizmoBoard.getInstance().addGizmo(sq1);
+								System.out.println("Square added");
+								break;
+								case FlipperL: LeftFlipper lf1 = new LeftFlipper(x,y);
+								GizmoBoard.getInstance().addGizmo(lf1);
+								System.out.println("Left Flipper added");
+								break;
+								case FlipperR:  RightFlipper rf1 = new RightFlipper(x,y);
+								GizmoBoard.getInstance().addGizmo(rf1);
+								System.out.println("Right Flipper added");
+								break;
+								case Delete:   	addedBoard[tempx][tempy] = false;
+								Delete(x,y,tempx,tempy);
+								break;
+								case Absorber:  Absorber a = new Absorber(x,y);
+								GizmoBoard.getInstance().addGizmo(a);
+								break;
+								case Move:		if(move == 1){
+									movefrom = MoveFrom(x,y);
+									System.out.println(movefrom);
+									addedBoard[tempx][tempy] = false;
+									break;
+								}
+								if(move == 2){
+									MoveTo(x, y, movefrom);
+									break;
+								}
+								case Rotate: 
+
+								}
+								}catch(NullPointerException n){
+									System.out.println("no value set for case statement");
+								}
+							}
+							board.update();
+						}
+					}
+				}catch (ArrayIndexOutOfBoundsException e){
+					String message = "Cannot place gizmo outside the frame!!";
+					JOptionPane.showMessageDialog(new JFrame(),message, "Dialog",
+							JOptionPane.ERROR_MESSAGE);
 				}
+
 			}
 		});
 	}
@@ -494,15 +498,31 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 			}
 
 			public void keyPressed(KeyEvent ke) {
-				char keypressed = ke.getKeyChar();
+				keypressed = ke.getKeyChar();
 				System.out.println(keypressed);
 				if(keypressed == 'c'){
 					gizmo = Gizmo.Circle;
 					addGizmo();
 				}
 				if(keypressed == 't'){
-					gizmo = Gizmo.Triangle;
-					addGizmo();
+					try{
+						String sw = (String)
+								JOptionPane.showInputDialog(frame,"Please select rotation" +
+										" angle ","Adding new Absorber",JOptionPane.PLAIN_MESSAGE,null,
+										null, null);
+						rotate = Integer.parseInt(sw);
+						rotate = (int) Math.ceil(rotate/90);
+						if(rotate< 1 && rotate > 4){
+							String message = "Select either 90, 180, 270 or 360";
+							JOptionPane.showMessageDialog(new JFrame(),message, "Dialog",
+									JOptionPane.ERROR_MESSAGE);
+						}
+						System.out.println("Triangle added");
+						gizmo = Gizmo.Triangle;
+						addGizmo();
+					}catch(NumberFormatException e){
+						System.out.println("No number entered");
+					}
 				}
 				if(keypressed == 's'){
 					gizmo = Gizmo.Square;
@@ -532,7 +552,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 					gizmo = null;
 				}
 				if(keypressed == 'f'){
-					
+
 				}
 			}
 		});
