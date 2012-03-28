@@ -1,15 +1,17 @@
 package newGizmo.model;
 
+import java.awt.Graphics;
 import java.util.LinkedList;
 
 import newGizmo.Drawable;
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoDriver.STATES;
+import newGizmo.GizmoSettings;
 import newGizmo.SavleLoadable;
 
 public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 		SavleLoadable {
-
+	private int L = GizmoSettings.getInstance().getGizmoL();
 	protected boolean isReflecting = false;
 
 	protected class DeactivateTask extends GizmoDriver.GizmoTask {
@@ -159,6 +161,19 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	public void setKeyBind(char c) {
 		keyBind = c;
 	};
+	
+	/**
+	 * draw connected gizmos as street lines 
+	 * @param g
+	 */
+	public void drawLinkedGizmos(Graphics g)
+	{
+		if(linkedGizmos!=null)
+		for(AbstractGizmoModel m: linkedGizmos)
+		{
+		g.drawLine(getX()+L/2, getY()+L/2, m.getX()+L/2, m.getY()+L/2);	
+		}
+	}
 	
 	public char getKeyBind()
 	{

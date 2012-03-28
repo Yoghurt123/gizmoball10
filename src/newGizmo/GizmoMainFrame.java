@@ -195,10 +195,16 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 		JButton ball = null;
 		JButton move = null;
 		JButton assignKey = null;
+		JButton link = null;
+		JButton unLink=null;
 
 		assignKey = new JButton("AssignKey");
 		assignKey.setToolTipText("assign key to activate gizmo");
-
+		link = new JButton("Link");
+		link.setToolTipText("Link Gizmo's");
+		
+		unLink = new JButton("UnLink");
+		unLink.setToolTipText("UnLink Gizmo's");
 		// Add labels and tips to buttons
 
 		circle.setToolTipText("Click this button to add a Circle");
@@ -347,7 +353,11 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 		GizmotoolBar.addSeparator();
 
 		GizmotoolBar.add(assignKey);
-
+		GizmotoolBar.addSeparator();
+		
+	
+		
+		
 		// toolBar2.add(ball);
 
 	}

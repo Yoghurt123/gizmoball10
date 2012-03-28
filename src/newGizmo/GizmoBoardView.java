@@ -68,13 +68,21 @@ public class GizmoBoardView extends Canvas {
 				g.drawLine(i, j, i, 600);
 				g.drawLine(0, i, 600, i);
 			}
+			/**
+			 * draw links
+			 */
+			for(AbstractGizmoModel mo : GizmoBoard.getInstance().getGizmos())
+			{
+				mo.drawLinkedGizmos(g);
+			}
 			
 		}
 		GizmoBall ball = GizmoBoard.getInstance().getBall();
 
 		if (ball != null)
 			ball.paint(g);
-
+		
+		
 		for (AbstractGizmoModel giz : GizmoBoard.getInstance().getGizmos()) {
 			giz.paint(g);
 		}
