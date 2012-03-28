@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 
 import newGizmo.GizmoDriver;
 import newGizmo.GizmoSettings;
@@ -19,44 +21,47 @@ public class TriangleGizmo extends AbstractGizmoModel {
 	LineSegment triangleLines[] = new LineSegment[3];
 	Circle corner1 =null, corner2=null, corner3=null;
 	private final int GizmoLength = GizmoSettings.getInstance().getGizmoL();
-
-	public TriangleGizmo(int x, int y) {
+	int rotate =1;
+	public TriangleGizmo(int x, int y,int rotate) {
 		super(x, y);
+		this.rotate = rotate;
 		SetBoundaryBox();
 		// TODO Auto-generated constructor stub
 	}
 
 	public void SetBoundaryBox() {
 
-		// switch(rotate){
-		// case 1:{
-		triangleLines[0] = new LineSegment(x, y, x + GizmoLength, y);
-		triangleLines[1] = new LineSegment(x + GizmoLength, y, x + GizmoLength,
-				y + GizmoLength); 
-		triangleLines[2] = new LineSegment(x, y, x + GizmoLength, y
-				+ GizmoLength);
-		corner1 = new Circle(x, y, 0);
-		corner2 = new Circle(x + GizmoLength, y, 0);
-		corner3 = new Circle(x + GizmoLength, y + GizmoLength, 0);
-
-			
-//		}
-//		case 2:{
-//			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
-//			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y+GizmoLength);
-//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x,y);
-//		}
-//		case 3:{
-//			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y+GizmoLength);
-//			triangleLines[1] = new LineSegment(x+GizmoLength,y+GizmoLength,x,y+GizmoLength);
-//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x,y);
-//		}
-//		case 4:{
-//			triangleLines[0] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y+GizmoLength);
-//			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y+GizmoLength);
-//			triangleLines[2] = new LineSegment(x,y+GizmoLength,x+GizmoLength,y);
-//		}
-//		}
+		switch(rotate){
+		case 1:{
+			triangleLines[0] = new LineSegment(x, y, x + GizmoLength, y);
+			triangleLines[1] = new LineSegment(x + GizmoLength, y, x + GizmoLength,
+					y + GizmoLength); 
+			triangleLines[2] = new LineSegment(x, y, x + GizmoLength, y
+					+ GizmoLength);
+			corner1 = new Circle(x, y, 0);
+			corner2 = new Circle(x + GizmoLength, y, 0);
+			corner3 = new Circle(x + GizmoLength, y + GizmoLength, 0);
+			break;
+		}
+		case 2:{
+			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y+GizmoLength);
+			triangleLines[2] = new LineSegment(x,y+GizmoLength,x,y);
+			break;
+		}
+		case 3:{
+			triangleLines[0] = new LineSegment(x,y,x+GizmoLength,y+GizmoLength);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y+GizmoLength,x,y+GizmoLength);
+			triangleLines[2] = new LineSegment(x,y+GizmoLength,x,y);
+			break;
+		}
+		case 4:{
+			triangleLines[0] = new LineSegment(x+GizmoLength,y,x+GizmoLength,y+GizmoLength);
+			triangleLines[1] = new LineSegment(x+GizmoLength,y,x,y+GizmoLength);
+			triangleLines[2] = new LineSegment(x,y+GizmoLength,x+GizmoLength,y);
+			break;
+		}
+		}
 
 
 
@@ -71,35 +76,43 @@ public class TriangleGizmo extends AbstractGizmoModel {
 	@Override
 	public Graphics paint(Graphics g) {
 		Point p1 = null, p2 = null, p3 = null;
-		// switch(rotate){
-		// case 1:{
+		switch(rotate){
+		case 1:{
 
-		p1 = new Point((int) x, (int) y);
-		p2 = new Point((int) x + GizmoLength, (int) y);
-		p3 = new Point((int) x + GizmoLength, (int) y + GizmoLength);
-		// }
-		// case 2:{
-		// p1 = new Point((int)x,(int)y);
-		// p2 = new Point((int)x+GizmoLength,(int)y);
-		// p3 = new Point((int)x,(int)y+GizmoLength);
-		// }
-		// case 3:{
-		// p1 = new Point((int)x,(int)y);
-		// p2 = new Point((int)x+GizmoLength,(int)y+GizmoLength);
-		// p3 = new Point((int)x,(int)y+GizmoLength);
-		// }
-		// case 4:{
-		// p1 = new Point((int)x+GizmoLength,(int)y);
-		// p2 = new Point((int)x+GizmoLength,(int)y+GizmoLength);
-		// p3 = new Point((int)x,(int)y+GizmoLength);
-		// }
-		// }
+			p1 = new Point((int) x, (int) y);
+			p2 = new Point((int) x + GizmoLength, (int) y);
+			p3 = new Point((int) x + GizmoLength, (int) y + GizmoLength);
+			break;
+		}
+		case 2:{
+			p1 = new Point((int)x,(int)y);
+			p2 = new Point((int)x+GizmoLength,(int)y);
+			p3 = new Point((int)x,(int)y+GizmoLength);
+			break;
+		}
+		case 3:{
+			p1 = new Point((int)x,(int)y);
+			p2 = new Point((int)x+GizmoLength,(int)y+GizmoLength);
+			p3 = new Point((int)x,(int)y+GizmoLength);
+			break;
+		}
+		case 4:{
+			p1 = new Point((int)x+GizmoLength,(int)y);
+			p2 = new Point((int)x+GizmoLength,(int)y+GizmoLength);
+			p3 = new Point((int)x,(int)y+GizmoLength);
+			break;
+		}
+		}
+
 		int[] xCoordinates = { p1.x, p2.x, p3.x };
 		int[] yCoordinates = { p1.y, p2.y, p3.y };
 		Polygon triangle = new Polygon(xCoordinates, yCoordinates,
 				xCoordinates.length);
 		g.setColor(curent);
 		g.fillPolygon(triangle);
+		AffineTransform at = new AffineTransform();
+		at.rotate(Math.toRadians(90));
+		Shape rotatedRect = at.createTransformedShape(triangle);
 		return g;
 
 	}
@@ -138,7 +151,7 @@ public class TriangleGizmo extends AbstractGizmoModel {
 				tempTime = time;
 			}
 		}
-			
+
 		if (!isReflecting)
 			if (tempTime < GizmoSettings.getInstance()
 					.getBallMovementUpdateDtime()) {

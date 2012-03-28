@@ -129,7 +129,7 @@ public class GizmoBoardView extends Canvas {
 						+ ((tempY * 3) - 6));
 
 				TriangleGizmo tr1 = new TriangleGizmo((tempX * 3) - 3,
-						(tempY * 3) - 6);
+						(tempY * 3) - 6,1);
 				GizmoBoard.getInstance().addGizmo(tr1);
 				// TriangleClass triangle = new TriangleClass(this,
 				// command.nextToken(),

@@ -61,7 +61,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 	loadSave ls;
 	EventListener eventListener;
 	int newx,newy;
-	int move = 1;
+	int move = 1,rot=1;
 	AbstractGizmoModel movefrom = null;
 
 	private JToolBar toolBar;
@@ -349,7 +349,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		// CircleGizmo ci1 = new CircleGizmo(60, 30);
 		GizmoWalls walls = new GizmoWalls(0, 0, 600, 600);
 		// SquereGizmo sq2 = new SquereGizmo(60,30);
-		TriangleGizmo tr1 = new TriangleGizmo(70, 100);
+//		TriangleGizmo tr1 = new TriangleGizmo(70, 100);
 		CircleGizmo ci1 = new CircleGizmo(90, 120);
 		// Absorber absorb = new Absorber(0, 500);
 		LeftFlipper lf = new LeftFlipper(100, 100);
@@ -435,7 +435,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 							GizmoBoard.getInstance().addGizmo(ci1);
 							System.out.println("Circle added");
 							break;
-							case Triangle: TriangleGizmo tr1 = new TriangleGizmo(x,y);
+							case Triangle: TriangleGizmo tr1 = new TriangleGizmo(x,y,rot);
 							GizmoBoard.getInstance().addGizmo(tr1);
 							System.out.println("x is: " + x + " y is: " + y);
 							System.out.println("Triangle added");
@@ -468,6 +468,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 								MoveTo(x, y, movefrom);
 								break;
 							}
+							case Rotate: 
 
 							}
 						}
@@ -529,6 +530,9 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				}
 				if(keypressed == 'z'){
 					gizmo = null;
+				}
+				if(keypressed == 'f'){
+					
 				}
 			}
 		});

@@ -74,7 +74,7 @@ public class loadSave {
 	    	  int tempX = Integer.parseInt(command.nextToken()+1);
 	    	  int tempY = Integer.parseInt(command.nextToken()+1);
 	    	  
-	    	  TriangleGizmo tr1 = new TriangleGizmo(tempX, tempY);
+	    	  TriangleGizmo tr1 = new TriangleGizmo(tempX, tempY,1);
 	    	  GizmoBoard.getInstance().addGizmo(tr1);
 //		TriangleClass triangle = new TriangleClass(this, command.nextToken(),
 //							   Integer.parseInt(command.nextToken())+1,
