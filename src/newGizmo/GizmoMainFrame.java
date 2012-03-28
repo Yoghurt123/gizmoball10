@@ -66,7 +66,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 	int newx, newy, rotate = 1, move = 1;
 	AbstractGizmoModel movefrom = null;
 	char keypressed;
-
+	String bind;
+	
 	private JToolBar toolBar;
 	private JToolBar GizmotoolBar;
 	private JToolBar modeToolBar;
@@ -310,6 +311,9 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				bind = (String) JOptionPane.showInputDialog(frame,
+						"Enter the Key to bind" ,"Get Binding Key", JOptionPane.PLAIN_MESSAGE,
+						null, null, null);
 				gizmo = Gizmo.assignKey;
 				addGizmo();
 			}
@@ -498,10 +502,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 										break;
 									case assignKey:
 										AbstractGizmoModel m = GizmoBoard.getInstance().getGizmoByCord(x, y);
-										String sw = (String) JOptionPane.showInputDialog(frame,
-												"Anter Key for bind" ,"lol", JOptionPane.PLAIN_MESSAGE,
-												null, null, null);
-										m.setKeyBind(sw.toCharArray()[0]);
+										
+										m.setKeyBind(bind.toCharArray()[0]);
 										
 									}
 									
