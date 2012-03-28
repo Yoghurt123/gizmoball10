@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import newGizmo.controller.EventListener;
+import newGizmo.model.Absorber;
 import newGizmo.model.AbstractGizmoModel;
 import newGizmo.model.CircleGizmo;
 import newGizmo.model.GizmoBall;
@@ -105,12 +106,17 @@ public class GizmoBoardView extends Canvas {
 			String type = command.nextToken();
 			if (type.equals("Square")) {
 				String tempName = command.nextToken();
-				int tempX = Integer.parseInt(command.nextToken() + 1);
-				int tempY = Integer.parseInt(command.nextToken() + 1);
-				System.out.println("Square" + ((tempX * 3) - 3) + " "
-						+ ((tempY * 3) - 3));
-				SquereGizmo sq1 = new SquereGizmo((tempX * 3) - 3,
-						(tempY * 3) - 3);
+				int tempX = Integer.parseInt(command.nextToken());
+				int tempY = Integer.parseInt(command.nextToken());
+//				System.out.println("Square" + ((tempX * 3) - 3) + " "
+//						+ ((tempY * 3) - 3));
+//				SquereGizmo sq1 = new SquereGizmo((tempX * 3) - 3,
+//						(tempY * 3) - 3);
+//				GizmoBoard.getInstance().addGizmo(sq1);
+				System.out.println("Square" + ((tempX)) + " "
+						+ ((tempY)));
+				SquereGizmo sq1 = new SquereGizmo((tempX),
+						(tempY));
 				GizmoBoard.getInstance().addGizmo(sq1);
 
 				// SquereClass square = new SquereClass(this,
@@ -122,14 +128,20 @@ public class GizmoBoardView extends Canvas {
 			} else if (type.equals("Triangle")) {
 
 				String tempName = command.nextToken();
-				int tempX = Integer.parseInt(command.nextToken() + 1);
-				int tempY = Integer.parseInt(command.nextToken() + 2);
+				int tempX = Integer.parseInt(command.nextToken());
+				int tempY = Integer.parseInt(command.nextToken());
 
-				System.out.println("Triangle" + ((tempX * 3) - 3) + " "
-						+ ((tempY * 3) - 6));
+//				System.out.println("Triangle" + ((tempX * 3) - 3) + " "
+//						+ ((tempY * 3) - 6));
+//
+//				TriangleGizmo tr1 = new TriangleGizmo((tempX * 3) - 3,
+//						(tempY * 3) - 6,1);
+//				GizmoBoard.getInstance().addGizmo(tr1);
+				System.out.println("Triangle" + (tempX) + " "
+						+ tempY);
 
-				TriangleGizmo tr1 = new TriangleGizmo((tempX * 3) - 3,
-						(tempY * 3) - 6,1);
+				TriangleGizmo tr1 = new TriangleGizmo((tempX ),
+						(tempY),1);
 				GizmoBoard.getInstance().addGizmo(tr1);
 				// TriangleClass triangle = new TriangleClass(this,
 				// command.nextToken(),
@@ -139,32 +151,77 @@ public class GizmoBoardView extends Canvas {
 				// grid.add(triangle);
 			} else if (type.equals("Circle")) {
 				String tempName = command.nextToken();
-				int tempX = Integer.parseInt(command.nextToken() + 1);
-				int tempY = Integer.parseInt(command.nextToken() + 2);
+				int tempX = Integer.parseInt(command.nextToken());
+				int tempY = Integer.parseInt(command.nextToken());
 
-				System.out.println("Circle" + ((tempX * 3) - 3) + " "
-						+ ((tempY * 3) - 6));
+				System.out.println("Circle" + ((tempX)) + " "
+						+ ((tempY)));
 
-				CircleGizmo ci1 = new CircleGizmo((tempX * 3) - 3,
-						(tempY * 3) - 6);
+				CircleGizmo ci1 = new CircleGizmo((tempX),
+						(tempY));
 				GizmoBoard.getInstance().addGizmo(ci1);
 			} else if (type.equals("LeftFlipper")) {
 				String tempName = command.nextToken();
-				int tempX = Integer.parseInt(command.nextToken() + 1);
-				int tempY = Integer.parseInt(command.nextToken() + 2);
+//				int tempX = Integer.parseInt(command.nextToken() + 1);
+//				int tempY = Integer.parseInt(command.nextToken() + 2);
+//
+//				LeftFlipper fl1 = new LeftFlipper((tempX * 3) - 3,
+//						(tempY * 3) - 6);
+//				GizmoBoard.getInstance().addGizmo(fl1);
+				
+				
+				int tempX = Integer.parseInt(command.nextToken());
+				int tempY = Integer.parseInt(command.nextToken());
 
-				LeftFlipper fl1 = new LeftFlipper((tempX * 3) - 3,
-						(tempY * 3) - 6);
+				System.out.println("Left Flipper" + ((tempX) ) + " " +  ((tempY ) ));
+				
+				LeftFlipper fl1 = new LeftFlipper((tempX),
+						(tempY));
 				GizmoBoard.getInstance().addGizmo(fl1);
-			} else if (type.equals("RightFlipper")) {
+			}
+			else if(type.equals("Absorber")){
 				String tempName = command.nextToken();
-				int tempX = Integer.parseInt(command.nextToken() + 1);
-				int tempY = Integer.parseInt(command.nextToken() + 2);
+				int tempX = Integer.parseInt(command.nextToken());
+				int tempY = Integer.parseInt(command.nextToken());
+				
+//				System.out.println("Absorber " + ((tempX * 3)-3) + " " + ((tempY *3)-6));
+//				Absorber a = new Absorber((tempX*3)-3 , (tempY*3)-6);
+//				GizmoBoard.getInstance().addGizmo(a);
+				
+				System.out.println("Absorber" + (tempX) + " " + (tempY));
+				Absorber a = new Absorber((tempX) , (tempY));
+				GizmoBoard.getInstance().addGizmo(a);
+			}else if (type.equals("RightFlipper")) {
+				String tempName = command.nextToken();
+				int tempX = Integer.parseInt(command.nextToken());
+				int tempY = Integer.parseInt(command.nextToken());
+				
+//				System.out.println("Right Flipper" + ((tempX * 3) - 3) + " " +  ((tempY * 3) - 6));
+//
+//				RightFlipper fr1 = new RightFlipper((tempX * 3) - 3,
+//						(tempY * 3) - 6);
+//				GizmoBoard.getInstance().addGizmo(fr1);
+				
+				System.out.println("Right Flipper" + ((tempX) ) + " " +  ((tempY ) ));
 
-				RightFlipper fr1 = new RightFlipper((tempX * 3) - 3,
-						(tempY * 3) - 6);
+				RightFlipper fr1 = new RightFlipper((tempX),
+						(tempY));
 				GizmoBoard.getInstance().addGizmo(fr1);
 			}
+//			}else if(type.equals("Absorber")){
+//				String tempName = command.nextToken();
+//				int tempX = Integer.parseInt(command.nextToken());
+//				int tempY = Integer.parseInt(command.nextToken());
+//				
+////				System.out.println("Absorber " + ((tempX * 3)-3) + " " + ((tempY *3)-6));
+////				Absorber a = new Absorber((tempX*3)-3 , (tempY*3)-6);
+////				GizmoBoard.getInstance().addGizmo(a);
+//				
+//				System.out.println("Absorber" + (tempX) + " " + (tempY));
+//				Absorber a = new Absorber((tempX) , (tempY));
+//				GizmoBoard.getInstance().addGizmo(a);
+//			}
+			
 
 			// CircleClass circle = new CircleClass(this, command.nextToken(),
 			// Integer.parseInt(command.nextToken())+1,

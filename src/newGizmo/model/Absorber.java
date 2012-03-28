@@ -25,7 +25,7 @@ public class Absorber extends AbstractGizmoModel {
 
 	public Graphics paint(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.fillRect((int) x, (int) y,length,length);
+		g.fillRect((int) 0, (int) y,(int) (20*length),length);
 		return g;
 	}
 
@@ -34,7 +34,7 @@ public class Absorber extends AbstractGizmoModel {
 	}
 
 	public void SetBoundary() {
-		abs = new LineSegment(x,y,x+length,y+length);
+		abs = new LineSegment(0,y,20*length,y+length);
 	}
 
 	public LineSegment getRect() {
@@ -79,8 +79,9 @@ public class Absorber extends AbstractGizmoModel {
 
 	@Override
 	public String getSaveString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Absorber " + name + " "
+                + ((int)x) + " "
+                + ((int)y); 
 	}
 
 	@Override

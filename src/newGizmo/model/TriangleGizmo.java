@@ -199,8 +199,8 @@ public class TriangleGizmo extends AbstractGizmoModel {
 	@Override
 	public String getSaveString() {
 		return "Triangle " + name + " "
-				+ ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
-				+ ((int)y / GizmoSettings.getInstance().getGizmoL() - 1);
+				+ ((int)x) + " "
+				+ ((int)y);
 	}
 
 	@Override

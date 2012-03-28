@@ -102,8 +102,8 @@ public class GizmoWalls extends AbstractGizmoModel {
 	@Override
 	public String getSaveString() {
 		return "Walls " + name + " "
-				+ (x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
-				+ (y / GizmoSettings.getInstance().getGizmoL() - 1);
+				+ ((int)x) + " "
+				+ ((int)y);
 	}
 
 	@Override

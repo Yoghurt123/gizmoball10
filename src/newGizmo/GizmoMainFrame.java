@@ -153,6 +153,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				loadDialog.setVisible(true);
 				System.out.println(loadDialog.getFile());
 				board.load(loadDialog.getDirectory() + loadDialog.getFile());
+				board.update();
 			}
 		});
 

@@ -44,7 +44,7 @@ LineSegment RightFlipperLines[] = new LineSegment[4];
 	public Graphics paint(Graphics g) {
 		rotating();
 		
-		Area shape = new Area(new Rectangle2D.Double(x, y, L/2, L*2));
+		Area shape = new Area(new Rectangle2D.Double(x+L, y+L, L/2, L*2));
 		transform.setToRotation(Math.toRadians(deg), x, y);
 		shape.transform(transform);
 		
@@ -133,8 +133,8 @@ LineSegment RightFlipperLines[] = new LineSegment[4];
 	@Override
 	public String getSaveString() {
 		 return "RightFlipper " + name + " "
-                 + ((int)x / GizmoSettings.getInstance().getGizmoL() - 1) + " "
-                 + ((int)y / GizmoSettings.getInstance().getGizmoL() - 1); 
+                 + ((int)x) + " "
+                 + ((int)y); 
 	}
 
 	@Override
