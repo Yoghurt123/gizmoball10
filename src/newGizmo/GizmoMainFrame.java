@@ -67,7 +67,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 	AbstractGizmoModel movefrom = null;
 	char keypressed;
 	String bind;
-	
+
 	private JToolBar toolBar;
 	private JToolBar GizmotoolBar;
 	private JToolBar modeToolBar;
@@ -312,8 +312,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				bind = (String) JOptionPane.showInputDialog(frame,
-						"Enter the Key to bind" ,"Get Binding Key", JOptionPane.PLAIN_MESSAGE,
-						null, null, null);
+						"Enter the Key to bind", "Get Binding Key",
+						JOptionPane.PLAIN_MESSAGE, null, null, null);
 				gizmo = Gizmo.assignKey;
 				addGizmo();
 			}
@@ -346,7 +346,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 		GizmotoolBar.add(move);
 		GizmotoolBar.addSeparator();
 
-		 GizmotoolBar.add(assignKey);
+		GizmotoolBar.add(assignKey);
 
 		// toolBar2.add(ball);
 
@@ -405,7 +405,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 	}
 
 	public void Delete(int x, int y, int tempx, int tempy) {
-		AbstractGizmoModel toDelete = GizmoBoard.getInstance().getGizmoByCord(x, y);
+		AbstractGizmoModel toDelete = GizmoBoard.getInstance().getGizmoByCord(
+				x, y);
 		if (toDelete != null) {
 			GizmoBoard.getInstance().removeGizmo(toDelete);
 			board.update();
@@ -428,9 +429,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 					if (gizmo == Gizmo.Move) {
 						addedBoard[tempx][tempy] = false;
 					}
-					if(gizmo == Gizmo.assignKey)
-					{
-						addedBoard[tempx][tempy ]= false;
+					if (gizmo == Gizmo.assignKey) {
+						addedBoard[tempx][tempy] = false;
 					}
 
 					if (addedBoard[tempx][tempy] != true) {
@@ -501,12 +501,14 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 										System.out.println("Ball added");
 										break;
 									case assignKey:
-										AbstractGizmoModel m = GizmoBoard.getInstance().getGizmoByCord(x, y);
-										
+										AbstractGizmoModel m = GizmoBoard
+												.getInstance().getGizmoByCord(
+														x, y);
+
 										m.setKeyBind(bind.toCharArray()[0]);
-										
+
 									}
-									
+
 								} catch (NullPointerException n) {
 									System.out
 											.println("no value set for case statement");
@@ -541,66 +543,61 @@ public class GizmoMainFrame extends JFrame implements MouseListener,
 			public void keyPressed(KeyEvent ke) {
 				keypressed = ke.getKeyChar();
 				System.out.println(keypressed);
-				if (keypressed == 'c') {
-					gizmo = Gizmo.Circle;
-					addGizmo();
-				} else
-				if (keypressed == 't') {
-					try {
-						String sw = (String) JOptionPane.showInputDialog(frame,
-								"Please select rotation" + " angle ",
-								"Adding new Absorber",
-								JOptionPane.PLAIN_MESSAGE, null, null, null);
-						rotate = Integer.parseInt(sw);
-						rotate = (int) Math.ceil(rotate / 90);
-						if (rotate < 1 && rotate > 4) {
-							String message = "Select either 90, 180, 270 or 360";
-							JOptionPane.showMessageDialog(new JFrame(),
-									message, "Dialog",
-									JOptionPane.ERROR_MESSAGE);
-						}
-						System.out.println("Triangle added");
-						gizmo = Gizmo.Triangle;
+				if (GizmoDriver.getInstance().getState() == STATES.POUSE_STATE) {
+					if (keypressed == 'c') {
+						gizmo = Gizmo.Circle;
 						addGizmo();
-					} catch (NumberFormatException e) {
-						System.out.println("No number entered");
+					} else if (keypressed == 't') {
+						try {
+							String sw = (String) JOptionPane
+									.showInputDialog(frame,
+											"Please select rotation"
+													+ " angle ",
+											"Adding new Absorber",
+											JOptionPane.PLAIN_MESSAGE, null,
+											null, null);
+							rotate = Integer.parseInt(sw);
+							rotate = (int) Math.ceil(rotate / 90);
+							if (rotate < 1 && rotate > 4) {
+								String message = "Select either 90, 180, 270 or 360";
+								JOptionPane.showMessageDialog(new JFrame(),
+										message, "Dialog",
+										JOptionPane.ERROR_MESSAGE);
+							}
+							System.out.println("Triangle added");
+							gizmo = Gizmo.Triangle;
+							addGizmo();
+						} catch (NumberFormatException e) {
+							System.out.println("No number entered");
+						}
+					}
+					if (keypressed == 's') {
+						gizmo = Gizmo.Square;
+						addGizmo();
+					} else if (keypressed == 'd') {
+						gizmo = Gizmo.Delete;
+						addGizmo();
+					} else if (keypressed == 'r') {
+						gizmo = Gizmo.FlipperR;
+						addGizmo();
+					} else if (keypressed == 'l') {
+						gizmo = Gizmo.FlipperL;
+						addGizmo();
+					} else if (keypressed == 'm') {
+						gizmo = Gizmo.Move;
+						addGizmo();
+					} else if (keypressed == 'a') {
+						gizmo = Gizmo.Absorber;
+						addGizmo();
+					} else if (keypressed == 'z') {
+						gizmo = null;
+					} else if (keypressed == 'b') {
+
 					}
 				}
-				if (keypressed == 's') {
-					gizmo = Gizmo.Square;
-					addGizmo();
-				} else
-				if (keypressed == 'd') {
-					gizmo = Gizmo.Delete;
-					addGizmo();
-				} else
-				if (keypressed == 'r') {
-					gizmo = Gizmo.FlipperR;
-					addGizmo();
-				} else
-				if (keypressed == 'l') {
-					gizmo = Gizmo.FlipperL;
-					addGizmo();
-				} else
-				if (keypressed == 'm') {
-					gizmo = Gizmo.Move;
-					addGizmo();
-				} else
-				if (keypressed == 'a') {
-					gizmo = Gizmo.Absorber;
-					addGizmo();
-				} else
-				if (keypressed == 'z') {
-					gizmo = null;
-				}else
-				if (keypressed == 'b') {
-
-				} 
-				
-				else 
+				if (GizmoDriver.getInstance().getState() == STATES.RUN_STATE)
 					GizmoBoard.getInstance().acctivateGizmoByItsKey(keypressed);
-				
-				
+
 			}
 		});
 	}

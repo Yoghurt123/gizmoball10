@@ -75,4 +75,9 @@ public class GizmoDriver {
 		System.out.println("State changed to "  + state);
 
 	}
+
+	public STATES getState() {
+		// TODO Auto-generated method stub
+		return state;
+	}
 }
