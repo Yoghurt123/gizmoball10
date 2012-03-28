@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import newGizmo.controller.EventListener;
 
-import GizmoballGUI.animationEventListener;
+
 
 import physics.Angle;
 import physics.Vect;

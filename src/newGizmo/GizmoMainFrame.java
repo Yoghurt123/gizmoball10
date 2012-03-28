@@ -29,7 +29,7 @@ import javax.swing.JToolBar;
 
 import physics.Vect;
 
-import GizmoballGUI.gizmoBoard;
+
 
 import newGizmo.GizmoDriver.STATES;
 import newGizmo.controller.EventListener;

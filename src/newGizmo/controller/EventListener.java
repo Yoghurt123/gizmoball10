@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionListener;
 
-import GizmoballGUI.Board;
+
 import newGizmo.model.RightFlipper;
 
 public class EventListener extends MouseAdapter implements
