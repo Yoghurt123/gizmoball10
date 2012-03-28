@@ -37,7 +37,7 @@ public class loadSave {
 	    hitList = null;
 	    hitList = new ArrayList();
 	    
-	    currentFile = "default.gb";
+	    currentFile = "default.text";
 
 //	    Walls = null;
 //	    Walls = new Boundary(this);

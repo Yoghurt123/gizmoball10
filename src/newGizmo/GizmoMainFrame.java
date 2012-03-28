@@ -27,6 +27,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 
+import physics.Vect;
+
 import GizmoballGUI.gizmoBoard;
 
 import newGizmo.GizmoDriver.STATES;
@@ -34,6 +36,7 @@ import newGizmo.controller.EventListener;
 import newGizmo.model.Absorber;
 import newGizmo.model.AbstractGizmoModel;
 import newGizmo.model.CircleGizmo;
+import newGizmo.model.GizmoBall;
 import newGizmo.model.GizmoBoard;
 import newGizmo.model.GizmoWalls;
 import newGizmo.model.LeftFlipper;
@@ -274,15 +277,16 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		ball.setToolTipText("Click this button to add a Ball");
 		ball.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addMouseListener(new MouseAdapter() {
-					public void mousePressed(MouseEvent mb) {
-
-						// b.addGizmo("Ball"+bl, "Ball", mb.getX()/30,
-						// (mb.getY()/30)-2);
-						// bl++;
-						System.out.println("Ball added");
-					}
-				});
+//				addMouseListener(new MouseAdapter() {
+//					public void mousePressed(MouseEvent mb) {
+//
+//				gizmo = Gizmo.Ball;
+//				addGizmo();
+//						GizmoBall b = new GizmoBall(mb.getX(), mb.getY(), new Vect(0,-100));
+//						GizmoBoard.getInstance().addGizmo(b);
+//						System.out.println("Ball added");
+//					}
+//				});
 			};
 		});
 
@@ -327,6 +331,9 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 		GizmotoolBar.addSeparator();
 
 		GizmotoolBar.add(move);
+//		GizmotoolBar.addSeparator();
+		
+	//	GizmotoolBar.add(ball);
 
 
 
@@ -366,20 +373,22 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				toMove  = mo;
 			}
 		}
+		
 		move = 2;
 		return toMove;
 	}
 
 	public void MoveTo(int toX, int toY, AbstractGizmoModel movefrom){
 		move =1;
-		AbstractGizmoModel toMove = null,toMove1 = null;
+		AbstractGizmoModel toMove = null;
 
 		if(movefrom!=null)
 		{
+			System.out.println("name is: " + movefrom.getName());
 			toMove = movefrom; 
+			movefrom.setX(toX);
+			movefrom.setY(toY);
 			GizmoBoard.getInstance().removeGizmo(movefrom);
-			toMove.setX(toX);
-			toMove.setY(toY);
 			GizmoBoard.getInstance().addGizmo(toMove);
 			board.update();
 
@@ -458,14 +467,22 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 									movefrom = MoveFrom(x,y);
 									System.out.println(movefrom);
 									addedBoard[tempx][tempy] = false;
+									gizmo = Gizmo.Nothing;
 									break;
 								}
 								if(move == 2){
 									MoveTo(x, y, movefrom);
+									gizmo = Gizmo.Nothing;
+
 									break;
 								}
-								case Rotate: 
-
+								case Ball: 
+//									GizmoBall b = new GizmoBall(x, y, new Vect(0,-100));
+//								b.startBallMovement();
+//								GizmoBoard.getInstance().addGizmo(b);
+								
+								System.out.println("Ball added");
+								break;
 								}
 								}catch(NullPointerException n){
 									System.out.println("no value set for case statement");
@@ -552,8 +569,8 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 				if(keypressed == 'z'){
 					gizmo = null;
 				}
-				if(keypressed == 'f'){
-
+				if(keypressed == 'b'){
+					
 				}
 			}
 		});
