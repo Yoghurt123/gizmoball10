@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import newGizmo.GizmoDriver.STATES;
 import newGizmo.controller.EventListener;
 import newGizmo.model.Absorber;
 import newGizmo.model.AbstractGizmoModel;
@@ -27,7 +28,7 @@ import newGizmo.model.SquereGizmo;
 import newGizmo.model.TriangleGizmo;
 
 public class GizmoBoardView extends Canvas {
-
+	private static final int L = GizmoSettings.getInstance().getGizmoL();
 	public GizmoBoardView() {
 		long ltime = GizmoSettings.getInstance().getScreenRefreshRate();
 		GizmoDriver.getInstance().runShudledTask(new GizmoUpdateViewTask(),
@@ -60,6 +61,15 @@ public class GizmoBoardView extends Canvas {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 600, 600);
 		g.setColor(Color.BLACK);
+		if(GizmoDriver.getInstance().getState() == STATES.POUSE_STATE)
+		for(int i = 0 ; i< 600 ; i+=L)
+		{
+			for (int j = 0; j < 600 ; j+=L) {
+				g.drawLine(i, j, i, 600);
+				g.drawLine(0, i, 600, i);
+			}
+			
+		}
 		GizmoBall ball = GizmoBoard.getInstance().getBall();
 
 		if (ball != null)
