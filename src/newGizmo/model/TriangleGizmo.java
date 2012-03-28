@@ -25,11 +25,11 @@ public class TriangleGizmo extends AbstractGizmoModel {
 	public TriangleGizmo(int x, int y,int rotate) {
 		super(x, y);
 		this.rotate = rotate;
-		SetBoundaryBox();
+		setBoundaryBox();
 		// TODO Auto-generated constructor stub
 	}
 
-	public void SetBoundaryBox() {
+	public void setBoundaryBox() {
 
 		switch(rotate){
 		case 1:{

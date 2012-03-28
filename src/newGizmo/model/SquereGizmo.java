@@ -31,7 +31,7 @@ public class SquereGizmo extends AbstractGizmoModel implements SavleLoadable {
 	 * setup the boundary lines around the box for find the time to collisions
 	 * and reflect the ball as needed
 	 */
-	private void setBoundaryBox() {
+	public void setBoundaryBox() {
 		squareLines[0] = new LineSegment(x, y, x + L, y);
 		squareLines[1] = new LineSegment(x + L, y, x + L, y + L);
 		squareLines[2] = new LineSegment(x + L, y + L, x, y + L);

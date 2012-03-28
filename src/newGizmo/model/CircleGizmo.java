@@ -19,7 +19,7 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 	public CircleGizmo(int x, int y) {
 		super(x, y);
-		SetCircle();
+		setBoundaryBox();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -40,7 +40,7 @@ public class CircleGizmo extends AbstractGizmoModel {
 
 	}
 
-	public void SetCircle() {
+	public void setBoundaryBox() {
 		circleBoundary = new Circle(x, y, L / 2 );
 	}
 

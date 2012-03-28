@@ -151,4 +151,6 @@ public abstract class AbstractGizmoModel implements Drawable, Colisoinable,
 	public int getY() {
 		return (int)y;
 	}
+	
+	public void setBoundaryBox() {};
 }

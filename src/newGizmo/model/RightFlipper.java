@@ -30,7 +30,7 @@ public class RightFlipper extends AbstractGizmoModel {
 	
 LineSegment RightFlipperLines[] = new LineSegment[4];
 	
-	private void setBoundaryBox() {
+	public void setBoundaryBox() {
 		RightFlipperLines[0] = new LineSegment(x, y, x + L, y);
 		RightFlipperLines[1] = new LineSegment(x + L, y, x + L, y + L);
 		RightFlipperLines[2] = new LineSegment(x + L, y + L, x, y + L);

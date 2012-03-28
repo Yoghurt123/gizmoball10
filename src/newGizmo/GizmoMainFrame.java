@@ -391,6 +391,7 @@ public class GizmoMainFrame extends JFrame implements MouseListener, MouseMotion
 			GizmoBoard.getInstance().removeGizmo(movefrom);
 			GizmoBoard.getInstance().addGizmo(toMove);
 			board.update();
+			toMove.setBoundaryBox();
 
 		}
 	}
