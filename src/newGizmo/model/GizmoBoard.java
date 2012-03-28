@@ -91,4 +91,29 @@ public class GizmoBoard extends JPanel{
 		
 	}
 
+	public AbstractGizmoModel getGizmoByCord(int x, int y)
+	{
+		for (AbstractGizmoModel mo : gizmos) {
+			if (mo.getX() == x && mo.getY() == y) {
+				return mo;
+			}
+		}
+		return null;
+
+		
+	}
+	
+	public void acctivateGizmoByItsKey(char k)
+	{
+		for (AbstractGizmoModel m:gizmos)
+		{
+			System.out.println("key assigned:" + m.getKeyBind());
+			if(m.getKeyBind() == k)
+			{
+				
+				m.onHitEvent();
+			}
+		}
+	}
+	
 }
